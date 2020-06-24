@@ -13,6 +13,9 @@ spec:
         max: 65535
   runAsUser:
     rule: MustRunAsNonRoot
+    ranges:
+      - min: 1
+        max: 65535
   runAsGroup:
     rule: MustRunAs
     ranges:
@@ -24,6 +27,7 @@ spec:
     rule: RunAsAny
   volumes:
     - 'configMap'
+    - 'secret'
   allowPrivilegeEscalation: false
   hostNetwork: false
   hostIPC: false
