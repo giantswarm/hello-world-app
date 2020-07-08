@@ -4,3 +4,7 @@ version: "[[.Version]]"
 appVersion: 0.1.0
 home: https://github.com/giantswarm/hello-world-app
 description: A chart that deploys a basic hello world site and lets you test values merging of user values configmap and secrets.
+sources:
+  - https://raw.githubusercontent.com/giantswarm/hello-world-app/v[[ .Version ]]/README.md
+annotations:
+  values_schema: https://raw.githubusercontent.com/giantswarm/hello-world-app/v[[ .Version ]]/helm/hello-world-app/values.schema.json
