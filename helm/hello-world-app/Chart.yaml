@@ -8,4 +8,5 @@ icon: https://raw.githubusercontent.com/giantswarm/hello-world-app/v[[ .Version 
 sources:
   - https://raw.githubusercontent.com/giantswarm/hello-world-app/v[[ .Version ]]/README.md
 annotations:
-  values_schema: https://raw.githubusercontent.com/giantswarm/hello-world-app/v[[ .Version ]]/helm/hello-world-app/values.schema.json
+  application.giantswarm.io:
+    values-schema: https://raw.githubusercontent.com/giantswarm/hello-world-app/v[[ .Version ]]/helm/hello-world-app/values.schema.json
