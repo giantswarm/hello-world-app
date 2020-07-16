@@ -1,4 +1,5 @@
 color: red
+oldColor: green
 
 image:
   registry: 'quay.io'
