@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  architect: giantswarm/architect@0.10.0
+  architect: giantswarm/architect@1.0.0
 
 jobs:
   build:
@@ -36,6 +36,7 @@ workflows:
 
       - architect/push-to-app-catalog:
           context: "architect"
+          executor: "app-build-suite"
           name: "package and push chart to app catalog"
           app_catalog: "giantswarm-playground-catalog"
           app_catalog_test: "giantswarm-playground-test-catalog"
