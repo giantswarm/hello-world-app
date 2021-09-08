@@ -1,6 +1,3 @@
-color: red
-oldColor: green
-
 image:
   registry: 'quay.io'
   name: 'giantswarm/helloworld'
@@ -8,4 +5,9 @@ image:
 
 resource:
   default:
-    name: '{{ .Release.Name  }}'
+    name: '{{ .Release.Name }}'
+
+deployment:
+  replicas: 1
+
+hostname: helloworld.clusterid.k8s.installation.region.provider.gigantic.io
