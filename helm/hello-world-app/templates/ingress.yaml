@@ -3,8 +3,10 @@ kind: Ingress
 metadata:
   labels:
     app: {{ tpl .Values.resource.default.name . }}
+  {{- if .Values.obtainTLSCertificate }}
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-giantswarm"
+  {{- end }}
   name: {{ tpl .Values.resource.default.name . }}
 spec:
   ingressClassName: nginx
@@ -19,7 +21,9 @@ spec:
             name: {{ tpl .Values.resource.default.name . }}-service
             port:
               number: 8080
+{{- if .Values.obtainTLSCertificate }}
   tls:
   - hosts:
     - {{ .Values.hostname }}
     secretName: {{ tpl .Values.resource.default.name . }}-ingress-cert
+{{- end }}
