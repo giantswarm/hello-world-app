@@ -5,11 +5,9 @@ metadata:
   labels:
     app: {{ tpl .Values.resource.default.name . }}
 spec:
+  type: ClusterIP
+  ports:
+  - port: 8080
+    protocol: TCP
   selector:
     app: {{ tpl .Values.resource.default.name . }}
-    color: {{ .Values.color }}
-
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8000

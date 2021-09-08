@@ -5,30 +5,21 @@ metadata:
   labels:
     app: {{ tpl .Values.resource.default.name . }}
 spec:
-  privileged: false
+  allowPrivilegeEscalation: false
   fsGroup:
     rule: MustRunAs
     ranges:
-      - min: 1
-        max: 65535
+      - min: 1000
+        max: 1000
   runAsUser:
     rule: MustRunAsNonRoot
-    ranges:
-      - min: 1
-        max: 65535
-  runAsGroup:
-    rule: MustRunAs
-    ranges:
-      - min: 1
-        max: 65535
   seLinux:
     rule: RunAsAny
   supplementalGroups:
-    rule: RunAsAny
+    rule: MustRunAs
+    ranges:
+      - min: 1000
+        max: 1000
   volumes:
-    - 'configMap'
-    - 'secret'
-  allowPrivilegeEscalation: false
-  hostNetwork: false
-  hostIPC: false
-  hostPID: false
+  - secret
+  - emptyDir
