@@ -14,7 +14,7 @@ First release published to the Giant Swarm catalog
 - Remove container image + CI configuration for building container image
 - Add Ingress
 
-## [0.0.1] 2019-10-28
+## [0.0.1] 2020-07-16
 
 Initial release
 
