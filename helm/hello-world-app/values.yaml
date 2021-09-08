@@ -3,8 +3,8 @@ oldColor: green
 
 image:
   registry: 'quay.io'
-  name: 'giantswarm/hello-world-app'
-  tag: '[[ .Version ]]'
+  name: 'giantswarm/helloworld'
+  tag: 'latest'
 
 resource:
   default:
