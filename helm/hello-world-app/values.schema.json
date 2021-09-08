@@ -27,6 +27,9 @@
                 }
             }
         },
+        "obtainTLSCertificate": {
+            "type": "boolean"
+        },
         "resource": {
             "type": "object",
             "properties": {
