@@ -3,4 +3,3 @@ generate-metadata: true
 catalog-base-url: https://giantswarm.github.io/giantswarm-catalog/
 chart-dir: ./helm/hello-world-app
 destination: ./build
-skip-steps: test_all
