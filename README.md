@@ -1,5 +1,4 @@
-hello-world-app
----------------
+# hello-world-app
 
 A very barebones app for testing features of the Giant Swarm App Platform.
 

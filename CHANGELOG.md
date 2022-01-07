@@ -7,6 +7,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+## Fixed
+
+- Update chart metadata to align with QA checks.
+
 ## [0.1.0] - 2021-09-08
 
 First release published to the Giant Swarm catalog
