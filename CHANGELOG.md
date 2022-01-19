@@ -7,6 +7,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+## Added
+
+- Add `ingressClassName` value to allow users to specify different ingressClassName on the Ingress resource.
+
 ## [0.1.1] - 2022-01-07
 
 ## Fixed

@@ -27,6 +27,9 @@
                 }
             }
         },
+        "ingressClassName": {
+            "type": "string"
+        },
         "obtainTLSCertificate": {
             "type": "boolean"
         },
