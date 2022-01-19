@@ -7,6 +7,8 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+## [0.2.0] - 2022-01-19
+
 ## Added
 
 - Add `ingressClassName` value to allow users to specify different ingressClassName on the Ingress resource.
@@ -30,7 +32,8 @@ First release published to the Giant Swarm catalog
 
 Initial release
 
-[Unreleased]: https://github.com/giantswarm/hello-world-app/compare/v0.1.1...HEAD
+[Unreleased]: https://github.com/giantswarm/hello-world-app/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/giantswarm/hello-world-app/compare/v0.1.1...v0.2.0
 [0.1.1]: https://github.com/giantswarm/hello-world-app/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/giantswarm/hello-world-app/compare/v0.0.1...v0.1.0
 [0.0.1]: https://github.com/giantswarm/hello-world-app/releases/tag/v0.0.1
