@@ -6,6 +6,7 @@ metadata:
   {{- if .Values.obtainTLSCertificate }}
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-giantswarm"
+    acme.cert-manager.io/http01-ingress-class: {{ .Values.ingressClassName }}
   {{- end }}
   name: {{ tpl .Values.resource.default.name . }}
 spec:
