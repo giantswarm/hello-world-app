@@ -1,11 +1,16 @@
 name: 'Push to App Catalog'
 
+on: push
+
 jobs:
-  steps:
-    - name: Install app-build-suite
-      uses: giantswarm/install-binary-action@v1.0.0
-      with:
-        binary: "app-build-suite"
-        version: "1.0.4"
-    - name: Checkout
-      uses: actions/checkout@v2
+  push_to_app_catalog:
+    name: Push to app catalog
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install app-build-suite
+        uses: giantswarm/install-binary-action@v1.0.0
+        with:
+          binary: "app-build-suite"
+          version: "1.0.4"
+      - name: Checkout
+        uses: actions/checkout@v2
