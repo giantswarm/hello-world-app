@@ -34,8 +34,8 @@ jobs:
           cat index.yaml
 
       - name: Commit changes to app catalog repository
-        run:  |
-          cd app_catalog
-          git add -A
-          git commit -m "Push to app catalog"
-          git push origin main
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          branch: main
+          commit_message: Push to app catalog
+          commit_user_name: app-build-suite
