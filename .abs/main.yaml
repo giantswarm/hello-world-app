@@ -1,5 +1,5 @@
 replace-chart-version-with-git: true
 generate-metadata: true
-catalog-base-url: https://giantswarm.github.io/giantswarm-catalog/
+catalog-base-url: https://rossf7.github.io/example-catalog/
 chart-dir: ./helm/hello-world-app
 destination: ./build
