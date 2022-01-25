@@ -39,3 +39,4 @@ jobs:
           branch: main
           commit_message: Push to app catalog
           commit_user_name: app-build-suite
+          repository: app_catalog
