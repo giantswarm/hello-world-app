@@ -13,4 +13,4 @@ jobs:
       - name: Execute ABS tool
         uses: docker://quay.io/giantswarm/app-build-suite:1.0.4
         with:
-          args: -h
+          args: -c helm/hello-world-app
