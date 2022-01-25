@@ -10,7 +10,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Execute ABS tool
+      - name: Execute app-build-suite
         uses: docker://quay.io/giantswarm/app-build-suite:1.0.4
         with:
-          args: -c helm/hello-world-app
+          args: --chart-dir helm/hello-world-app --catalog-base-url "https://rossf7.github.io/example-catalog"
+
+      - name: Setup Helm
+        uses: azure/setup-helm@v1
+        with:
+          version: v3.7.2
+
+      - name: Clone app catalog repository
+        run:  git clone -q --depth=1 --single-branch -b master "git@github.com:rossf7/example-catalog.git" example-catalog
