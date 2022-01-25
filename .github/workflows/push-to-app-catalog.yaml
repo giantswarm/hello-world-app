@@ -35,6 +35,7 @@ jobs:
 
       - name: Commit changes to app catalog repository
         run:  |
+          cd app_catalog
           git add -A
           git commit -m "Push to app catalog"
           git push origin main
