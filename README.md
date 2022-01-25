@@ -19,4 +19,3 @@ obtainTLSCertificate: true
 ```
 
 in your user-values.
-
