@@ -13,7 +13,7 @@ jobs:
       - name: Execute app-build-suite
         uses: docker://quay.io/giantswarm/app-build-suite:1.0.4
         with:
-          args: --chart-dir helm/hello-world-app --catalog-base-url "https://rossf7.github.io/example-catalog"
+          args: --chart-dir helm/hello-world-app --catalog-base-url "https://rossf7.github.io/example-catalog/"
 
       - name: Setup Helm
         uses: azure/setup-helm@v1
