@@ -7,7 +7,7 @@ jobs:
     name: Push to app catalog
     runs-on: ubuntu-20.04
     steps:
-      - name: Checkout local repository
+      - name: Checkout app repository
         uses: actions/checkout@v2
 
       - name: Checkout app catalog repository
@@ -22,10 +22,14 @@ jobs:
         with:
           version: v3.7.2
 
-      - name: Clone app catalog repository
-        run:  git clone -q --depth=1 --single-branch -b main "git@github.com:rossf7/example-catalog.git" example-catalog
-
       - name: Execute app-build-suite
         uses: docker://quay.io/giantswarm/app-build-suite:1.0.4
         with:
-          args: --chart-dir helm/hello-world-app --catalog-base-url "https://rossf7.github.io/example-catalog/"
+          args: --chart-dir helm/hello-world-app --catalog-base-url "https://rossf7.github.io/example-catalog/" --destination app_catalog
+
+      - name: Update Helm index.yaml
+        run:  |
+          cd app_catalog
+          ls -1
+          helm repo index --url https://rossf7.github.io/example-catalog/
+          ls -1
