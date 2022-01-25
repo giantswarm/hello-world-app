@@ -32,3 +32,9 @@ jobs:
           cd app_catalog
           helm repo index --url https://rossf7.github.io/example-catalog/ .
           cat index.yaml
+
+      - name: Commit changes to app catalog repository
+        run:  |
+          git add -A
+          git commit -m "Push to app catalog"
+          git push origin main
