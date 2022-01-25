@@ -7,8 +7,15 @@ jobs:
     name: Push to app catalog
     runs-on: ubuntu-20.04
     steps:
-      - name: Checkout
+      - name: Checkout local repository
         uses: actions/checkout@v2
+
+      - name: Checkout app catalog repository
+        uses: actions/checkout@v2
+        with:
+          repository: rossf7/example-catalog
+          path: app_catalog
+          token: ${{ secrets.PAT }}
 
       - name: Setup Helm
         uses: azure/setup-helm@v1
