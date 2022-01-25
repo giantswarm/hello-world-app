@@ -30,6 +30,5 @@ jobs:
       - name: Update Helm index.yaml
         run:  |
           cd app_catalog
-          ls -1
-          helm repo index --url https://rossf7.github.io/example-catalog/
-          ls -1
+          helm repo index --url https://rossf7.github.io/example-catalog/ .
+          cat index.yaml
