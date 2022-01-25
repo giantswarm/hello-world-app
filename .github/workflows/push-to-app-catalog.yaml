@@ -1,6 +1,9 @@
 name: 'Push to App Catalog'
 
-on: push
+on:
+  push:
+    tags:
+      - 'v*'
 
 jobs:
   push_to_app_catalog:
