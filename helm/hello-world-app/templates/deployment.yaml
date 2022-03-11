@@ -8,11 +8,11 @@ spec:
   replicas: {{ .Values.deployment.replicas }}
   selector:
     matchLabels:
-      {{- include "hello-world-app.selectorLabels" . | nindent 4 }}
+      {{- include "hello-world-app.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "hello-world-app.labels" . | nindent 4 }}
+        {{- include "hello-world-app.labels" . | nindent 8 }}
     spec:
       affinity:
         podAntiAffinity:
