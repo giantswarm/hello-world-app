@@ -3,7 +3,7 @@ kind: PodSecurityPolicy
 metadata:
   name: {{ tpl .Values.resource.default.name . }}-psp
   labels:
-    app: {{ tpl .Values.resource.default.name . }}
+    {{- include "hello-world-app.labels" . | nindent 4 }}
 spec:
   allowPrivilegeEscalation: false
   fsGroup:
