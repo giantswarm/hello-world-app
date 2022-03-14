@@ -7,6 +7,9 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+- `Chart.yaml` includes now more metadata info, including explicitely set `appVersion`
+- `_templates.yaml` is introduced and supports team label handling
+
 ## [0.2.0] - 2022-01-19
 
 ## Added

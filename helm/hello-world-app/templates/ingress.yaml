@@ -2,7 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   labels:
-    app: {{ tpl .Values.resource.default.name . }}
+    {{- include "hello-world-app.labels" . | nindent 4 }}
   {{- if .Values.obtainTLSCertificate }}
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-giantswarm"

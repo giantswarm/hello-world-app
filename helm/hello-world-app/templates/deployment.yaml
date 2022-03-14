@@ -3,16 +3,16 @@ kind: Deployment
 metadata:
   name: {{ tpl .Values.resource.default.name . }}
   labels:
-    app: {{ tpl .Values.resource.default.name . }}
+    {{- include "hello-world-app.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.deployment.replicas }}
   selector:
     matchLabels:
-      app: {{ tpl .Values.resource.default.name . }}
+      {{- include "hello-world-app.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        app: {{ tpl .Values.resource.default.name . }}
+        {{- include "hello-world-app.labels" . | nindent 8 }}
     spec:
       affinity:
         podAntiAffinity:
@@ -59,6 +59,8 @@ apiVersion: policy/v1beta1
 kind: PodDisruptionBudget
 metadata:
   name: {{ tpl .Values.resource.default.name . }}-pdb
+  labels:
+    {{- include "hello-world-app.labels" . | nindent 4 }}
 spec:
   minAvailable: 1
   selector:
