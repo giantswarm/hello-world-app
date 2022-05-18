@@ -1,0 +1,31 @@
+apiVersion: dummies/v1
+kind: Deployment
+metadata:
+  name: dummy-deployment
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: dummy
+    securityContext:
+      runAsUser: 1000
+      runAsGroup: 1000
+    spec:
+      containers:
+        - name: dummy
+          image: '{{ .Values.image.registry }}/{{ .Values.image.name }}:{{ .Values.image.tag }}'
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: 50m
+              memory: 50Mi
+            limits:
+              cpu: 50m
+              memory: 50Mig
+          securityContext:
+            readOnlyRootFilesystem: true
