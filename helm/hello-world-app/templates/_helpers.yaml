@@ -41,6 +41,7 @@ helm.sh/chart: "{{ template "hello-world-app.chart" . }}"
 giantswarm.io/service-type: "managed"
 application.giantswarm.io/team: {{ index .Chart.Annotations "application.giantswarm.io/team" | quote }}
 example.org/test: "hello-world-test"
+example.org/poison-pill: "true"
 {{ include "hello-world-app.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
