@@ -1,4 +1,4 @@
-apiVersion: dummies/v1
+apiVersion: dummies/v2
 kind: Deployment
 metadata:
   name: dummy-deployment
