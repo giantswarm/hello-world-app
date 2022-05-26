@@ -26,6 +26,6 @@ spec:
               memory: 50Mi
             limits:
               cpu: 50m
-              memory: 50Mig
+              memory: 50Mi
           securityContext:
             readOnlyRootFilesystem: true
