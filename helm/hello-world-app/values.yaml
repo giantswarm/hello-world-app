@@ -1,3 +1,5 @@
+color: blue
+
 image:
   registry: 'quay.io'
   name: 'giantswarm/helloworld'
