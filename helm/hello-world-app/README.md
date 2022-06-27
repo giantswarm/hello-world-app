@@ -10,7 +10,7 @@ A chart that deploys a basic hello world site and lets you test values merging o
 
 | Name | Email | Url |
 | ---- | ------ | --- |
-| Giant Swarm - Honeybadger |  |  |
+| Giant Swarm - Honeybadger | <team-honeybadger@giantswarm.io> | <https://www.giantswarm.io/about#honeybadger> |
 
 ## Source Code
 
