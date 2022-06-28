@@ -15,7 +15,7 @@ deployment:
   # -- How many pods to run in the Deployment.
   replicas: 1
 
-# -- The URL under which the application will run. Be sure to register it in DNS.
+# -- The host name under which the application will be exposed to the public. Be sure to adapt this one to end in your workload cluster's base ingress domain.
 hostname: helloworld.clusterid.k8s.installation.region.provider.gigantic.io
 
 # -- If true, a TLS certificate will be requested automatically from Let's Encrypt after deployment. Requires cert-manager to be running.
