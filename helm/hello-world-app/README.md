@@ -22,12 +22,12 @@ A chart that deploys a basic hello world site and lets you test values merging o
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | deployment.replicas | int | `1` | How many pods to run in the Deployment. |
-| hostname | string | `"helloworld.clusterid.k8s.installation.region.provider.gigantic.io"` | The URL under which the application will run. Be sure to register it in DNS. |
+| hostname | string | `"helloworld.clusterid.k8s.installation.region.provider.gigantic.io"` | The host name under which the application will be exposed to the public. Be sure to adapt this one to end in your workload cluster's base ingress domain. |
 | image.name | string | `"giantswarm/helloworld"` | Docker image name for the container in chart. |
 | image.registry | string | `"quay.io"` | Docker registry host to download container image from. |
 | image.tag | string | `"0.2.0"` | Version of App to deploy. |
 | ingressClassName | string | `"nginx"` | Which ingress class should be used for routing the traffic. |
-| obtainTLSCertificate | bool | `false` | Should the App request automatic TLS certificate on deployment. |
+| obtainTLSCertificate | bool | `false` | If true, a TLS certificate will be requested automatically from Let's Encrypt after deployment. Requires cert-manager to be running. |
 | resource.default.name | string | `"{{ .Release.Name }}"` | Name that will be included in app deployed kubernetes objects. |
 
 ----------------------------------------------
