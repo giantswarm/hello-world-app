@@ -1,19 +1,27 @@
 image:
+  # -- Docker registry host to download container image from.
   registry: 'quay.io'
+  # -- Docker image name for the container in chart.
   name: 'giantswarm/helloworld'
+  # -- Version of App to deploy.
   tag: '0.2.0'
 
 resource:
   default:
+    # -- Name that will be included in app deployed kubernetes objects.
     name: '{{ .Release.Name }}'
 
 deployment:
+  # -- How many pods to run in the Deployment.
   replicas: 1
 
+# -- The host name under which the application will be exposed to the public. Be sure to adapt this one to end in your workload cluster's base ingress domain.
 hostname: helloworld.clusterid.k8s.installation.region.provider.gigantic.io
 
+# -- If true, a TLS certificate will be requested automatically from Let's Encrypt after deployment. Requires cert-manager to be running.
 obtainTLSCertificate: false
 
+# -- Which ingress class should be used for routing the traffic.
 ingressClassName: nginx
 
 layer1: from-chart
