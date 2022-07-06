@@ -14,5 +14,7 @@ sources:
   - https://github.com/giantswarm/helloworld
 maintainers:
   - name: Giant Swarm - Honeybadger
+    email: team-honeybadger@giantswarm.io
+    url: https://www.giantswarm.io/about#honeybadger
 annotations:
   application.giantswarm.io/team: "honeybadger"
