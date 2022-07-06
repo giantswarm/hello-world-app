@@ -30,6 +30,80 @@
         "ingressClassName": {
             "type": "string"
         },
+        "layer1": {
+            "type": "string"
+        },
+        "layer10": {
+            "type": "string"
+        },
+        "layer2": {
+            "type": "string"
+        },
+        "layer3": {
+            "type": "string"
+        },
+        "layer4": {
+            "type": "string"
+        },
+        "layer5": {
+            "type": "string"
+        },
+        "layer6": {
+            "type": "string"
+        },
+        "layer7": {
+            "type": "string"
+        },
+        "layer8": {
+            "type": "string"
+        },
+        "layer9": {
+            "type": "string"
+        },
+        "nested": {
+            "type": "object",
+            "properties": {
+                "foo": {
+                    "type": "string"
+                },
+                "leaf0": {
+                    "type": "string"
+                },
+                "level1": {
+                    "type": "object",
+                    "properties": {
+                        "foo": {
+                            "type": "string"
+                        },
+                        "leaf1": {
+                            "type": "string"
+                        },
+                        "level2": {
+                            "type": "object",
+                            "properties": {
+                                "foo": {
+                                    "type": "string"
+                                },
+                                "leaf2": {
+                                    "type": "string"
+                                },
+                                "level3": {
+                                    "type": "object",
+                                    "properties": {
+                                        "foo": {
+                                            "type": "string"
+                                        },
+                                        "leaf3": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "obtainTLSCertificate": {
             "type": "boolean"
         },
