@@ -21,7 +21,7 @@ version: 1.0.0
 # incremented each time you make changes to the application. Versions are not expected to
 # follow Semantic Versioning. They should reflect the version the application is using.
 # It is recommended to use it with quotes.
-appVersion: "1.16.0"
+appVersion: "0.2.0"
 
 home: https://github.com/giantswarm/hello-world-app
 icon: https://s.giantswarm.io/app-icons/1/png/hello-world-app-light.png
