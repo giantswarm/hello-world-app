@@ -80,3 +80,9 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+podDisruptionBudget:
+  enabled: true
+  # Define either 'minAvailable' or 'maxUnavailable', never both.
+  # minAvailable: 1
+  maxUnavailable: 1
