@@ -9,6 +9,8 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [1.0.0] - 2022-08-15
 
+- Major rework: Upgrading from previous version might not work. Rather remove older versions and do a fresh install.
+
 ## [0.3.0] - 2022-03-14
 
 - `Chart.yaml` includes now more metadata info, including explicitely set `appVersion`
