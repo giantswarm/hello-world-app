@@ -7,6 +7,8 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+## [1.0.0] - 2022-08-15
+
 ## [0.3.0] - 2022-03-14
 
 - `Chart.yaml` includes now more metadata info, including explicitely set `appVersion`
@@ -37,7 +39,8 @@ First release published to the Giant Swarm catalog
 
 Initial release
 
-[Unreleased]: https://github.com/giantswarm/hello-world-app/compare/v0.3.0...HEAD
+[Unreleased]: https://github.com/giantswarm/hello-world-app/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/giantswarm/hello-world-app/compare/v0.3.0...v1.0.0
 [0.3.0]: https://github.com/giantswarm/hello-world-app/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/giantswarm/hello-world-app/compare/v0.1.1...v0.2.0
 [0.1.1]: https://github.com/giantswarm/hello-world-app/compare/v0.1.0...v0.1.1
