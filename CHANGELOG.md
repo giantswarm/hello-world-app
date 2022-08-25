@@ -7,6 +7,8 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+- Values: Increase default limits.
+
 ## [1.0.0] - 2022-08-15
 
 - Major rework: Upgrading from previous version might not work. Rather remove older versions and do a fresh install.
