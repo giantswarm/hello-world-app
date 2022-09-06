@@ -9,6 +9,8 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [1.1.0] - 2022-09-06
 
+- HPA: Use `autoscaling/v2`.
+
 ## [1.0.1] - 2022-08-25
 
 - Values: Increase default limits.
