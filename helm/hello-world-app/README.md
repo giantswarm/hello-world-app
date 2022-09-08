@@ -1,6 +1,6 @@
 # hello-world-app
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.2.0](https://img.shields.io/badge/AppVersion-0.2.0-informational?style=flat-square)
+![Version: 1.1.0](https://img.shields.io/badge/Version-1.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.2.0](https://img.shields.io/badge/AppVersion-0.2.0-informational?style=flat-square)
 
 A chart that deploys a basic hello world site and lets you test values merging of user values configmap and secrets.
 
@@ -48,8 +48,8 @@ A chart that deploys a basic hello world site and lets you test values merging o
 | podDisruptionBudget.minAvailable | int | `1` |  |
 | podSecurityContext | object | `{}` |  |
 | replicaCount | int | `1` |  |
-| resources.limits.cpu | string | `"200m"` |  |
-| resources.limits.memory | string | `"50Mi"` |  |
+| resources.limits.cpu | string | `"400m"` |  |
+| resources.limits.memory | string | `"100Mi"` |  |
 | resources.requests.cpu | string | `"200m"` |  |
 | resources.requests.memory | string | `"50Mi"` |  |
 | securityContext.readOnlyRootFilesystem | bool | `true` |  |
