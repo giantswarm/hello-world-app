@@ -5,7 +5,8 @@
 replicaCount: 1
 
 image:
-  repository: quay.io/giantswarm/helloworld
+  registry: quay.io
+  repository: giantswarm/helloworld
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
