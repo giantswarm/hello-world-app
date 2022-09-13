@@ -29,7 +29,8 @@ A chart that deploys a basic hello world site and lets you test values merging o
 | autoscaling.targetMemoryUtilizationPercentage | int | `80` |  |
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"quay.io/giantswarm/helloworld"` |  |
+| image.registry | string | `"quay.io"` |  |
+| image.repository | string | `"giantswarm/helloworld"` |  |
 | image.tag | string | `""` |  |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations | object | `{}` |  |
