@@ -7,6 +7,8 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+## [1.1.1] - 2022-09-13
+
 - Image: Make registry configurable.
 
 ## [1.1.0] - 2022-09-06
@@ -51,7 +53,8 @@ First release published to the Giant Swarm catalog
 
 Initial release
 
-[Unreleased]: https://github.com/giantswarm/hello-world-app/compare/v1.1.0...HEAD
+[Unreleased]: https://github.com/giantswarm/hello-world-app/compare/v1.1.1...HEAD
+[1.1.1]: https://github.com/giantswarm/hello-world-app/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/giantswarm/hello-world-app/compare/v1.0.1...v1.1.0
 [1.0.1]: https://github.com/giantswarm/hello-world-app/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/giantswarm/hello-world-app/compare/v0.3.0...v1.0.0
