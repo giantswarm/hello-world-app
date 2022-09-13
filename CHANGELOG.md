@@ -7,6 +7,8 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+- Image: Make registry configurable.
+
 ## [1.1.0] - 2022-09-06
 
 - HPA: Use `autoscaling/v2`.
