@@ -7,6 +7,8 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+- Service: Add support for labels & annotations.
+
 ## [1.1.1] - 2022-09-13
 
 - Image: Make registry configurable.
