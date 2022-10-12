@@ -40,6 +40,8 @@ securityContext:
 service:
   type: ClusterIP
   port: 80
+  labels: {}
+  annotations: {}
 
 ingress:
   enabled: true

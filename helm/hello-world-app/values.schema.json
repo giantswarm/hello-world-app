@@ -177,6 +177,12 @@
         "service": {
             "type": "object",
             "properties": {
+                "annotations": {
+                    "type": "object"
+                },
+                "labels": {
+                    "type": "object"
+                },
                 "port": {
                     "type": "integer"
                 },
