@@ -7,6 +7,9 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+- Values: Improve defaults.
+- Deployment: Use common labels for pods.
+
 ## [1.2.0] - 2022-10-12
 
 - Service: Add support for labels & annotations.
