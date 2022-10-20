@@ -7,6 +7,8 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+## [1.2.2] - 2022-10-20
+
 ## [1.2.1] - 2022-10-20
 
 - Values: Improve defaults.
@@ -62,7 +64,8 @@ First release published to the Giant Swarm catalog
 
 Initial release
 
-[Unreleased]: https://github.com/giantswarm/hello-world-app/compare/v1.2.1...HEAD
+[Unreleased]: https://github.com/giantswarm/hello-world-app/compare/v1.2.2...HEAD
+[1.2.2]: https://github.com/giantswarm/hello-world-app/compare/v1.2.1...v1.2.2
 [1.2.1]: https://github.com/giantswarm/hello-world-app/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/giantswarm/hello-world-app/compare/v1.1.1...v1.2.0
 [1.1.1]: https://github.com/giantswarm/hello-world-app/compare/v1.1.0...v1.1.1
