@@ -228,7 +228,7 @@
             "type": "array"
         },
         "topologySpreadConstraints": {
-            "type": "array"
+            "type": "string"
         }
     }
 }
