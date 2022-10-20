@@ -8,21 +8,21 @@ metadata:
     helm.sh/hook: test
 spec:
   containers:
-    - name: wget
-      securityContext:
-        readOnlyRootFilesystem: true
-        runAsNonRoot: true
-        runAsUser: 1000
-      image: busybox
-      command:
-      - wget
-      args:
-      - {{ include "hello-world-app.fullname" . }}:{{ .Values.service.port }}
-      resources:
-        requests:
-          cpu: 50m
-          memory: 50Mi
-        limits:
-          cpu: 50m
-          memory: 50Mi
+  - name: wget
+    securityContext:
+      readOnlyRootFilesystem: true
+      runAsNonRoot: true
+      runAsUser: 1000
+    image: busybox
+    command:
+    - wget
+    args:
+    - {{ include "hello-world-app.fullname" . }}:{{ .Values.service.port }}
+    resources:
+      requests:
+        cpu: 50m
+        memory: 50Mi
+      limits:
+        cpu: 50m
+        memory: 50Mi
   restartPolicy: Never
