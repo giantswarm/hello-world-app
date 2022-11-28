@@ -13,7 +13,7 @@ spec:
       readOnlyRootFilesystem: true
       runAsNonRoot: true
       runAsUser: 1000
-    image: busybox
+    image: busybox:stable
     command:
     - wget
     args:
