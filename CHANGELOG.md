@@ -7,6 +7,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Added
+
+- Added the use the runtime/default seccomp profile.
+
 ## [1.2.2] - 2022-10-20
 
 ## [1.2.1] - 2022-10-20
