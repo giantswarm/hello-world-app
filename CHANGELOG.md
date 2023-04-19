@@ -7,6 +7,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Added
+
+- Added Cilium network policy to Helm Chart when ingress is enabled and cilium is present on the cluster.
+
 ## [1.3.2] - 2023-04-19
 
 ### Changed
