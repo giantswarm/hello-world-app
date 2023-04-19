@@ -7,18 +7,23 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+## [1.3.2] - 2023-04-19
+
+### Changed
+
+- Chart: Minor improvements.
+
 ## [1.3.1] - 2023-04-18
 
 ### Added
 
-- Added `projected` volumes to PSP.
+- PSP: Add `projected` volume.
 
 ## [1.3.0] - 2023-03-09
 
 ### Added
 
-- Added the use the runtime/default seccomp profile.
-- Added PSP and bound it to the service account.
+- Chart: Add PSP with `runtime/default` seccomp profile.
 
 ## [1.2.2] - 2022-10-20
 
@@ -77,7 +82,8 @@ First release published to the Giant Swarm catalog
 
 Initial release
 
-[Unreleased]: https://github.com/giantswarm/hello-world-app/compare/v1.3.1...HEAD
+[Unreleased]: https://github.com/giantswarm/hello-world-app/compare/v1.3.2...HEAD
+[1.3.2]: https://github.com/giantswarm/hello-world-app/compare/v1.3.1...v1.3.2
 [1.3.1]: https://github.com/giantswarm/hello-world-app/compare/v1.3.0...v1.3.1
 [1.3.0]: https://github.com/giantswarm/hello-world-app/compare/v1.2.2...v1.3.0
 [1.2.2]: https://github.com/giantswarm/hello-world-app/compare/v1.2.1...v1.2.2
