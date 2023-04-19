@@ -26,9 +26,8 @@ serviceAccount:
 
 podAnnotations: {}
 
-podSecurityContext:
-  seccompProfile:
-    type: RuntimeDefault
+podSecurityContext: {}
+  # fsGroup: 2000
 
 securityContext:
   # capabilities:
