@@ -95,15 +95,13 @@ affinity: {}
 topologySpreadConstraints: |-
   - labelSelector:
       matchLabels:
-        app.kubernetes.io/name: hello-world-app
-        app.kubernetes.io/instance: {{ .Release.Name }}
+        {{- include "hello-world-app.selectorLabels" . | nindent 6 }}
     topologyKey: topology.kubernetes.io/zone
     maxSkew: 1
     whenUnsatisfiable: ScheduleAnyway
   - labelSelector:
       matchLabels:
-        app.kubernetes.io/name: hello-world-app
-        app.kubernetes.io/instance: {{ .Release.Name }}
+        {{- include "hello-world-app.selectorLabels" . | nindent 6 }}
     topologyKey: kubernetes.io/hostname
     maxSkew: 1
     whenUnsatisfiable: ScheduleAnyway
