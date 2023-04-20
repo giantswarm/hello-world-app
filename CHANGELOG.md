@@ -7,11 +7,15 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+## [1.3.4] - 2023-04-20
+
+- Chart: Always enable `NetworkPolicy`.
+
 ## [1.3.3] - 2023-04-19
 
 ### Added
 
-- Added Cilium network policy to Helm Chart when ingress is enabled and cilium is present on the cluster.
+- Chart: Install `NetworkPolicyy` when ingress is enabled and Cilium is present on the cluster.
 
 ## [1.3.2] - 2023-04-19
 
@@ -88,7 +92,8 @@ First release published to the Giant Swarm catalog
 
 Initial release
 
-[Unreleased]: https://github.com/giantswarm/hello-world-app/compare/v1.3.3...HEAD
+[Unreleased]: https://github.com/giantswarm/hello-world-app/compare/v1.3.4...HEAD
+[1.3.4]: https://github.com/giantswarm/hello-world-app/compare/v1.3.3...v1.3.4
 [1.3.3]: https://github.com/giantswarm/hello-world-app/compare/v1.3.2...v1.3.3
 [1.3.2]: https://github.com/giantswarm/hello-world-app/compare/v1.3.1...v1.3.2
 [1.3.1]: https://github.com/giantswarm/hello-world-app/compare/v1.3.0...v1.3.1
