@@ -1,5 +1,5 @@
 apiVersion: v2
-name: hello-world-app
+name: hello-world
 description: A chart that deploys a basic hello world site and lets you test values merging of user values configmap and secrets.
 # A chart can be either an 'application' or a 'library' chart.
 #

@@ -1,9 +1,9 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: {{ include "hello-world-app.fullname" . }}
+  name: {{ include "hello-world.fullname" . }}
   labels:
-    {{- include "hello-world-app.labels" . | nindent 4 }}
+    {{- include "hello-world.labels" . | nindent 4 }}
 rules:
 - apiGroups:
   - policy
@@ -12,4 +12,4 @@ rules:
   verbs:
   - use
   resourceNames:
-  - {{ include "hello-world-app.fullname" . }}
+  - {{ include "hello-world.fullname" . }}
