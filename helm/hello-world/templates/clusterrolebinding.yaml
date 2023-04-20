@@ -1,14 +1,14 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: {{ include "hello-world-app.fullname" . }}
+  name: {{ include "hello-world.fullname" . }}
   labels:
-    {{- include "hello-world-app.labels" . | nindent 4 }}
+    {{- include "hello-world.labels" . | nindent 4 }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: {{ include "hello-world-app.fullname" . }}
+  name: {{ include "hello-world.fullname" . }}
 subjects:
 - kind: ServiceAccount
-  name: {{ include "hello-world-app.serviceAccountName" . }}
+  name: {{ include "hello-world.serviceAccountName" . }}
   namespace: {{ .Release.Namespace }}

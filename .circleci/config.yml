@@ -1,5 +1,4 @@
 version: 2.1
-
 orbs:
   architect: giantswarm/architect@4.28.1
 
@@ -8,13 +7,12 @@ workflows:
   build-and-push:
     jobs:
       - architect/push-to-app-catalog:
-          context: "architect"
-          executor: "app-build-suite"
-          name: "package and push chart to app catalog"
-          app_catalog: "giantswarm-catalog"
-          app_catalog_test: "giantswarm-test-catalog"
-          chart: "hello-world-app"
-          # Trigger job on git tag.
+          name: push-to-giantswarm-app-catalog
+          context: architect
+          executor: app-build-suite
+          app_catalog: giantswarm-catalog
+          app_catalog_test: giantswarm-test-catalog
+          chart: hello-world
           filters:
             tags:
               only: /^v.*/

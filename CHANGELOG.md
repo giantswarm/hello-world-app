@@ -7,6 +7,8 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+- Chart: Rename to  `hello-world`.
+
 ## [1.3.5] - 2023-04-20
 
 - Deployment: Improve `topologySpreadConstraints`.

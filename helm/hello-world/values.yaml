@@ -1,4 +1,4 @@
-# Default values for hello-world-app.
+# Default values for hello-world.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
@@ -95,13 +95,13 @@ affinity: {}
 topologySpreadConstraints: |-
   - labelSelector:
       matchLabels:
-        {{- include "hello-world-app.selectorLabels" . | nindent 6 }}
+        {{- include "hello-world.selectorLabels" . | nindent 6 }}
     topologyKey: topology.kubernetes.io/zone
     maxSkew: 1
     whenUnsatisfiable: ScheduleAnyway
   - labelSelector:
       matchLabels:
-        {{- include "hello-world-app.selectorLabels" . | nindent 6 }}
+        {{- include "hello-world.selectorLabels" . | nindent 6 }}
     topologyKey: kubernetes.io/hostname
     maxSkew: 1
     whenUnsatisfiable: ScheduleAnyway
