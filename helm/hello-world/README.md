@@ -53,6 +53,8 @@ A chart that deploys a basic hello world site and lets you test values merging o
 | resources.limits.memory | string | `"100Mi"` |  |
 | resources.requests.cpu | string | `"200m"` |  |
 | resources.requests.memory | string | `"50Mi"` |  |
+| securityContext.allowPrivilegeEscalation | bool | `false` |  |
+| securityContext.capabilities.drop[0] | string | `"ALL"` |  |
 | securityContext.readOnlyRootFilesystem | bool | `true` |  |
 | securityContext.runAsNonRoot | bool | `true` |  |
 | securityContext.runAsUser | int | `1000` |  |

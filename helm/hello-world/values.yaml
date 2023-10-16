@@ -30,14 +30,15 @@ podSecurityContext: {}
   # fsGroup: 2000
 
 securityContext:
-  # capabilities:
-  #   drop:
-  #   - ALL
-  readOnlyRootFilesystem: true
   runAsNonRoot: true
   runAsUser: 1000
+  allowPrivilegeEscalation: false
   seccompProfile:
     type: RuntimeDefault
+  capabilities:
+    drop:
+    - ALL
+  readOnlyRootFilesystem: true
 
 service:
   type: ClusterIP
