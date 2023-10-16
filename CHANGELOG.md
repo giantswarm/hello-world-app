@@ -7,6 +7,8 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+## [2.1.0] - 2023-10-16
+
 ### Added
 
 - Values: Add `global.podSecurityStandards.enforced`. ((#118)[https://github.com/giantswarm/hello-world-app/pull/118])
@@ -109,7 +111,8 @@ First release published to the Giant Swarm catalog
 
 Initial release
 
-[Unreleased]: https://github.com/giantswarm/hello-world-app/compare/v2.0.0...HEAD
+[Unreleased]: https://github.com/giantswarm/hello-world-app/compare/v2.1.0...HEAD
+[2.1.0]: https://github.com/giantswarm/hello-world-app/compare/v2.0.0...v2.1.0
 [2.0.0]: https://github.com/giantswarm/hello-world-app/compare/v1.3.5...v2.0.0
 [1.3.5]: https://github.com/giantswarm/hello-world-app/compare/v1.3.4...v1.3.5
 [1.3.4]: https://github.com/giantswarm/hello-world-app/compare/v1.3.3...v1.3.4
