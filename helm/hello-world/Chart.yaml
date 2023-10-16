@@ -18,4 +18,4 @@ maintainers:
     email: team-honeybadger@giantswarm.io
     url: https://www.giantswarm.io/about#honeybadger
 annotations:
-  application.giantswarm.io/team: honeybadger
+  application.giantswarm.io/team: team-honeybadger
