@@ -28,6 +28,7 @@ A chart that deploys a basic hello world site and lets you test values merging o
 | autoscaling.targetCPUUtilizationPercentage | int | `80` |  |
 | autoscaling.targetMemoryUtilizationPercentage | int | `80` |  |
 | fullnameOverride | string | `""` |  |
+| global.podSecurityStandards.enforced | bool | `false` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.registry | string | `"quay.io"` |  |
 | image.repository | string | `"giantswarm/helloworld"` |  |
@@ -53,6 +54,8 @@ A chart that deploys a basic hello world site and lets you test values merging o
 | resources.limits.memory | string | `"100Mi"` |  |
 | resources.requests.cpu | string | `"200m"` |  |
 | resources.requests.memory | string | `"50Mi"` |  |
+| securityContext.allowPrivilegeEscalation | bool | `false` |  |
+| securityContext.capabilities.drop[0] | string | `"ALL"` |  |
 | securityContext.readOnlyRootFilesystem | bool | `true` |  |
 | securityContext.runAsNonRoot | bool | `true` |  |
 | securityContext.runAsUser | int | `1000` |  |
@@ -68,4 +71,4 @@ A chart that deploys a basic hello world site and lets you test values merging o
 | strategy.rollingUpdate.maxUnavailable | int | `1` |  |
 | strategy.type | string | `"RollingUpdate"` |  |
 | tolerations | list | `[]` |  |
-| topologySpreadConstraints | string | `"- labelSelector:\n    matchLabels:\n      {{- include \"hello-world.selectorLabels\" . | nindent 6 }}\n  topologyKey: topology.kubernetes.io/zone\n  maxSkew: 1\n  whenUnsatisfiable: ScheduleAnyway\n- labelSelector:\n    matchLabels:\n      {{- include \"hello-world.selectorLabels\" . | nindent 6 }}\n  topologyKey: kubernetes.io/hostname\n  maxSkew: 1\n  whenUnsatisfiable: ScheduleAnyway"` |  |
+| topologySpreadConstraints | list | `[]` |  |

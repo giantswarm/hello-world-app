@@ -1,3 +1,4 @@
+{{- if and (semverCompare "<1.25.0-0" .Capabilities.KubeVersion.Version) (not .Values.global.podSecurityStandards.enforced) -}}
 apiVersion: policy/v1beta1
 kind: PodSecurityPolicy
 metadata:
@@ -5,7 +6,7 @@ metadata:
   labels:
     {{- include "hello-world.labels" . | nindent 4 }}
   annotations:
-    seccomp.security.alpha.kubernetes.io/allowedProfileNames: runtime/default
+    seccomp.security.alpha.kubernetes.io/allowedProfileNames: "*"
 spec:
   privileged: false
   hostPID: false
@@ -32,5 +33,8 @@ spec:
     - min: 1
       max: 65535
   allowPrivilegeEscalation: false
+  requiredDropCapabilities:
+  - ALL
   seLinux:
     rule: RunAsAny
+{{- end }}

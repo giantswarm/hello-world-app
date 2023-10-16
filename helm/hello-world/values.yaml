@@ -30,14 +30,15 @@ podSecurityContext: {}
   # fsGroup: 2000
 
 securityContext:
-  # capabilities:
-  #   drop:
-  #   - ALL
-  readOnlyRootFilesystem: true
   runAsNonRoot: true
   runAsUser: 1000
+  allowPrivilegeEscalation: false
   seccompProfile:
     type: RuntimeDefault
+  capabilities:
+    drop:
+    - ALL
+  readOnlyRootFilesystem: true
 
 service:
   type: ClusterIP
@@ -62,10 +63,6 @@ ingress:
     - hello.cluster.k8s.installation.region.provider.gigantic.io
 
 resources:
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
   requests:
     cpu: 200m
     memory: 50Mi
@@ -92,22 +89,28 @@ tolerations: []
 
 affinity: {}
 
-topologySpreadConstraints: |-
-  - labelSelector:
-      matchLabels:
-        {{- include "hello-world.selectorLabels" . | nindent 6 }}
-    topologyKey: topology.kubernetes.io/zone
-    maxSkew: 1
-    whenUnsatisfiable: ScheduleAnyway
-  - labelSelector:
-      matchLabels:
-        {{- include "hello-world.selectorLabels" . | nindent 6 }}
-    topologyKey: kubernetes.io/hostname
-    maxSkew: 1
-    whenUnsatisfiable: ScheduleAnyway
+topologySpreadConstraints:
+- labelSelector:
+    matchLabels:
+      app.kubernetes.io/name: '{{ include "hello-world.name" . }}'
+      app.kubernetes.io/instance: '{{ .Release.Name }}'
+  topologyKey: topology.kubernetes.io/zone
+  maxSkew: 1
+  whenUnsatisfiable: ScheduleAnyway
+- labelSelector:
+    matchLabels:
+      app.kubernetes.io/name: '{{ include "hello-world.name" . }}'
+      app.kubernetes.io/instance: '{{ .Release.Name }}'
+  topologyKey: kubernetes.io/hostname
+  maxSkew: 1
+  whenUnsatisfiable: ScheduleAnyway
 
 podDisruptionBudget:
   enabled: true
   # Define either 'minAvailable' or 'maxUnavailable', never both.
   # minAvailable: 1
   maxUnavailable: 1
+
+global:
+  podSecurityStandards:
+    enforced: false
