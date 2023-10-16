@@ -14,6 +14,7 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 ### Changed
 
 - Values: Tighten `securityContext`. ((#118)[https://github.com/giantswarm/hello-world-app/pull/118])
+- Values: Make `topologySpreadConstraints` an array. ((#118)[https://github.com/giantswarm/hello-world-app/pull/118])
 
 ## [2.0.0] - 2023-04-20
 

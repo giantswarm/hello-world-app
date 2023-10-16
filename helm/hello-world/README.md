@@ -71,4 +71,4 @@ A chart that deploys a basic hello world site and lets you test values merging o
 | strategy.rollingUpdate.maxUnavailable | int | `1` |  |
 | strategy.type | string | `"RollingUpdate"` |  |
 | tolerations | list | `[]` |  |
-| topologySpreadConstraints | string | `"- labelSelector:\n    matchLabels:\n      {{- include \"hello-world.selectorLabels\" . | nindent 6 }}\n  topologyKey: topology.kubernetes.io/zone\n  maxSkew: 1\n  whenUnsatisfiable: ScheduleAnyway\n- labelSelector:\n    matchLabels:\n      {{- include \"hello-world.selectorLabels\" . | nindent 6 }}\n  topologyKey: kubernetes.io/hostname\n  maxSkew: 1\n  whenUnsatisfiable: ScheduleAnyway"` |  |
+| topologySpreadConstraints | list | `[]` |  |

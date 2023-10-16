@@ -263,7 +263,10 @@
             "type": "array"
         },
         "topologySpreadConstraints": {
-            "type": "string"
+            "type": "array",
+            "items": {
+                "type": "object"
+            }
         }
     }
 }

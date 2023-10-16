@@ -93,19 +93,21 @@ tolerations: []
 
 affinity: {}
 
-topologySpreadConstraints: |-
-  - labelSelector:
-      matchLabels:
-        {{- include "hello-world.selectorLabels" . | nindent 6 }}
-    topologyKey: topology.kubernetes.io/zone
-    maxSkew: 1
-    whenUnsatisfiable: ScheduleAnyway
-  - labelSelector:
-      matchLabels:
-        {{- include "hello-world.selectorLabels" . | nindent 6 }}
-    topologyKey: kubernetes.io/hostname
-    maxSkew: 1
-    whenUnsatisfiable: ScheduleAnyway
+topologySpreadConstraints:
+- labelSelector:
+    matchLabels:
+      app.kubernetes.io/name: '{{ include "hello-world.name" . }}'
+      app.kubernetes.io/instance: '{{ .Release.Name }}'
+  topologyKey: topology.kubernetes.io/zone
+  maxSkew: 1
+  whenUnsatisfiable: ScheduleAnyway
+- labelSelector:
+    matchLabels:
+      app.kubernetes.io/name: '{{ include "hello-world.name" . }}'
+      app.kubernetes.io/instance: '{{ .Release.Name }}'
+  topologyKey: kubernetes.io/hostname
+  maxSkew: 1
+  whenUnsatisfiable: ScheduleAnyway
 
 podDisruptionBudget:
   enabled: true
