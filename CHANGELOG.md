@@ -7,6 +7,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Added
+
+- Values: Add `global.podSecurityStandards.enforced`. ((#118)[https://github.com/giantswarm/hello-world-app/pull/118])
+
 ### Changed
 
 - Values: Tighten `securityContext`. ((#118)[https://github.com/giantswarm/hello-world-app/pull/118])

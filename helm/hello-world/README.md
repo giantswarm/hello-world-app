@@ -28,6 +28,7 @@ A chart that deploys a basic hello world site and lets you test values merging o
 | autoscaling.targetCPUUtilizationPercentage | int | `80` |  |
 | autoscaling.targetMemoryUtilizationPercentage | int | `80` |  |
 | fullnameOverride | string | `""` |  |
+| global.podSecurityStandards.enforced | bool | `false` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.registry | string | `"quay.io"` |  |
 | image.repository | string | `"giantswarm/helloworld"` |  |
