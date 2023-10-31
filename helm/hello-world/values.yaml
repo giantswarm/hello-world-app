@@ -114,3 +114,6 @@ podDisruptionBudget:
 global:
   podSecurityStandards:
     enforced: false
+
+podSecurityStandards:
+  enforced: false
