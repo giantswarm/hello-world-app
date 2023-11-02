@@ -74,3 +74,5 @@ A chart that deploys a basic hello world site and lets you test values merging o
 | strategy.type | string | `"RollingUpdate"` |  |
 | tolerations | list | `[]` |  |
 | topologySpreadConstraints | list | `[]` |  |
+| volumeMounts | list | `[]` |  |
+| volumes | list | `[]` |  |

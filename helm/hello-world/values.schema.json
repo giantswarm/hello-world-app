@@ -273,6 +273,12 @@
             "items": {
                 "type": "object"
             }
+        },
+        "volumeMounts": {
+            "type": "array"
+        },
+        "volumes": {
+            "type": "array"
         }
     }
 }
