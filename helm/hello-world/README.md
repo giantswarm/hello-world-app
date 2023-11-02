@@ -48,6 +48,7 @@ A chart that deploys a basic hello world site and lets you test values merging o
 | podDisruptionBudget.enabled | bool | `true` |  |
 | podDisruptionBudget.maxUnavailable | int | `1` |  |
 | podDisruptionBudget.minAvailable | int | `1` |  |
+| podLabels | object | `{}` |  |
 | podSecurityContext | object | `{}` |  |
 | replicaCount | int | `1` |  |
 | resources.limits.cpu | string | `"400m"` |  |
@@ -65,6 +66,7 @@ A chart that deploys a basic hello world site and lets you test values merging o
 | service.port | int | `80` |  |
 | service.type | string | `"ClusterIP"` |  |
 | serviceAccount.annotations | object | `{}` |  |
+| serviceAccount.automount | bool | `false` |  |
 | serviceAccount.create | bool | `true` |  |
 | serviceAccount.name | string | `""` |  |
 | strategy.rollingUpdate.maxSurge | int | `1` |  |
@@ -72,3 +74,5 @@ A chart that deploys a basic hello world site and lets you test values merging o
 | strategy.type | string | `"RollingUpdate"` |  |
 | tolerations | list | `[]` |  |
 | topologySpreadConstraints | list | `[]` |  |
+| volumeMounts | list | `[]` |  |
+| volumes | list | `[]` |  |

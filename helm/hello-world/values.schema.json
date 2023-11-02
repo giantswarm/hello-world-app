@@ -140,6 +140,9 @@
                 }
             }
         },
+        "podLabels": {
+            "type": "object"
+        },
         "podSecurityContext": {
             "type": "object"
         },
@@ -232,6 +235,9 @@
                 "annotations": {
                     "type": "object"
                 },
+                "automount": {
+                    "type": "boolean"
+                },
                 "create": {
                     "type": "boolean"
                 },
@@ -267,6 +273,12 @@
             "items": {
                 "type": "object"
             }
+        },
+        "volumeMounts": {
+            "type": "array"
+        },
+        "volumes": {
+            "type": "array"
         }
     }
 }
