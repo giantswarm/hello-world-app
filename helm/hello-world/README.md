@@ -66,6 +66,7 @@ A chart that deploys a basic hello world site and lets you test values merging o
 | service.port | int | `80` |  |
 | service.type | string | `"ClusterIP"` |  |
 | serviceAccount.annotations | object | `{}` |  |
+| serviceAccount.automount | bool | `false` |  |
 | serviceAccount.create | bool | `true` |  |
 | serviceAccount.name | string | `""` |  |
 | strategy.rollingUpdate.maxSurge | int | `1` |  |

@@ -235,6 +235,9 @@
                 "annotations": {
                     "type": "object"
                 },
+                "automount": {
+                    "type": "boolean"
+                },
                 "create": {
                     "type": "boolean"
                 },
