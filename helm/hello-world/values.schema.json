@@ -140,6 +140,9 @@
                 }
             }
         },
+        "podLabels": {
+            "type": "object"
+        },
         "podSecurityContext": {
             "type": "object"
         },

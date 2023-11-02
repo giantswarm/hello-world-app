@@ -7,6 +7,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Added
+
+- Values: Add `podLabels`. ((#124)[https://github.com/giantswarm/hello-world-app/pull/124])
+
 ## [2.1.0] - 2023-10-16
 
 ### Added

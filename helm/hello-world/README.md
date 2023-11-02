@@ -48,6 +48,7 @@ A chart that deploys a basic hello world site and lets you test values merging o
 | podDisruptionBudget.enabled | bool | `true` |  |
 | podDisruptionBudget.maxUnavailable | int | `1` |  |
 | podDisruptionBudget.minAvailable | int | `1` |  |
+| podLabels | object | `{}` |  |
 | podSecurityContext | object | `{}` |  |
 | replicaCount | int | `1` |  |
 | resources.limits.cpu | string | `"400m"` |  |
