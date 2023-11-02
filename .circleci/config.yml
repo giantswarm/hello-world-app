@@ -13,6 +13,16 @@ workflows:
           chart: hello-world
           app_catalog: giantswarm-catalog
           app_catalog_test: giantswarm-test-catalog
+          persist_chart_archive: true
           filters:
             tags:
               only: /^v.*/
+
+      - architect/run-tests-with-ats:
+          name: run-tests-with-ats
+          filters:
+            branches:
+              ignore:
+                - main
+          requires:
+            - push-to-giantswarm-catalog

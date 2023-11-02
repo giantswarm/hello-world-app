@@ -1,0 +1,8 @@
+app-tests-deploy-namespace: hello-world
+
+smoke-tests-cluster-type: kind
+
+functional-tests-cluster-type: kind
+
+upgrade-tests-cluster-type: kind
+upgrade-tests-app-catalog-url: https://giantswarm.github.io/giantswarm-catalog
