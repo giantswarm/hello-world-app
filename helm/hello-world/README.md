@@ -34,13 +34,13 @@ A chart that deploys a basic hello world site and lets you test values merging o
 | image.repository | string | `"giantswarm/helloworld"` |  |
 | image.tag | string | `""` |  |
 | imagePullSecrets | list | `[]` |  |
-| ingress.annotations."kubernetes.io/tls-acme" | string | `"true"` |  |
+| ingress.annotations."cert-manager.io/cluster-issuer" | string | `"letsencrypt-giantswarm"` |  |
 | ingress.className | string | `"nginx"` |  |
 | ingress.enabled | bool | `true` |  |
-| ingress.hosts[0].host | string | `"hello.cluster.k8s.installation.region.provider.gigantic.io"` |  |
+| ingress.hosts[0].host | string | `"hello.cluster.provider.gigantic.io"` |  |
 | ingress.hosts[0].paths[0].path | string | `"/"` |  |
-| ingress.hosts[0].paths[0].pathType | string | `"ImplementationSpecific"` |  |
-| ingress.tls[0].hosts[0] | string | `"hello.cluster.k8s.installation.region.provider.gigantic.io"` |  |
+| ingress.hosts[0].paths[0].pathType | string | `"Prefix"` |  |
+| ingress.tls[0].hosts[0] | string | `"hello.cluster.provider.gigantic.io"` |  |
 | ingress.tls[0].secretName | string | `"hello-world-tls"` |  |
 | nameOverride | string | `""` |  |
 | nodeSelector | object | `{}` |  |

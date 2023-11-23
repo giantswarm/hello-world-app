@@ -54,16 +54,17 @@ ingress:
   className: nginx
   annotations:
     # kubernetes.io/ingress.class: nginx
-    kubernetes.io/tls-acme: "true"
+    # kubernetes.io/tls-acme: "true"
+    cert-manager.io/cluster-issuer: letsencrypt-giantswarm
   hosts:
-  - host: hello.cluster.k8s.installation.region.provider.gigantic.io
+  - host: hello.cluster.provider.gigantic.io
     paths:
     - path: /
-      pathType: ImplementationSpecific
+      pathType: Prefix
   tls:
   - secretName: hello-world-tls
     hosts:
-    - hello.cluster.k8s.installation.region.provider.gigantic.io
+    - hello.cluster.provider.gigantic.io
 
 resources:
   requests:
