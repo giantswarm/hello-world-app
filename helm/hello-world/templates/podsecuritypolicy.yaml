@@ -1,4 +1,4 @@
-{{- if and (semverCompare "<1.25.0-0" .Capabilities.KubeVersion.Version) (not .Values.global.podSecurityStandards.enforced) -}}
+{{- if and (semverCompare "<1.25.0-0" .Capabilities.KubeVersion.Version) (not (((.Values.global).podSecurityStandards).enforced)) -}}
 apiVersion: policy/v1beta1
 kind: PodSecurityPolicy
 metadata:
