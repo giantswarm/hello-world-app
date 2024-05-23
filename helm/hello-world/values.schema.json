@@ -65,7 +65,7 @@
                         "enforced": {
                             "type": "boolean",
                             "title": "Enforced",
-                            "description": "If set to true, the chart will be deplyoed with PSS resources.",
+                            "description": "If set to true, the chart will be deployed with PSS resources.",
                             "default": "false"
                         }
                     }

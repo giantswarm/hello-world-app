@@ -610,5 +610,5 @@ global:
     # title: Enforced
     # type: boolean
     # @schema
-    # If set to true, the chart will be deplyoed with PSS resources.
+    # If set to true, the chart will be deployed with PSS resources.
     enforced: false
