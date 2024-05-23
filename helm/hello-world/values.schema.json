@@ -137,12 +137,21 @@
                 "annotations": {
                     "type": "object",
                     "title": "Optional ingress annotations",
-                    "description": "examples:\n  - \"kubernetes.io/ingress.class\": \"nginx\"\n  - \"kubernetes.io/tls-acme\": \"true\"",
-                    "default": "",
+                    "examples": [
+                        "kubernetes.io/ingress.class: nginx",
+                        "kubernetes.io/tls-acme: 'true'"
+                    ],
+                    "additionalProperties": false,
                     "patternProperties": {
                         "^[a-zA-Z0-9/-_\\.]+$": {
                             "type": "string",
                             "title": "Annotation value"
+                        }
+                    },
+                    "properties": {
+                        "cert-manager.io/cluster-issuer": {
+                            "title": "cert-manager.io/cluster-issuer",
+                            "default": "letsencrypt-giantswarm"
                         }
                     }
                 },
