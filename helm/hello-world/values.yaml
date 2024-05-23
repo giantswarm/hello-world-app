@@ -40,7 +40,7 @@ image:
   # - Never
   # @schema
   pullPolicy: IfNotPresent
-  
+
   # @schema
   # title: Tag
   # type: string
@@ -177,7 +177,7 @@ securityContext:
     # - Localhost
     # @schema
     type: RuntimeDefault
-  
+
   # @schema
   # type: object
   # @schema
@@ -268,12 +268,12 @@ ingress:
   #   - "kubernetes.io/tls-acme: 'true'"
   # @schema
   annotations:
-  
+
     # @schema
     # required: false
     # @schema
     cert-manager.io/cluster-issuer: letsencrypt-giantswarm
-  
+
   # @schema
   # title: Hosts
   # type: array
@@ -304,7 +304,7 @@ ingress:
     paths:
     - path: /
       pathType: Prefix
-  
+
   # @schema
   # title: Transport layer security (TLS)
   # type: array
