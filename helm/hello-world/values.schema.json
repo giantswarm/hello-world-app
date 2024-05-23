@@ -194,14 +194,14 @@
                 },
                 "tls": {
                     "type": "array",
-                    "title": "TLS",
+                    "title": "Transport layer security (TLS)",
                     "description": "You will have to overwrite the hosts values to make it match your cluster's ingress subdomain, matching the names used as ingress hosts.",
                     "items": {
                         "type": "object",
                         "properties": {
                             "hosts": {
                                 "type": "array",
-                                "description": "Hostnames to use the TLS certificate for.",
+                                "description": "Hostnames to use the TLS server certificate for.",
                                 "items": {
                                     "type": "string",
                                     "format": "hostname"
@@ -209,7 +209,7 @@
                             },
                             "secretName": {
                                 "type": "string",
-                                "description": "Name of the secret containing the TLS certificate."
+                                "description": "Name of the secret containing the TLS server certificate."
                             }
                         }
                     }

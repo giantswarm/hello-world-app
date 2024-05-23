@@ -134,7 +134,6 @@ podAnnotations: {}
 # Optional labels to be added to the main pod.
 podLabels: {}
 
-# Security context of the main pod.
 # @schema
 # type: object
 # title: Pod security context
@@ -142,6 +141,7 @@ podLabels: {}
 #   fsGroup:
 #     type: integer
 # @schema
+# Security context of the main pod.
 podSecurityContext: {}
 
 # @schema
@@ -306,20 +306,20 @@ ingress:
       pathType: Prefix
   
   # @schema
-  # title: TLS
+  # title: Transport layer security (TLS)
   # type: array
   # items:
   #   type: object
   #   properties:
   #     secretName:
   #       type: string
-  #       description: Name of the secret containing the TLS certificate.
+  #       description: Name of the secret containing the TLS server certificate.
   #     hosts:
   #       type: array
   #       items:
   #         type: string
   #         format: hostname
-  #       description: Hostnames to use the TLS certificate for.
+  #       description: Hostnames to use the TLS server certificate for.
   # @schema
   # You will have to overwrite the hosts values to make it match your cluster's ingress subdomain, matching the names used as ingress hosts.
   tls:
