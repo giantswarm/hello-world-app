@@ -1,6 +1,7 @@
 # Default values for hello-world.
-# This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
+# Annotations within @schema in comments are used to generate the validation schema.
+# See https://github.com/dadav/helm-schema?tab=readme-ov-file#annotations for more information.
 
 # @schema
 # title: Replica count

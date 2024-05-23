@@ -7,6 +7,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Changed
+
+- Add annotation comments to `values.yaml` to allow generating a full-fledges `values.schema.json` file, using helm-schema.
+
 ## [2.3.1] - 2024-01-29
 
 ### Fixed
