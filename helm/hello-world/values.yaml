@@ -2,110 +2,547 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+# @schema
+# title: Replica count
+# type: integer
+# minimum: 1
+# @schema
+# Number of replicas to deploy for the main pod.
 replicaCount: 1
 
+# @schema
+# title: Image
+# type: object
+# @schema
+# Container image for the main pod.
 image:
+  # @schema
+  # title: Registry
+  # type: string
+  # format: hostname
+  # @schema
+  # Fully qualified registry host name.
   registry: quay.io
+
+  # @schema
+  # title: Repository
+  # type: string
+  # @schema
+  # Repository name in the form of `namespace/repository`.
   repository: giantswarm/helloworld
+
+  # @schema
+  # title: Pull policy
+  # enum:
+  # - IfNotPresent
+  # - Always
+  # - Never
+  # @schema
   pullPolicy: IfNotPresent
+  
+  # @schema
+  # title: Tag
+  # type: string
+  # @schema
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
 
+# @schema
+# type: array
+# items:
+#   type: object
+#   properties:
+#     name:
+#       type: string
+#       description: Name of the secret resource
+# @schema
+# Optional, if pulling any container image requires authentication.
 imagePullSecrets: []
+
+# @schema
+# title: Name override
+# type: string
+# @schema
+# If set, this name will be used instead of Chart.Name for resource naming.
 nameOverride: ""
+
+# @schema
+# title: Full name override
+# type: string
+# @schema
+# If set, this name will be used instead of a generated name for resource naming.
 fullnameOverride: ""
 
+# @schema
+# title: Service account
+# type: object
+# @schema
+# Settings related to the service account.
 serviceAccount:
+
+  # @schema
+  # title: Create
+  # type: boolean
+  # @schema
   # Specifies whether a service account should be created
   create: true
-  # Automatically mount a ServiceAccount's API credentials?
+
+  # @schema
+  # title: Mount automatically
+  # type: boolean
+  # @schema
+  # Automatically mount the service account into the pod.
   automount: false
-  # Annotations to add to the service account
+
+  # @schema
+  # type: object
+  # patternProperties:
+  #   "^[a-zA-Z0-9/-_\\.]+$":
+  #     type: string
+  #     title: Annotation value
+  # @schema
+  # Annotations to add to the service account.
   annotations: {}
+
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
+  # @schema
+  # type: string
+  # title: Name
+  # @schema
   name: ""
 
+# @schema
+# type: object
+# title: Pod annotations
+# patternProperties:
+#   "^[a-zA-Z0-9/-_\\.]+$":
+#     type: string
+#     title: Annotation value
+# @schema
+# Optional annotations to be added to the main pod.
 podAnnotations: {}
+
+# @schema
+# type: object
+# title: Pod labels
+# patternProperties:
+#   "^[a-zA-Z0-9/-_\\.]+$":
+#     $ref: https://schema.giantswarm.io/labelvalue/v0.0.1
+# @schema
+# Optional labels to be added to the main pod.
 podLabels: {}
 
+# Security context of the main pod.
+# @schema
+# type: object
+# title: Pod security context
+# properties:
+#   fsGroup:
+#     type: integer
+# @schema
 podSecurityContext: {}
-  # fsGroup: 2000
 
+# @schema
+# title: Security context
+# type: object
+# @schema
+# This object will be inserted into the deployment as the main pod's SecurityContext.
 securityContext:
+
+  # @schema
+  # type: boolean
+  # @schema
   runAsNonRoot: true
+
+  # @schema
+  # type: integer
+  # @schema
   runAsUser: 1000
+
+  # @schema
+  # type: boolean
+  # @schema
   allowPrivilegeEscalation: false
+
+  # @schema
+  # type: object
+  # @schema
   seccompProfile:
+
+    # @schema
+    # enum:
+    # - RuntimeDefault
+    # - Localhost
+    # @schema
     type: RuntimeDefault
+  
+  # @schema
+  # type: object
+  # @schema
   capabilities:
+
+    # @schema
+    # type: array
+    # items:
+    #   type: string
+    # @schema
     drop:
     - ALL
+
+  # @schema
+  # type: boolean
+  # @schema
   readOnlyRootFilesystem: true
 
+# @schema
+# title: Service
+# type: object
+# @schema
 service:
+
+  # @schema
+  # title: Type
+  # enum:
+  # - ClusterIP
+  # - NodePort
+  # - LoadBalancer
+  # - ExternalName
+  # @schema
   type: ClusterIP
+
+  # @schema
+  # title: Port
+  # type: integer
+  # @schema
   port: 80
+
+  # @schema
+  # title: Optional service labels
+  # type: object
+  # patternProperties:
+  #   "^[a-zA-Z0-9/-_\\.]+$":
+  #     $ref: https://schema.giantswarm.io/labelvalue/v0.0.1
+  # @schema
   labels: {}
+
+  # @schema
+  # title: Optional service annotations
+  # type: object
+  # patternProperties:
+  #   "^[a-zA-Z0-9/-_\\.]+$":
+  #     type: string
+  #     title: Annotation value
+  # @schema
   annotations: {}
 
+# @schema
+# title: Ingress
+# type: object
+# @schema
 ingress:
+
+  # @schema
+  # title: Enabled
+  # type: boolean
+  # @schema
+  # If set to false, no Ingress resource will be created.
   enabled: true
+
+  # @schema
+  # title: Class
+  # type: string
+  # @schema
   className: nginx
+
+  # @schema
+  # title: Optional ingress annotations
+  # type: object
+  # patternProperties:
+  #   "^[a-zA-Z0-9/-_\\.]+$":
+  #     type: string
+  #     title: Annotation value
+  # @schema
+  # examples:
+  #   - "kubernetes.io/ingress.class": "nginx"
+  #   - "kubernetes.io/tls-acme": "true"
   annotations:
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-    cert-manager.io/cluster-issuer: letsencrypt-giantswarm
+    #"cert-manager.io/cluster-issuer": letsencrypt-giantswarm
+  
+  # @schema
+  # title: Hosts
+  # type: array
+  # required: true
+  # items:
+  #   type: object
+  #   properties:
+  #     host:
+  #       type: string
+  #       format: hostname
+  #       description: Hostname to expose the service for.
+  #     paths:
+  #       type: array
+  #       items:
+  #         type: object
+  #         properties:
+  #           path:
+  #             type: string
+  #           pathType:
+  #             type: string
+  #             enum:
+  #             - Prefix
+  #             - Exact
+  # @schema
+  # You will have to overwrite the host value to make it match your cluster's ingress subdomain.
   hosts:
   - host: hello.cluster.provider.gigantic.io
     paths:
     - path: /
       pathType: Prefix
+  
+  # @schema
+  # title: TLS
+  # type: array
+  # items:
+  #   type: object
+  #   properties:
+  #     secretName:
+  #       type: string
+  #       description: Name of the secret containing the TLS certificate.
+  #     hosts:
+  #       type: array
+  #       items:
+  #         type: string
+  #         format: hostname
+  #       description: Hostnames to use the TLS certificate for.
+  # @schema
+  # You will have to overwrite the hosts values to make it match your cluster's ingress subdomain, matching the names used as ingress hosts.
   tls:
   - secretName: hello-world-tls
     hosts:
     - hello.cluster.provider.gigantic.io
 
+# @schema
+# title: Resource requests and limits
+# type: object
+# @schema
+# This is directly injected as the main pods's resource requests and limits.
 resources:
-  requests:
-    cpu: 200m
-    memory: 50Mi
-  limits:
-    cpu: 400m
-    memory: 100Mi
 
+  # @schema
+  # title: Requests
+  # type: object
+  # @schema
+  requests:
+
+    # @schema
+    # title: CPU
+    # type: string
+    # examples:
+    #   - 100m
+    #   - "1"
+    # @schema
+    cpu: 10m
+
+    # @schema
+    # title: Memory
+    # type: string
+    # examples:
+    #   - 100M
+    #   - "1Gi"
+    # @schema
+    memory: 50M
+
+  # @schema
+  # title: Limits
+  # type: object
+  # @schema
+  limits:
+
+    # @schema
+    # title: CPU
+    # type: string
+    # @schema
+    cpu: 50m
+
+    # @schema
+    # title: Memory
+    # type: string
+    # @schema
+    memory: 100M
+
+# @schema
+# title: Automatic scaling
+# type: object
+# @schema
 autoscaling:
+
+  # @schema
+  # title: Enabled
+  # type: boolean
+  # @schema
+  # If set to false, no HorizontalPodAutoscaler resource will be created.
   enabled: true
-  minReplicas: 1
-  maxReplicas: 100
+
+  # @schema
+  # title: Min replicas
+  # type: integer
+  # minimum: 1
+  # @schema
+  minReplicas: 3
+
+  # @schema
+  # title: Max replicas
+  # type: integer
+  # minimum: 1
+  # @schema
+  # Make sure to set a value that is higher than the minReplicas value.
+  maxReplicas: 10
+
+  # @schema
+  # title: Target CPU utilization percentage
+  # type: integer
+  # minimum: 10
+  # maximum: 100
+  # @schema
   targetCPUUtilizationPercentage: 80
+
+  # @schema
+  # title: Target memory utilization percentage
+  # type: integer
+  # minimum: 10
+  # maximum: 100
+  # @schema
   targetMemoryUtilizationPercentage: 80
 
+# @schema
+# title: Update strategy
+# type: object
+# @schema
 strategy:
+
+  # @schema
+  # title: Type
+  # enum:
+  # - Recreate
+  # - RollingUpdate
+  # @schema
   type: RollingUpdate
+
+  # @schema
+  # title: Rolling update strategy details
+  # type: object
+  # @schema
   rollingUpdate:
+
+    # @schema
+    # title: Max unavailable
+    # type: integer
+    # @schema
     maxUnavailable: 1
+
+    # @schema
+    # title: Max surge
+    # type: integer
+    # @schema
     maxSurge: 1
 
+# @schema
+# title: Volumes
+# type: array
+# items:
+#   type: object
+#   properties:
+#     name:
+#       type: string
+#       description: Name of the volume
+#     secret:
+#       type: object
+#       properties:
+#         secretName:
+#           type: string
+#           description: Name of the secret
+#         optional:
+#           type: boolean
+#           description: Whether the secret is optional
+# @schema
 # Additional volumes on the output Deployment definition.
 volumes: []
-# - name: foo
-#   secret:
-#     secretName: mysecret
-#     optional: false
 
+# @schema
+# title: Volume mounts
+# type: array
+# items:
+#   type: object
+#   properties:
+#     name:
+#       type: string
+#       description: Name of the volume
+#     mountPath:
+#       type: string
+#       description: Path to mount the volume
+#     readOnly:
+#       type: boolean
+#       description: Whether the volume is read-only
+# @schema
 # Additional volumeMounts on the output Deployment definition.
 volumeMounts: []
-# - name: foo
-#   mountPath: "/etc/foo"
-#   readOnly: true
 
+# @schema
+# title: Node selector
+# type: object
+# patternProperties:
+#   "^[a-zA-Z0-9/-_\\.]+$":
+#     $ref: https://schema.giantswarm.io/labelvalue/v0.0.1
+# @schema
+# If specified, this app will only be deployed to nodes with matching labels.
 nodeSelector: {}
 
+# @schema
+# title: Tolerations
+# type: array
+# items:
+#   type: object
+#   properties:
+#     key:
+#       type: string
+#       description: Key of the taint
+#     operator:
+#       type: string
+#       enum:
+#       - Exists
+#       - Equal
+#       description: Operator of the taint
+#       default: Equal
+#     effect:
+#       type: string
+#       enum:
+#       - NoSchedule
+#       - PreferNoSchedule
+#       - NoExecute
+#       description: Effect of the taint
+#     value:
+#       type: string
+#       description: Value of the taint
+# @schema
 tolerations: []
 
+# @schema
+# title: Affinity
+# type: object
+# additionalProperties: true
+# @schema
+# If specified, this will be injected as the main pod's affinity settings.
 affinity: {}
 
+# @schema
+# title: Topology spread constraints
+# type: array
+# items:
+#   type: object
+#   additionalProperties: true
+# @schema
+# If specified, this will be injected as the main pod's topologySpreadConstraints spec.
 topologySpreadConstraints:
 - labelSelector:
     matchLabels:
@@ -122,12 +559,51 @@ topologySpreadConstraints:
   maxSkew: 1
   whenUnsatisfiable: ScheduleAnyway
 
+# @schema
+# title: Pod disruption budget
+# type: object
+# @schema
 podDisruptionBudget:
+
+  # @schema
+  # title: Enabled
+  # type: boolean
+  # @schema
+  # If set to false, no PodDisruptionBudget resource will be created.
   enabled: true
-  # Define either 'minAvailable' or 'maxUnavailable', never both.
-  # minAvailable: 1
+
+  # @schema
+  # title: Min available
+  # type: integer
+  # @schema
+  # Minimum number of replicas to be unavailable during disruptions.
+  # Define either 'minAvailable' or 'maxUnavailable', never both. TODO: Fix this.
+  minAvailable: 1
+
+  # @schema
+  # title: Max unavailable
+  # type: integer
+  # @schema
+  # Maximum number of replicas to be unavailable during disruptions.
+  # Define either 'minAvailable' or 'maxUnavailable', never both. TODO: Fix this.
   maxUnavailable: 1
 
+# @schema
+# title: Global
+# type: object
+# @schema
+# Values under this section are available to all sub-charts.
 global:
+
+  # @schema
+  # title: Pod security standards (PSS)
+  # type: object
+  # @schema
   podSecurityStandards:
+
+    # @schema
+    # title: Enforced
+    # type: boolean
+    # @schema
+    # If set to true, the chart will be deplyoed with PSS resources.
     enforced: false
