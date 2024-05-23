@@ -1,41 +1,76 @@
 {
-    "$schema": "http://json-schema.org/schema#",
+    "$schema": "http://json-schema.org/draft-07/schema#",
     "type": "object",
+    "additionalProperties": false,
     "properties": {
         "affinity": {
-            "type": "object"
+            "type": "object",
+            "title": "Affinity",
+            "description": "If specified, this will be injected as the main pod's affinity settings.",
+            "additionalProperties": true
         },
         "autoscaling": {
             "type": "object",
+            "title": "Automatic scaling",
+            "additionalProperties": false,
             "properties": {
                 "enabled": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "title": "Enabled",
+                    "description": "If set to false, no HorizontalPodAutoscaler resource will be created.",
+                    "default": "true"
                 },
                 "maxReplicas": {
-                    "type": "integer"
+                    "type": "integer",
+                    "title": "Max replicas",
+                    "description": "Make sure to set a value that is higher than the minReplicas value.",
+                    "default": "10",
+                    "minimum": 1
                 },
                 "minReplicas": {
-                    "type": "integer"
+                    "type": "integer",
+                    "title": "Min replicas",
+                    "default": "3",
+                    "minimum": 1
                 },
                 "targetCPUUtilizationPercentage": {
-                    "type": "integer"
+                    "type": "integer",
+                    "title": "Target CPU utilization percentage",
+                    "default": "80",
+                    "maximum": 100,
+                    "minimum": 10
                 },
                 "targetMemoryUtilizationPercentage": {
-                    "type": "integer"
+                    "type": "integer",
+                    "title": "Target memory utilization percentage",
+                    "default": "80",
+                    "maximum": 100,
+                    "minimum": 10
                 }
             }
         },
         "fullnameOverride": {
-            "type": "string"
+            "type": "string",
+            "title": "Full name override",
+            "description": "If set, this name will be used instead of a generated name for resource naming.",
+            "default": ""
         },
         "global": {
             "type": "object",
+            "title": "Global",
+            "description": "Values under this section are available to all sub-charts.",
+            "additionalProperties": false,
             "properties": {
                 "podSecurityStandards": {
                     "type": "object",
+                    "title": "Pod security standards (PSS)",
+                    "additionalProperties": false,
                     "properties": {
                         "enforced": {
-                            "type": "boolean"
+                            "type": "boolean",
+                            "title": "Enforced",
+                            "description": "If set to true, the chart will be deplyoed with PSS resources.",
+                            "default": "false"
                         }
                     }
                 }
@@ -43,43 +78,96 @@
         },
         "image": {
             "type": "object",
+            "title": "Image",
+            "description": "Container image for the main pod.",
+            "additionalProperties": false,
             "properties": {
                 "pullPolicy": {
-                    "type": "string"
+                    "title": "Pull policy",
+                    "enum": [
+                        "IfNotPresent",
+                        "Always",
+                        "Never"
+                    ],
+                    "default": "IfNotPresent"
                 },
                 "registry": {
-                    "type": "string"
+                    "type": "string",
+                    "title": "Registry",
+                    "description": "Fully qualified registry host name.",
+                    "default": "quay.io",
+                    "format": "hostname"
                 },
                 "repository": {
-                    "type": "string"
+                    "type": "string",
+                    "title": "Repository",
+                    "description": "Repository name in the form of `namespace/repository`.",
+                    "default": "giantswarm/helloworld"
                 },
                 "tag": {
-                    "type": "string"
+                    "type": "string",
+                    "title": "Tag",
+                    "description": "Overrides the image tag whose default is the chart appVersion.",
+                    "default": ""
                 }
             }
         },
         "imagePullSecrets": {
-            "type": "array"
+            "type": "array",
+            "title": "imagePullSecrets",
+            "description": "Optional, if pulling any container image requires authentication.",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "Name of the secret resource"
+                    }
+                }
+            }
         },
         "ingress": {
             "type": "object",
+            "title": "Ingress",
+            "required": [
+                "hosts"
+            ],
+            "additionalProperties": false,
             "properties": {
                 "annotations": {
-                    "type": "object"
+                    "type": "object",
+                    "title": "Optional ingress annotations",
+                    "description": "examples:\n  - \"kubernetes.io/ingress.class\": \"nginx\"\n  - \"kubernetes.io/tls-acme\": \"true\"",
+                    "default": "",
+                    "patternProperties": {
+                        "^[a-zA-Z0-9/-_\\.]+$": {
+                            "type": "string",
+                            "title": "Annotation value"
+                        }
+                    }
                 },
                 "className": {
-                    "type": "string"
+                    "type": "string",
+                    "title": "Class",
+                    "default": "nginx"
                 },
                 "enabled": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "title": "Enabled",
+                    "description": "If set to false, no Ingress resource will be created.",
+                    "default": "true"
                 },
                 "hosts": {
                     "type": "array",
+                    "title": "Hosts",
+                    "description": "You will have to overwrite the host value to make it match your cluster's ingress subdomain.",
                     "items": {
                         "type": "object",
                         "properties": {
                             "host": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Hostname to expose the service for.",
+                                "format": "hostname"
                             },
                             "paths": {
                                 "type": "array",
@@ -90,7 +178,11 @@
                                             "type": "string"
                                         },
                                         "pathType": {
-                                            "type": "string"
+                                            "type": "string",
+                                            "enum": [
+                                                "Prefix",
+                                                "Exact"
+                                            ]
                                         }
                                     }
                                 }
@@ -100,17 +192,22 @@
                 },
                 "tls": {
                     "type": "array",
+                    "title": "TLS",
+                    "description": "You will have to overwrite the hosts values to make it match your cluster's ingress subdomain, matching the names used as ingress hosts.",
                     "items": {
                         "type": "object",
                         "properties": {
                             "hosts": {
                                 "type": "array",
+                                "description": "Hostnames to use the TLS certificate for.",
                                 "items": {
-                                    "type": "string"
+                                    "type": "string",
+                                    "format": "hostname"
                                 }
                             },
                             "secretName": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Name of the secret containing the TLS certificate."
                             }
                         }
                     }
@@ -118,59 +215,133 @@
             }
         },
         "nameOverride": {
-            "type": "string"
+            "type": "string",
+            "title": "Name override",
+            "description": "If set, this name will be used instead of Chart.Name for resource naming.",
+            "default": ""
         },
         "nodeSelector": {
-            "type": "object"
+            "type": "object",
+            "title": "Node selector",
+            "description": "If specified, this app will only be deployed to nodes with matching labels.",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^[a-zA-Z0-9/-_\\.]+$": {
+                    "$ref": "https://schema.giantswarm.io/labelvalue/v0.0.1"
+                }
+            }
         },
         "podAnnotations": {
-            "type": "object"
+            "type": "object",
+            "title": "Pod annotations",
+            "description": "Optional annotations to be added to the main pod.",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^[a-zA-Z0-9/-_\\.]+$": {
+                    "type": "string",
+                    "title": "Annotation value"
+                }
+            }
         },
         "podDisruptionBudget": {
             "type": "object",
+            "title": "Pod disruption budget",
+            "additionalProperties": false,
             "properties": {
                 "enabled": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "title": "Enabled",
+                    "description": "If set to false, no PodDisruptionBudget resource will be created.",
+                    "default": "true"
                 },
                 "maxUnavailable": {
-                    "type": "integer"
+                    "type": "integer",
+                    "title": "Max unavailable",
+                    "description": "Maximum number of replicas to be unavailable during disruptions.\nDefine either 'minAvailable' or 'maxUnavailable', never both. TODO: Fix this.",
+                    "default": "1"
                 },
                 "minAvailable": {
-                    "type": "integer"
+                    "type": "integer",
+                    "title": "Min available",
+                    "description": "Minimum number of replicas to be unavailable during disruptions.\nDefine either 'minAvailable' or 'maxUnavailable', never both. TODO: Fix this.",
+                    "default": "1"
                 }
             }
         },
         "podLabels": {
-            "type": "object"
+            "type": "object",
+            "title": "Pod labels",
+            "description": "Optional labels to be added to the main pod.",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^[a-zA-Z0-9/-_\\.]+$": {
+                    "$ref": "https://schema.giantswarm.io/labelvalue/v0.0.1"
+                }
+            }
         },
         "podSecurityContext": {
-            "type": "object"
+            "type": "object",
+            "title": "Pod security context",
+            "description": "Security context of the main pod.",
+            "additionalProperties": false,
+            "properties": {
+                "fsGroup": {
+                    "type": "integer"
+                }
+            }
         },
         "replicaCount": {
-            "type": "integer"
+            "type": "integer",
+            "title": "Replica count",
+            "description": "Number of replicas to deploy for the main pod.",
+            "default": "1",
+            "minimum": 1
         },
         "resources": {
             "type": "object",
+            "title": "Resource requests and limits",
+            "description": "This is directly injected as the main pods's resource requests and limits.",
+            "additionalProperties": false,
             "properties": {
                 "limits": {
                     "type": "object",
+                    "title": "Limits",
+                    "additionalProperties": false,
                     "properties": {
                         "cpu": {
-                            "type": "string"
+                            "type": "string",
+                            "title": "CPU",
+                            "default": "50m"
                         },
                         "memory": {
-                            "type": "string"
+                            "type": "string",
+                            "title": "Memory",
+                            "default": "100M"
                         }
                     }
                 },
                 "requests": {
                     "type": "object",
+                    "title": "Requests",
+                    "additionalProperties": false,
                     "properties": {
                         "cpu": {
-                            "type": "string"
+                            "type": "string",
+                            "title": "CPU",
+                            "examples": [
+                                "100m",
+                                "1"
+                            ],
+                            "default": "10m"
                         },
                         "memory": {
-                            "type": "string"
+                            "type": "string",
+                            "title": "Memory",
+                            "examples": [
+                                "100M",
+                                "1Gi"
+                            ],
+                            "default": "50M"
                         }
                     }
                 }
@@ -178,15 +349,23 @@
         },
         "securityContext": {
             "type": "object",
+            "title": "Security context",
+            "description": "This object will be inserted into the deployment as the main pod's SecurityContext.",
+            "additionalProperties": false,
             "properties": {
                 "allowPrivilegeEscalation": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "title": "allowPrivilegeEscalation",
+                    "default": "false"
                 },
                 "capabilities": {
                     "type": "object",
+                    "title": "capabilities",
+                    "additionalProperties": false,
                     "properties": {
                         "drop": {
                             "type": "array",
+                            "title": "drop",
                             "items": {
                                 "type": "string"
                             }
@@ -194,19 +373,32 @@
                     }
                 },
                 "readOnlyRootFilesystem": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "title": "readOnlyRootFilesystem",
+                    "default": "true"
                 },
                 "runAsNonRoot": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "title": "runAsNonRoot",
+                    "default": "true"
                 },
                 "runAsUser": {
-                    "type": "integer"
+                    "type": "integer",
+                    "title": "runAsUser",
+                    "default": "1000"
                 },
                 "seccompProfile": {
                     "type": "object",
+                    "title": "seccompProfile",
+                    "additionalProperties": false,
                     "properties": {
                         "type": {
-                            "type": "string"
+                            "title": "type",
+                            "enum": [
+                                "RuntimeDefault",
+                                "Localhost"
+                            ],
+                            "default": "RuntimeDefault"
                         }
                     }
                 }
@@ -214,71 +406,209 @@
         },
         "service": {
             "type": "object",
+            "title": "Service",
+            "additionalProperties": false,
             "properties": {
+                "type": {
+                    "title": "Type",
+                    "enum": [
+                        "ClusterIP",
+                        "NodePort",
+                        "LoadBalancer",
+                        "ExternalName"
+                    ],
+                    "default": "ClusterIP"
+                },
                 "annotations": {
-                    "type": "object"
+                    "type": "object",
+                    "title": "Optional service annotations",
+                    "additionalProperties": false,
+                    "patternProperties": {
+                        "^[a-zA-Z0-9/-_\\.]+$": {
+                            "type": "string",
+                            "title": "Annotation value"
+                        }
+                    }
                 },
                 "labels": {
-                    "type": "object"
+                    "type": "object",
+                    "title": "Optional service labels",
+                    "additionalProperties": false,
+                    "patternProperties": {
+                        "^[a-zA-Z0-9/-_\\.]+$": {
+                            "$ref": "https://schema.giantswarm.io/labelvalue/v0.0.1"
+                        }
+                    }
                 },
                 "port": {
-                    "type": "integer"
-                },
-                "type": {
-                    "type": "string"
+                    "type": "integer",
+                    "title": "Port",
+                    "default": "80"
                 }
             }
         },
         "serviceAccount": {
             "type": "object",
+            "title": "Service account",
+            "description": "Settings related to the service account.",
+            "additionalProperties": false,
             "properties": {
                 "annotations": {
-                    "type": "object"
+                    "type": "object",
+                    "title": "annotations",
+                    "description": "Annotations to add to the service account.",
+                    "additionalProperties": false,
+                    "patternProperties": {
+                        "^[a-zA-Z0-9/-_\\.]+$": {
+                            "type": "string",
+                            "title": "Annotation value"
+                        }
+                    }
                 },
                 "automount": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "title": "Mount automatically",
+                    "description": "Automatically mount the service account into the pod.",
+                    "default": "false"
                 },
                 "create": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "title": "Create",
+                    "description": "Specifies whether a service account should be created",
+                    "default": "true"
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "title": "Name",
+                    "description": "The name of the service account to use.\nIf not set and create is true, a name is generated using the fullname template",
+                    "default": ""
                 }
             }
         },
         "strategy": {
             "type": "object",
+            "title": "Update strategy",
+            "additionalProperties": false,
             "properties": {
+                "type": {
+                    "title": "Type",
+                    "enum": [
+                        "Recreate",
+                        "RollingUpdate"
+                    ],
+                    "default": "RollingUpdate"
+                },
                 "rollingUpdate": {
                     "type": "object",
+                    "title": "Rolling update strategy details",
+                    "additionalProperties": false,
                     "properties": {
                         "maxSurge": {
-                            "type": "integer"
+                            "type": "integer",
+                            "title": "Max surge",
+                            "default": "1"
                         },
                         "maxUnavailable": {
-                            "type": "integer"
+                            "type": "integer",
+                            "title": "Max unavailable",
+                            "default": "1"
                         }
                     }
-                },
-                "type": {
-                    "type": "string"
                 }
             }
         },
         "tolerations": {
-            "type": "array"
+            "type": "array",
+            "title": "Tolerations",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "effect": {
+                        "type": "string",
+                        "description": "Effect of the taint",
+                        "enum": [
+                            "NoSchedule",
+                            "PreferNoSchedule",
+                            "NoExecute"
+                        ]
+                    },
+                    "key": {
+                        "type": "string",
+                        "description": "Key of the taint"
+                    },
+                    "operator": {
+                        "type": "string",
+                        "description": "Operator of the taint",
+                        "enum": [
+                            "Exists",
+                            "Equal"
+                        ],
+                        "default": "Equal"
+                    },
+                    "value": {
+                        "type": "string",
+                        "description": "Value of the taint"
+                    }
+                }
+            }
         },
         "topologySpreadConstraints": {
             "type": "array",
+            "title": "Topology spread constraints",
+            "description": "If specified, this will be injected as the main pod's topologySpreadConstraints spec.",
             "items": {
-                "type": "object"
+                "type": "object",
+                "additionalProperties": true
             }
         },
         "volumeMounts": {
-            "type": "array"
+            "type": "array",
+            "title": "Volume mounts",
+            "description": "Additional volumeMounts on the output Deployment definition.",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "mountPath": {
+                        "type": "string",
+                        "description": "Path to mount the volume"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Name of the volume"
+                    },
+                    "readOnly": {
+                        "type": "boolean",
+                        "description": "Whether the volume is read-only"
+                    }
+                }
+            }
         },
         "volumes": {
-            "type": "array"
+            "type": "array",
+            "title": "Volumes",
+            "description": "Additional volumes on the output Deployment definition.",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "Name of the volume"
+                    },
+                    "secret": {
+                        "type": "object",
+                        "properties": {
+                            "optional": {
+                                "type": "boolean",
+                                "description": "Whether the secret is optional"
+                            },
+                            "secretName": {
+                                "type": "string",
+                                "description": "Name of the secret"
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
