@@ -1,7 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "type": "object",
-    "additionalProperties": false,
     "properties": {
         "affinity": {
             "type": "object",
@@ -12,7 +11,6 @@
         "autoscaling": {
             "type": "object",
             "title": "Automatic scaling",
-            "additionalProperties": false,
             "properties": {
                 "enabled": {
                     "type": "boolean",
@@ -59,12 +57,10 @@
             "type": "object",
             "title": "Global",
             "description": "Values under this section are available to all sub-charts.",
-            "additionalProperties": false,
             "properties": {
                 "podSecurityStandards": {
                     "type": "object",
                     "title": "Pod security standards (PSS)",
-                    "additionalProperties": false,
                     "properties": {
                         "enforced": {
                             "type": "boolean",
@@ -80,7 +76,6 @@
             "type": "object",
             "title": "Image",
             "description": "Container image for the main pod.",
-            "additionalProperties": false,
             "properties": {
                 "pullPolicy": {
                     "title": "Pull policy",
@@ -132,7 +127,6 @@
             "required": [
                 "hosts"
             ],
-            "additionalProperties": false,
             "properties": {
                 "annotations": {
                     "type": "object",
@@ -141,7 +135,6 @@
                         "kubernetes.io/ingress.class: nginx",
                         "kubernetes.io/tls-acme: 'true'"
                     ],
-                    "additionalProperties": false,
                     "patternProperties": {
                         "^[a-zA-Z0-9/-_\\.]+$": {
                             "type": "string",
@@ -233,7 +226,6 @@
             "type": "object",
             "title": "Node selector",
             "description": "If specified, this app will only be deployed to nodes with matching labels.",
-            "additionalProperties": false,
             "patternProperties": {
                 "^[a-zA-Z0-9/-_\\.]+$": {
                     "$ref": "https://schema.giantswarm.io/labelvalue/v0.0.1"
@@ -244,7 +236,6 @@
             "type": "object",
             "title": "Pod annotations",
             "description": "Optional annotations to be added to the main pod.",
-            "additionalProperties": false,
             "patternProperties": {
                 "^[a-zA-Z0-9/-_\\.]+$": {
                     "type": "string",
@@ -255,7 +246,6 @@
         "podDisruptionBudget": {
             "type": "object",
             "title": "Pod disruption budget",
-            "additionalProperties": false,
             "properties": {
                 "enabled": {
                     "type": "boolean",
@@ -281,7 +271,6 @@
             "type": "object",
             "title": "Pod labels",
             "description": "Optional labels to be added to the main pod.",
-            "additionalProperties": false,
             "patternProperties": {
                 "^[a-zA-Z0-9/-_\\.]+$": {
                     "$ref": "https://schema.giantswarm.io/labelvalue/v0.0.1"
@@ -292,7 +281,6 @@
             "type": "object",
             "title": "Pod security context",
             "description": "Security context of the main pod.",
-            "additionalProperties": false,
             "properties": {
                 "fsGroup": {
                     "type": "integer"
@@ -310,12 +298,10 @@
             "type": "object",
             "title": "Resource requests and limits",
             "description": "This is directly injected as the main pods's resource requests and limits.",
-            "additionalProperties": false,
             "properties": {
                 "limits": {
                     "type": "object",
                     "title": "Limits",
-                    "additionalProperties": false,
                     "properties": {
                         "cpu": {
                             "type": "string",
@@ -332,7 +318,6 @@
                 "requests": {
                     "type": "object",
                     "title": "Requests",
-                    "additionalProperties": false,
                     "properties": {
                         "cpu": {
                             "type": "string",
@@ -360,7 +345,6 @@
             "type": "object",
             "title": "Security context",
             "description": "This object will be inserted into the deployment as the main pod's SecurityContext.",
-            "additionalProperties": false,
             "properties": {
                 "allowPrivilegeEscalation": {
                     "type": "boolean",
@@ -370,7 +354,6 @@
                 "capabilities": {
                     "type": "object",
                     "title": "capabilities",
-                    "additionalProperties": false,
                     "properties": {
                         "drop": {
                             "type": "array",
@@ -399,7 +382,6 @@
                 "seccompProfile": {
                     "type": "object",
                     "title": "seccompProfile",
-                    "additionalProperties": false,
                     "properties": {
                         "type": {
                             "title": "type",
@@ -416,7 +398,6 @@
         "service": {
             "type": "object",
             "title": "Service",
-            "additionalProperties": false,
             "properties": {
                 "type": {
                     "title": "Type",
@@ -431,7 +412,6 @@
                 "annotations": {
                     "type": "object",
                     "title": "Optional service annotations",
-                    "additionalProperties": false,
                     "patternProperties": {
                         "^[a-zA-Z0-9/-_\\.]+$": {
                             "type": "string",
@@ -442,7 +422,6 @@
                 "labels": {
                     "type": "object",
                     "title": "Optional service labels",
-                    "additionalProperties": false,
                     "patternProperties": {
                         "^[a-zA-Z0-9/-_\\.]+$": {
                             "$ref": "https://schema.giantswarm.io/labelvalue/v0.0.1"
@@ -460,13 +439,11 @@
             "type": "object",
             "title": "Service account",
             "description": "Settings related to the service account.",
-            "additionalProperties": false,
             "properties": {
                 "annotations": {
                     "type": "object",
                     "title": "annotations",
                     "description": "Annotations to add to the service account.",
-                    "additionalProperties": false,
                     "patternProperties": {
                         "^[a-zA-Z0-9/-_\\.]+$": {
                             "type": "string",
@@ -497,7 +474,6 @@
         "strategy": {
             "type": "object",
             "title": "Update strategy",
-            "additionalProperties": false,
             "properties": {
                 "type": {
                     "title": "Type",
@@ -510,7 +486,6 @@
                 "rollingUpdate": {
                     "type": "object",
                     "title": "Rolling update strategy details",
-                    "additionalProperties": false,
                     "properties": {
                         "maxSurge": {
                             "type": "integer",
