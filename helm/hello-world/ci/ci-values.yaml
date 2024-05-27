@@ -1,2 +1,3 @@
-# Trying to provoke an error
-replicaCount: "unknown"
+podLabels:
+  labelkey: labelvalue
+  second-key: "another value"
