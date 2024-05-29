@@ -1,5 +1,4 @@
 {
-  "additionalProperties": false,
   "properties": {
     "affinity": {
       "additionalProperties": true,
@@ -8,7 +7,6 @@
       "type": "object"
     },
     "autoscaling": {
-      "additionalProperties": false,
       "properties": {
         "enabled": {
           "default": "true",
@@ -54,10 +52,8 @@
       "type": "string"
     },
     "global": {
-      "additionalProperties": false,
       "properties": {
         "podSecurityStandards": {
-          "additionalProperties": false,
           "properties": {
             "enforced": {
               "default": "false",
@@ -75,7 +71,6 @@
       "type": "object"
     },
     "image": {
-      "additionalProperties": false,
       "properties": {
         "pullPolicy": {
           "default": "IfNotPresent",
@@ -125,10 +120,8 @@
       "type": "array"
     },
     "ingress": {
-      "additionalProperties": false,
       "properties": {
         "annotations": {
-          "additionalProperties": false,
           "patternProperties": {
             "^[a-zA-Z0-9/-_\\.]+$": {
               "title": "Annotation value",
@@ -228,7 +221,6 @@
       "type": "string"
     },
     "nodeSelector": {
-      "additionalProperties": false,
       "patternProperties": {
         "^[a-zA-Z0-9/-_\\.]+$": {
           "$ref": "https://schema.giantswarm.io/labelvalue/v0.0.1"
@@ -239,7 +231,6 @@
       "type": "object"
     },
     "podAnnotations": {
-      "additionalProperties": false,
       "patternProperties": {
         "^[a-zA-Z0-9/-_\\.]+$": {
           "title": "Annotation value",
@@ -251,7 +242,6 @@
       "type": "object"
     },
     "podDisruptionBudget": {
-      "additionalProperties": false,
       "properties": {
         "enabled": {
           "default": "true",
@@ -276,7 +266,6 @@
       "type": "object"
     },
     "podLabels": {
-      "additionalProperties": false,
       "patternProperties": {
         "^[a-zA-Z0-9/-_\\.]+$": {
           "$ref": "https://schema.giantswarm.io/labelvalue/v0.0.1"
@@ -287,7 +276,6 @@
       "type": "object"
     },
     "podSecurityContext": {
-      "additionalProperties": false,
       "properties": {
         "fsGroup": {
           "type": "integer"
@@ -305,10 +293,8 @@
       "type": "integer"
     },
     "resources": {
-      "additionalProperties": false,
       "properties": {
         "limits": {
-          "additionalProperties": false,
           "properties": {
             "cpu": {
               "default": "50m",
@@ -325,7 +311,6 @@
           "type": "object"
         },
         "requests": {
-          "additionalProperties": false,
           "properties": {
             "cpu": {
               "default": "10m",
@@ -355,7 +340,6 @@
       "type": "object"
     },
     "securityContext": {
-      "additionalProperties": false,
       "properties": {
         "allowPrivilegeEscalation": {
           "default": "false",
@@ -363,7 +347,6 @@
           "type": "boolean"
         },
         "capabilities": {
-          "additionalProperties": false,
           "properties": {
             "drop": {
               "items": {
@@ -392,7 +375,6 @@
           "type": "integer"
         },
         "seccompProfile": {
-          "additionalProperties": false,
           "properties": {
             "type": {
               "default": "RuntimeDefault",
@@ -412,10 +394,8 @@
       "type": "object"
     },
     "service": {
-      "additionalProperties": false,
       "properties": {
         "annotations": {
-          "additionalProperties": false,
           "patternProperties": {
             "^[a-zA-Z0-9/-_\\.]+$": {
               "title": "Annotation value",
@@ -426,7 +406,6 @@
           "type": "object"
         },
         "labels": {
-          "additionalProperties": false,
           "patternProperties": {
             "^[a-zA-Z0-9/-_\\.]+$": {
               "$ref": "https://schema.giantswarm.io/labelvalue/v0.0.1"
@@ -455,10 +434,8 @@
       "type": "object"
     },
     "serviceAccount": {
-      "additionalProperties": false,
       "properties": {
         "annotations": {
-          "additionalProperties": false,
           "patternProperties": {
             "^[a-zA-Z0-9/-_\\.]+$": {
               "title": "Annotation value",
@@ -493,10 +470,8 @@
       "type": "object"
     },
     "strategy": {
-      "additionalProperties": false,
       "properties": {
         "rollingUpdate": {
-          "additionalProperties": false,
           "properties": {
             "maxSurge": {
               "default": "1",
