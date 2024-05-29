@@ -1,0 +1,16 @@
+minimum_pre_commit_version: 1.21.0
+repos:
+  - repo: https://github.com/dadav/helm-schema
+    rev: 0.11.0
+    hooks:
+      - id: helm-schema
+        args:
+          - --chart-search-root=helm/
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: check-merge-conflict
+        args: [--assume-in-merge]
+      - id: trailing-whitespace
+      - id: detect-private-key
+      - id: mixed-line-ending
