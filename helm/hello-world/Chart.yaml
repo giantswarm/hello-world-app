@@ -2,7 +2,7 @@ apiVersion: v2
 name: hello-world
 description: A chart that deploys a basic hello world site and lets you test values merging of user values configmap and secrets.
 type: application
-version: 2.3.1
+version: 2.3.2
 appVersion: "0.2.1"
 home: https://github.com/giantswarm/hello-world-app
 icon: https://s.giantswarm.io/app-icons/1/png/hello-world-app-light.png
