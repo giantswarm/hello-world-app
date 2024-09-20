@@ -128,6 +128,11 @@ podDisruptionBudget:
   # minAvailable: 1
   maxUnavailable: 1
 
+serviceMonitor:
+  enabled: false
+  team: "team-awesome"
+  instance: "hello-world"
+
 global:
   podSecurityStandards:
     enforced: false
