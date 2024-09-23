@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  registry: quay.io
+  registry: gsoci.azurecr.io
   repository: giantswarm/helloworld
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
@@ -127,6 +127,11 @@ podDisruptionBudget:
   # Define either 'minAvailable' or 'maxUnavailable', never both.
   # minAvailable: 1
   maxUnavailable: 1
+
+serviceMonitor:
+  enabled: false
+  team: "team-awesome"
+  instance: "hello-world"
 
 global:
   podSecurityStandards:

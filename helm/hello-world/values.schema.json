@@ -246,6 +246,20 @@
                 }
             }
         },
+        "serviceMonitor": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "team": {
+                    "type": "string"
+                },
+                "instance": {
+                    "type": "string"
+                }
+            }
+        },
         "strategy": {
             "type": "object",
             "properties": {
