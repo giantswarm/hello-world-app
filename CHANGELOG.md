@@ -9,6 +9,8 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [2.4.0] - 2024-09-23
 
+- Add option to create `ServiceMonitor` object for monitoring
+
 ## [2.3.2] - 2024-06-11
 
 ### Changed
