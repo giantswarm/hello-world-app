@@ -1,6 +1,6 @@
 # hello-world
 
-![Version: 2.3.2](https://img.shields.io/badge/Version-2.3.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.2.1](https://img.shields.io/badge/AppVersion-0.2.1-informational?style=flat-square)
+![Version: 2.4.0](https://img.shields.io/badge/Version-2.4.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.3.0](https://img.shields.io/badge/AppVersion-0.3.0-informational?style=flat-square)
 
 A chart that deploys a basic hello world site and lets you test values merging of user values configmap and secrets.
 
@@ -29,7 +29,7 @@ A chart that deploys a basic hello world site and lets you test values merging o
 | autoscaling.targetMemoryUtilizationPercentage | int | `80` |  |
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.registry | string | `"quay.io"` |  |
+| image.registry | string | `"gsoci.azurecr.io"` |  |
 | image.repository | string | `"giantswarm/helloworld"` |  |
 | image.tag | string | `""` |  |
 | imagePullSecrets | list | `[]` |  |
