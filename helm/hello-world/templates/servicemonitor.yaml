@@ -2,16 +2,15 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  labels:
-    application.giantswarm.io/team: {{ .Values.serviceMonitor.team }}
-    app.kubernetes.io/instance: {{ .Values.serviceMonitor.instance }}
   name: {{ include "hello-world.fullname" . }}
+  labels:
+    {{- include "hello-world.labels" . | nindent 4 }}
 spec:
-  endpoints:
-  - interval: 60s
-    path: /metrics
-    port: http
   selector:
     matchLabels:
-      {{- include "hello-world.labels" . | nindent 8 }}
+      {{- include "hello-world.selectorLabels" . | nindent 6 }}
+  endpoints:
+  - port: http
+    path: /metrics
+    interval: 60s
 {{- end }}

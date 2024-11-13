@@ -28,19 +28,6 @@
         "fullnameOverride": {
             "type": "string"
         },
-        "global": {
-            "type": "object",
-            "properties": {
-                "podSecurityStandards": {
-                    "type": "object",
-                    "properties": {
-                        "enforced": {
-                            "type": "boolean"
-                        }
-                    }
-                }
-            }
-        },
         "image": {
             "type": "object",
             "properties": {
@@ -117,6 +104,22 @@
                 }
             }
         },
+        "livenessProbe": {
+            "type": "object",
+            "properties": {
+                "httpGet": {
+                    "type": "object",
+                    "properties": {
+                        "path": {
+                            "type": "string"
+                        },
+                        "port": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
         "nameOverride": {
             "type": "string"
         },
@@ -145,6 +148,22 @@
         },
         "podSecurityContext": {
             "type": "object"
+        },
+        "readinessProbe": {
+            "type": "object",
+            "properties": {
+                "httpGet": {
+                    "type": "object",
+                    "properties": {
+                        "path": {
+                            "type": "string"
+                        },
+                        "port": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
         },
         "replicaCount": {
             "type": "integer"
@@ -251,12 +270,6 @@
             "properties": {
                 "enabled": {
                     "type": "boolean"
-                },
-                "team": {
-                    "type": "string"
-                },
-                "instance": {
-                    "type": "string"
                 }
             }
         },
