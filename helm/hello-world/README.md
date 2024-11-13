@@ -73,6 +73,7 @@ A chart that deploys a basic hello world site and lets you test values merging o
 | serviceAccount.automount | bool | `false` |  |
 | serviceAccount.create | bool | `true` |  |
 | serviceAccount.name | string | `""` |  |
+| serviceMonitor.enabled | bool | `false` |  |
 | strategy.rollingUpdate.maxSurge | int | `1` |  |
 | strategy.rollingUpdate.maxUnavailable | int | `1` |  |
 | strategy.type | string | `"RollingUpdate"` |  |

@@ -140,8 +140,6 @@ podDisruptionBudget:
 
 serviceMonitor:
   enabled: false
-  team: "team-awesome"
-  instance: "hello-world"
 
 global:
   podSecurityStandards:
