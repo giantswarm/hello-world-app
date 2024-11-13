@@ -42,6 +42,8 @@ A chart that deploys a basic hello world site and lets you test values merging o
 | ingress.hosts[0].paths[0].pathType | string | `"Prefix"` |  |
 | ingress.tls[0].hosts[0] | string | `"hello.cluster.provider.gigantic.io"` |  |
 | ingress.tls[0].secretName | string | `"hello-world-tls"` |  |
+| livenessProbe.httpGet.path | string | `"/"` |  |
+| livenessProbe.httpGet.port | string | `"http"` |  |
 | nameOverride | string | `""` |  |
 | nodeSelector | object | `{}` |  |
 | podAnnotations | object | `{}` |  |
@@ -50,6 +52,8 @@ A chart that deploys a basic hello world site and lets you test values merging o
 | podDisruptionBudget.minAvailable | int | `1` |  |
 | podLabels | object | `{}` |  |
 | podSecurityContext | object | `{}` |  |
+| readinessProbe.httpGet.path | string | `"/"` |  |
+| readinessProbe.httpGet.port | string | `"http"` |  |
 | replicaCount | int | `1` |  |
 | resources.limits.cpu | string | `"400m"` |  |
 | resources.limits.memory | string | `"100Mi"` |  |

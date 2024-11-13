@@ -117,6 +117,22 @@
                 }
             }
         },
+        "livenessProbe": {
+            "type": "object",
+            "properties": {
+                "httpGet": {
+                    "type": "object",
+                    "properties": {
+                        "path": {
+                            "type": "string"
+                        },
+                        "port": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
         "nameOverride": {
             "type": "string"
         },
@@ -145,6 +161,22 @@
         },
         "podSecurityContext": {
             "type": "object"
+        },
+        "readinessProbe": {
+            "type": "object",
+            "properties": {
+                "httpGet": {
+                    "type": "object",
+                    "properties": {
+                        "path": {
+                            "type": "string"
+                        },
+                        "port": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
         },
         "replicaCount": {
             "type": "integer"
