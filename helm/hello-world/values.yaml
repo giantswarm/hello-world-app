@@ -155,7 +155,3 @@ podDisruptionBudget:
 
 serviceMonitor:
   enabled: false
-
-global:
-  podSecurityStandards:
-    enforced: false
