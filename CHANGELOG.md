@@ -7,7 +7,29 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Added
+
+- Repository: Some chores. ([#166](https://github.com/giantswarm/hello-world-app/pull/166))
+  - Deployment: Make probes configurable.
+  - Values: Add docs.
+
+### Changed
+
+- Repository: Some chores. ([#166](https://github.com/giantswarm/hello-world-app/pull/166))
+  - CircleCI: Rework `config.yml`.
+  - PDB: Reorder selector.
+  - ServiceMonitor: Reorder and use correct labels.
+  - Chart: Update `README.md`.
+
+### Removed
+
+- Repository: Some chores. ([#166](https://github.com/giantswarm/hello-world-app/pull/166))
+  - Ingress: Remove compatibility checks.
+  - Values: Remove `global.podSecurityStandards.enforced`.
+
 ## [2.4.0] - 2024-09-23
+
+### Added
 
 - Add option to create `ServiceMonitor` object for monitoring
 
