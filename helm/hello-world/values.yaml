@@ -80,6 +80,14 @@ ingress:
     hosts:
     - hello.cluster.provider.gigantic.io
 
+gateway:
+  enabled: false
+  # annotations:
+    # cert-manager.io/cluster-issuer: letsencrypt-giantswarm
+  name: default
+  hosts:
+  - hello.cluster.provider.gigantic.io
+
 resources:
   requests:
     cpu: 200m
