@@ -7,6 +7,12 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+## [2.6.0] - 2024-12-20
+
+### Added
+
+- Add support for Gateway API, a new `HTTPRoute` resource, as an optional deployment.
+
 ## [2.5.0] - 2024-11-13
 
 ### Added
@@ -161,7 +167,8 @@ First release published to the Giant Swarm catalog
 
 Initial release
 
-[Unreleased]: https://github.com/giantswarm/hello-world-app/compare/v2.5.0...HEAD
+[Unreleased]: https://github.com/giantswarm/hello-world-app/compare/v2.6.0...HEAD
+[2.6.0]: https://github.com/giantswarm/hello-world-app/compare/v2.5.0...v2.6.0
 [2.5.0]: https://github.com/giantswarm/hello-world-app/compare/v2.4.0...v2.5.0
 [2.4.0]: https://github.com/giantswarm/hello-world-app/compare/v2.3.2...v2.4.0
 [2.3.2]: https://github.com/giantswarm/hello-world-app/compare/v2.3.1...v2.3.2
