@@ -9,6 +9,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [2.6.0] - 2024-12-20
 
+### Added
+
+- Add support for Gateway API, a new `HTTPRoute` resource, as an optional deployment.
+
 ## [2.5.0] - 2024-11-13
 
 ### Added
