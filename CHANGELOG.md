@@ -7,6 +7,11 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Changed
+
+- Chart: Some chores. ([#172](https://github.com/giantswarm/hello-world-app/pull/172))
+  - Chart: Update `README.md`.
+
 ## [2.6.0] - 2024-12-20
 
 ### Added
