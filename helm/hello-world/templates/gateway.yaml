@@ -10,12 +10,12 @@ metadata:
     {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
+  parentRefs:
+  - name: {{ .Values.gateway.name }}
   hostnames:
   {{- range .Values.gateway.hosts }}
   - {{ . | quote }}
   {{- end }}
-  parentRefs:
-  - name: {{ .Values.gateway.name }}
   rules:
   - matches:
     - path:
