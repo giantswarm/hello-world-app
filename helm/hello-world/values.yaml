@@ -62,7 +62,7 @@ service:
   labels: {}
   annotations: {}
 
-# This block is for setting up the ingress for more information can be found here: https://kubernetes.io/docs/concepts/services-networking/ingress/
+# This block is for setting up the ingress more information can be found here: https://kubernetes.io/docs/concepts/services-networking/ingress/
 ingress:
   enabled: true
   className: nginx
@@ -80,11 +80,12 @@ ingress:
     hosts:
     - hello.cluster.provider.gigantic.io
 
+# This block is for setting up the gateway more information can be found here: https://kubernetes.io/docs/concepts/services-networking/gateway/
 gateway:
   enabled: false
-  # annotations:
-    # cert-manager.io/cluster-issuer: letsencrypt-giantswarm
   name: default
+  annotations: {}
+  #   cert-manager.io/cluster-issuer: letsencrypt-giantswarm
   hosts:
   - hello.cluster.provider.gigantic.io
 
