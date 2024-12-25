@@ -17,6 +17,7 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 - Chart: Some chores. ([#172](https://github.com/giantswarm/hello-world-app/pull/172))
   - Chart: Update `README.md`.
   - Chart: Reorder `parentRefs`.
+  - Values: Uncomment `gateway.annotations`.
 
 ## [2.6.0] - 2024-12-20
 

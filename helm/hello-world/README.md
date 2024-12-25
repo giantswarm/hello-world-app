@@ -28,6 +28,7 @@ A chart that deploys a basic hello world site and lets you test values merging o
 | autoscaling.targetCPUUtilizationPercentage | int | `80` |  |
 | autoscaling.targetMemoryUtilizationPercentage | int | `80` |  |
 | fullnameOverride | string | `""` |  |
+| gateway.annotations | object | `{}` |  |
 | gateway.enabled | bool | `false` |  |
 | gateway.hosts[0] | string | `"hello.cluster.provider.gigantic.io"` |  |
 | gateway.name | string | `"default"` |  |
