@@ -84,6 +84,7 @@ ingress:
 gateway:
   enabled: false
   name: default
+  namespace: ""
   annotations: {}
   #   cert-manager.io/cluster-issuer: letsencrypt-giantswarm
   hosts:
