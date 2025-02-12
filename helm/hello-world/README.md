@@ -32,6 +32,7 @@ A chart that deploys a basic hello world site and lets you test values merging o
 | gateway.enabled | bool | `false` |  |
 | gateway.hosts[0] | string | `"hello.cluster.provider.gigantic.io"` |  |
 | gateway.name | string | `"default"` |  |
+| gateway.namespace | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.registry | string | `"gsoci.azurecr.io"` |  |
 | image.repository | string | `"giantswarm/helloworld"` |  |
