@@ -12,6 +12,9 @@ metadata:
 spec:
   parentRefs:
   - name: {{ .Values.gateway.name }}
+    {{- if .Values.gateway.namespace }}
+    namespace: {{ .Values.gateway.namespace }}
+    {{- end }}
   hostnames:
   {{- range .Values.gateway.hosts }}
   - {{ . | quote }}

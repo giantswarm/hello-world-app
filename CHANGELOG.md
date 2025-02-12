@@ -7,6 +7,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Added
+
+- Chart: add support for cross-namespace Gateway API references. [#180](https://github.com/giantswarm/hello-world-app/pull/180))
+
 ## [2.6.1] - 2024-12-25
 
 ### Added
