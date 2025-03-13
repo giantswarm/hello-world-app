@@ -7,6 +7,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Changed
+
+- Add HTTP->HTTPS redirect in the HTTPRoute CR.
+
 ## [2.7.0] - 2025-02-27
 
 ### Added

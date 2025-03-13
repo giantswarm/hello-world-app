@@ -1,0 +1,59 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/gateway.networking.k8s.io/httproute_v1.json
+{{- if .Values.gateway.enabled -}}
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: {{ include "hello-world.fullname" . }}-tls-redirect
+  labels:
+    {{- include "hello-world.labels" . | nindent 4 }}
+  {{- with .Values.gateway.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  parentRefs:
+  - name: {{ .Values.gateway.name }}
+    {{- if .Values.gateway.namespace }}
+    namespace: {{ .Values.gateway.namespace }}
+    {{- end }}
+    sectionName: http
+  hostnames:
+  {{- range .Values.gateway.hosts }}
+  - {{ . | quote }}
+  {{- end }}
+  rules:
+  - filters:
+    - type: RequestRedirect
+      requestRedirect:
+        scheme: https
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: {{ include "hello-world.fullname" . }}
+  labels:
+    {{- include "hello-world.labels" . | nindent 4 }}
+  {{- with .Values.gateway.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  parentRefs:
+  - name: {{ .Values.gateway.name }}
+    {{- if .Values.gateway.namespace }}
+    namespace: {{ .Values.gateway.namespace }}
+    {{- end }}
+    sectionName: https
+  hostnames:
+  {{- range .Values.gateway.hosts }}
+  - {{ . | quote }}
+  {{- end }}
+  rules:
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /
+    backendRefs:
+    - name: {{ include "hello-world.fullname" . }}
+      port: {{ .Values.service.port }}
+{{- end }}
