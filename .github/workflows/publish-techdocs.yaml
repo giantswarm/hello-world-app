@@ -50,8 +50,7 @@ jobs:
 
       - name: Debug
         run: |
-          pwd
-          ls -la
+          env
       
       - name: Generate documentation
         run: techdocs-cli generate --output-dir=./tmp-docs-output
