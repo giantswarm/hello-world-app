@@ -11,12 +11,30 @@ jobs:
   publish:
     runs-on: 'ubuntu-latest'
     steps:
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+      - name: Set up NodeJS
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: '22'
 
+      - name: Cache dependencies
+        id: cache-npm
+        uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4.2.3
+        env:
+          cache-name: cache-node-modules
+        with:
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          path:
+            ./node_modules
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+      
+      - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
+        name: List the state of node modules
+        continue-on-error: true
+        run: npm list
+
       - name: Install techdocs-cli
-        run: npm install -g @techdocs/cli
+        run: npm install @techdocs/cli
 
       - name: Show techdocs-cli version
         run: techdocs-cli --version
@@ -24,7 +42,8 @@ jobs:
       - name: Show techdocs-cli help
         run: techdocs-cli generate --help
 
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: Clone source repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
       - name: Debug
         run: |
