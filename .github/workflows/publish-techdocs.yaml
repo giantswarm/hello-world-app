@@ -54,4 +54,7 @@ jobs:
           ls -la
       
       - name: Generate documentation
-        run: techdocs-cli generate
+        run: techdocs-cli generate --output-dir=./tmp-docs-output
+      
+      - name: Show output
+        run: ls -la ./tmp-docs-output
