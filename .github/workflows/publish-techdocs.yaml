@@ -32,6 +32,9 @@ jobs:
         name: List the state of node modules
         continue-on-error: true
         run: npm list
+      
+      - name: Show NPM directory path
+        run: npm root -g
 
       - name: Install techdocs-cli
         run: npm install @techdocs/cli
