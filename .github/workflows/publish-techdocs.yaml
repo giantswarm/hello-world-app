@@ -60,6 +60,10 @@ jobs:
         run: ls -la ./tmp-docs-output
       
       - name: Publish
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.TECHDOCS_PUBLISH_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.TECHDOCS_PUBLISH_SECRET_KEY }}
+          AWS_REGION: eu-central-1
         run: |
           techdocs-cli publish \
             --publisher-type awsS3 \
