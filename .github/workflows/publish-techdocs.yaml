@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - master
+      - add-techdocs-workflow # TODO: delete
 
 jobs:
   publish:
