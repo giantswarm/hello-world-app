@@ -58,3 +58,11 @@ jobs:
       
       - name: Show output
         run: ls -la ./tmp-docs-output
+      
+      - name: Publish
+        run: |
+          techdocs-cli publish \
+            --publisher-type awsS3 \
+            --storage-name gs-backstage-techdocs-public \
+            --entity default/component/hello-world-app \
+            --directory ./tmp-docs-output
