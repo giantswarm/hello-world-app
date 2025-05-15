@@ -36,8 +36,10 @@ jobs:
       - name: Install techdocs-cli
         run: npm install @techdocs/cli
       
-      # - name: Find techdocs-cli
-      #   run: find . -name techdocs-cli -type f
+      - name: Find techdocs-cli
+        run: |
+          pwd
+          find . -name techdocs-cli -type f
 
       - name: Show techdocs-cli version
         run: ./node_modules/@techdocs/cli/bin/techdocs-cli --version
