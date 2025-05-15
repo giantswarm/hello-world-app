@@ -36,17 +36,17 @@ jobs:
       - name: Install techdocs-cli
         run: npm install @techdocs/cli
       
-      - name: Find techdocs-cli
-        run: find . -name techdocs-cli -type f
+      # - name: Find techdocs-cli
+      #   run: find . -name techdocs-cli -type f
 
       - name: Show techdocs-cli version
-        run: techdocs-cli --version
+        run: ./node_modules/@techdocs/cli/bin/techdocs-cli --version
 
       - name: Clone source repository
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       
       - name: Generate documentation
-        run: techdocs-cli generate --output-dir=./tmp-docs-output
+        run: ./node_modules/@techdocs/cli/bin/techdocs-cli generate --output-dir=./tmp-docs-output
       
       - name: Show output
         run: ls -la ./tmp-docs-output
@@ -58,7 +58,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.TECHDOCS_PUBLISH_SECRET_KEY }}
           AWS_REGION: eu-central-1
         run: |
-          techdocs-cli publish \
+          ./node_modules/@techdocs/cli/bin/techdocs-cli publish \
             --publisher-type awsS3 \
             --storage-name gs-backstage-techdocs-public \
             --entity default/component/${{ github.event.repository.name }} \
