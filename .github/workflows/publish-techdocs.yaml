@@ -38,6 +38,7 @@ jobs:
       
       - name: Find techdocs-cli
         run: |
+          env | sort
           pwd
           find . -name techdocs-cli -type f
 
