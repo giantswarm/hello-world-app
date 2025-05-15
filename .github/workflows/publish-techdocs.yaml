@@ -9,7 +9,7 @@ on:
 
 jobs:
   publish:
-    if: github.repository.private == 'false'
+    if: github.event.repository.private == 'false'
     runs-on: 'ubuntu-latest'
     steps:
       - name: Set up NodeJS
