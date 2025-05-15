@@ -16,7 +16,6 @@ jobs:
         with:
           node-version: '22'
 
-
       - name: Cache dependencies
         id: cache-npm
         uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4.2.3
@@ -36,6 +35,9 @@ jobs:
       
       - name: Install techdocs-cli
         run: npm install @techdocs/cli
+      
+      - name: Find techdocs-cli
+        run: find . -name techdocs-cli -type f
 
       - name: Show techdocs-cli version
         run: techdocs-cli --version
