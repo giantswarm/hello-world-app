@@ -16,6 +16,9 @@ jobs:
         with:
           node-version: '22'
 
+      - name: Clone source repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
       - name: Cache dependencies
         id: cache-npm
         uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4.2.3
@@ -44,17 +47,14 @@ jobs:
 
       - name: Show techdocs-cli version
         run: ./node_modules/@techdocs/cli/bin/techdocs-cli --version
-
-      - name: Clone source repository
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       
       - name: Generate documentation
         run: |
-          $RUNNER_WORKSPACE/node_modules/@techdocs/cli/bin/techdocs-cli \
-            generate --output-dir=$RUNNER_WORKSPACE/tmp-docs-output
+          $GITHUB_WORKSPACE/node_modules/@techdocs/cli/bin/techdocs-cli \
+            generate --output-dir=$GITHUB_WORKSPACE/tmp-docs-output
       
       - name: Show output
-        run: ls -la $RUNNER_WORKSPACE/tmp-docs-output
+        run: ls -la $GITHUB_WORKSPACE/tmp-docs-output
       
       - name: Publish
         if: ${{ github.event.repository.name != '' }}
@@ -63,8 +63,8 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.TECHDOCS_PUBLISH_SECRET_KEY }}
           AWS_REGION: eu-central-1
         run: |
-          $RUNNER_WORKSPACE/node_modules/@techdocs/cli/bin/techdocs-cli publish \
+          $GITHUB_WORKSPACE/node_modules/@techdocs/cli/bin/techdocs-cli publish \
             --publisher-type awsS3 \
             --storage-name gs-backstage-techdocs-public \
             --entity default/component/${{ github.event.repository.name }} \
-            --directory $RUNNER_WORKSPACE/tmp-docs-output
+            --directory $GITHUB_WORKSPACE/tmp-docs-output
