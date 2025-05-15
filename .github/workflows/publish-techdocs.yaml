@@ -50,11 +50,11 @@ jobs:
       
       - name: Generate documentation
         run: |
-          $GITHUB_WORKSPACE/node_modules/@techdocs/cli/bin/techdocs-cli \
-            generate --output-dir=./tmp-docs-output
+          $RUNNER_WORKSPACE/node_modules/@techdocs/cli/bin/techdocs-cli \
+            generate --output-dir=$RUNNER_WORKSPACE/tmp-docs-output
       
       - name: Show output
-        run: ls -la ./tmp-docs-output
+        run: ls -la $RUNNER_WORKSPACE/tmp-docs-output
       
       - name: Publish
         if: ${{ github.event.repository.name != '' }}
@@ -63,8 +63,8 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.TECHDOCS_PUBLISH_SECRET_KEY }}
           AWS_REGION: eu-central-1
         run: |
-          $GITHUB_WORKSPACE/node_modules/@techdocs/cli/bin/techdocs-cli publish \
+          $RUNNER_WORKSPACE/node_modules/@techdocs/cli/bin/techdocs-cli publish \
             --publisher-type awsS3 \
             --storage-name gs-backstage-techdocs-public \
             --entity default/component/${{ github.event.repository.name }} \
-            --directory ./tmp-docs-output
+            --directory $RUNNER_WORKSPACE/tmp-docs-output
