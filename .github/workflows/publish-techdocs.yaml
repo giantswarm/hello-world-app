@@ -9,6 +9,7 @@ on:
 
 jobs:
   publish:
+    if: github.repository.private == 'false'
     runs-on: 'ubuntu-latest'
     steps:
       - name: Set up NodeJS
@@ -38,12 +39,6 @@ jobs:
       
       - name: Install techdocs-cli
         run: npm install @techdocs/cli
-      
-      - name: Find techdocs-cli
-        run: |
-          env | sort
-          pwd
-          find . -name techdocs-cli -type f
 
       - name: Show techdocs-cli version
         run: ./node_modules/@techdocs/cli/bin/techdocs-cli --version
