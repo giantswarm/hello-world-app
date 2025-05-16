@@ -46,6 +46,83 @@ jobs:
       - name: Show techdocs-cli version
         run: ./node_modules/@techdocs/cli/bin/techdocs-cli --version
       
+      - name: Generate mkdocs configuration
+        shell: python {0}
+        run: |
+          import os
+          import shutil
+
+          pwd = os.getcwd()
+          docspath = os.path.join(pwd, "docs")
+
+          output = "site_name: ${{ github.event.repository.name }}\n"
+          output += "docs_dir: ./docs\n"
+          output += "plugins:\n"
+          output += "  - techdocs-code\n"
+
+          os.makedirs(docspath, exist_ok=True)
+
+          # Dict of menu items
+          # Key is the relative path and value is the label (or None).
+          nav = {}
+
+          # Main README
+          if os.path.exists("README.md"):
+              print("Copying README.md to docs/_README.md", flush=True)
+              shutil.copyfile("README.md", os.path.join(docspath, "_README.md"))
+              nav["./_README.md"] = "Main README"
+
+          # Detect helm chart README files
+          helmpath = os.path.join(pwd, "helm")
+          if os.path.exists(helmpath):
+              print(f"Finding README.md files in Helm charts", flush=True)
+              for root, _, files in os.walk(helmpath):
+                  for f in sorted(files):
+                      if f == "README.md":
+                          abspath = os.path.join(root, f)
+                          relpath = abspath.removeprefix(helmpath)
+                          # Copy to docs folder
+                          new_filename = "_helm" + relpath.replace("/", "_")
+                          target_path = os.path.join(docspath, new_filename)
+                          print(f"Copying {abspath} to {target_path}", flush=True)
+                          shutil.copyfile(abspath, target_path)
+                          nav[f"./{new_filename}"] = f"Helm Chart {new_filename}"
+
+          # Any other markdown in docs folder
+          print(f"Finding Markdown (*.md) files in {docspath}", flush=True)
+          for root, _, files in os.walk(docspath):
+              for f in sorted(files):
+                  if not f.endswith(".md"):
+                      continue
+                  abspath = os.path.join(root, f)
+                  relpath = "." + abspath.removeprefix(docspath)
+                  if relpath in nav:
+                      continue
+                  if relpath == "./README.md":
+                      nav[relpath] = "Docs Index"
+                  else:
+                      nav[relpath] = None # Title from content will be applied as label
+
+          if len(nav) == 0:
+              print("No markdown files found in docs folder. Exiting.")
+              # TODO: write step output
+              exit(0)
+
+          output += "nav:\n"
+          for key in sorted(nav.keys()):
+              if nav[key] is None:
+                  output += f"  - {key}\n"
+              else:
+                  output += f"  - {key}: {nav[key]}\n"
+
+          print("\nWriting mkdocs.yml with the following content:\n\n")
+          print(output)
+          print("\n")
+
+          with open("mkdocs.yml", "w") as f:
+              f.write(output)
+
+      
       - name: Generate documentation
         run: |
           $GITHUB_WORKSPACE/node_modules/@techdocs/cli/bin/techdocs-cli \
@@ -55,7 +132,6 @@ jobs:
         run: ls -la $GITHUB_WORKSPACE/tmp-docs-output
       
       - name: Publish
-        if: ${{ github.event.repository.name != '' }}
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.TECHDOCS_S3_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.TECHDOCS_S3_SECRET_ACCESS_KEY }}
