@@ -14,3 +14,4 @@ on:
 jobs:
   publish:
     uses: giantswarm/github/.github/workflows/publish-techdocs.yaml@add-techdocs-workflow
+
