@@ -55,8 +55,8 @@ jobs:
       - name: Publish
         if: ${{ github.event.repository.name != '' }}
         env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.TECHDOCS_PUBLISH_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.TECHDOCS_PUBLISH_SECRET_KEY }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.TECHDOCS_S3_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.TECHDOCS_S3_SECRET_ACCESS_KEY }}
           AWS_REGION: eu-central-1
         run: |
           $GITHUB_WORKSPACE/node_modules/@techdocs/cli/bin/techdocs-cli publish \
