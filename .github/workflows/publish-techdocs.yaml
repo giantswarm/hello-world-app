@@ -1,3 +1,6 @@
+# This workflow publishes documentation from this repository (README.md and docs/ folder content)
+# for use in Backstage portals. Only active on public repos. General info:
+# https://backstage.io/docs/features/techdocs/
 name: Publish TechDocs
 
 on:
@@ -13,7 +16,7 @@ jobs:
     runs-on: 'ubuntu-latest'
     steps:
       - name: Debug
-        run: echo "${{ github.repository }}"
+        run: traceroute www.apple.com
       - name: Set up NodeJS
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
