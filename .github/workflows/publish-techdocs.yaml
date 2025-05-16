@@ -86,7 +86,7 @@ jobs:
                           target_path = os.path.join(docspath, new_filename)
                           print(f"Copying {abspath} to {target_path}", flush=True)
                           shutil.copyfile(abspath, target_path)
-                          nav[f"./{new_filename}"] = f"Helm Chart {new_filename}"
+                          nav[f"./{new_filename}"] = f"Helm Chart {os.path.basename(os.path.dirname(abspath))}"
 
           # Any other markdown in docs folder
           print(f"Finding Markdown (*.md) files in {docspath}", flush=True)
@@ -113,7 +113,7 @@ jobs:
               if nav[key] is None:
                   output += f"  - {key}\n"
               else:
-                  output += f"  - {key}: {nav[key]}\n"
+                  output += f"  - {nav[key]}: {key}\n"
 
           print("\nWriting mkdocs.yml with the following content:\n\n")
           print(output)
