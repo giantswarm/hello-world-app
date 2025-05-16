@@ -9,6 +9,7 @@ on:
 
 jobs:
   publish:
+    if: github.event.repository.visibility == 'public'
     runs-on: 'ubuntu-latest'
     steps:
       - name: Debug
