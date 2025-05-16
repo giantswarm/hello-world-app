@@ -1,6 +1,11 @@
 name: Publish TechDocs
 on:
   push:
+    paths:
+      - 'README.md'
+      - 'docs/**' # markdown or any images in docs
+      - 'helm/**/README.md'
+      - '.github/workflows/**' # TODO: delete
     branches:
       - main
       - add-techdocs-workflow
