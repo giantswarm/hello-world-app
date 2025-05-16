@@ -5,6 +5,10 @@ name: Publish TechDocs
 
 on:
   push:
+    paths:
+      - 'README.md'
+      - 'docs/**' # markdown or any images in docs
+      - 'helm/**/README.md'
     branches:
       - main
       - master
