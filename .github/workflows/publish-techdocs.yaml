@@ -64,7 +64,7 @@ jobs:
           output = "site_name: ${{ github.event.repository.name }}\n"
           output += "docs_dir: ./docs\n"
           output += "plugins:\n"
-          output += "  - techdocs-code\n"
+          output += "  - techdocs-core\n"
 
           os.makedirs(docspath, exist_ok=True)
 
