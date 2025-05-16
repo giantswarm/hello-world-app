@@ -131,8 +131,9 @@ jobs:
       
       - name: Generate documentation
         run: |
+          mkdir $GITHUB_WORKSPACE/tmp-docs-output
           $GITHUB_WORKSPACE/node_modules/@techdocs/cli/bin/techdocs-cli \
-            generate --output-dir=$GITHUB_WORKSPACE/tmp-docs-output
+            generate --verbose --output-dir=$GITHUB_WORKSPACE/tmp-docs-output
       
       - name: Show output
         run: ls -la $GITHUB_WORKSPACE/tmp-docs-output
