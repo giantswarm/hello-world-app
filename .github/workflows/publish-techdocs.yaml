@@ -111,7 +111,8 @@ jobs:
 
           if len(nav) == 0:
               print("No markdown files found in docs folder. Exiting.")
-              # TODO: write step output
+              with open(os.environ["GITHUB_OUTPUT"], "a") as f:
+                  f.write("content_found=false\n")
               exit(0)
 
           output += "nav:\n"
@@ -127,18 +128,24 @@ jobs:
 
           with open("mkdocs.yml", "w") as f:
               f.write(output)
+          
+          with open(os.environ["GITHUB_OUTPUT"], "a") as f:
+              f.write("content_found=true\n")
 
       
-      - name: Generate documentation
+      - if: ${{ steps.generate_mkdocs_config.outputs.content_found == 'true' }}
+        name: Generate documentation
         run: |
           mkdir $GITHUB_WORKSPACE/tmp-docs-output
           $GITHUB_WORKSPACE/node_modules/@techdocs/cli/bin/techdocs-cli \
             generate --verbose --output-dir=$GITHUB_WORKSPACE/tmp-docs-output
       
-      - name: Show output
+      - if: ${{ steps.generate_mkdocs_config.outputs.content_found == 'true' }}
+        name: Show output
         run: ls -la $GITHUB_WORKSPACE/tmp-docs-output
       
-      - name: Publish
+      - if: ${{ steps.generate_mkdocs_config.outputs.content_found == 'true' }}
+        name: Publish
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.TECHDOCS_S3_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.TECHDOCS_S3_SECRET_ACCESS_KEY }}
