@@ -17,7 +17,8 @@ jobs:
     steps:
       - name: Debug
         run: |
-          sudo apt-get update && apt-get install traceroute
+          sudo apt-get update
+          sudo apt-get install traceroute
           traceroute www.apple.com
       - name: Set up NodeJS
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
