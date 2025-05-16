@@ -47,6 +47,7 @@ jobs:
         run: ./node_modules/@techdocs/cli/bin/techdocs-cli --version
       
       - name: Generate mkdocs configuration
+        id: generate_mkdocs_config
         shell: python {0}
         run: |
           import os
@@ -111,9 +112,9 @@ jobs:
           output += "nav:\n"
           for key in sorted(nav.keys()):
               if nav[key] is None:
-                  output += f"  - {key}\n"
+                  output += f"  - '{key}'\n"
               else:
-                  output += f"  - {nav[key]}: {key}\n"
+                  output += f"  - '{nav[key]}': '{key}'\n"
 
           print("\nWriting mkdocs.yml with the following content:\n\n")
           print(output)
