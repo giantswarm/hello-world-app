@@ -1,0 +1,14 @@
+# This file's source is in
+# https://github.com/giantswarm/github/blob/main/repositories/default/.github/workflows/gitleaks.call.yaml
+# and it gets copied into other repositories via the "Synchronize" workflow in giantswarm/github.
+# Any changes you make to the copy will be overwritten eventually.
+
+name: gitleaks
+
+on:
+  - pull_request
+
+
+jobs:
+  publish:
+    uses: giantswarm/github-workflows/.github/workflows/gitleaks.yaml@main
