@@ -40,6 +40,12 @@ spec:
           {{- toYaml .Values.securityContext | nindent 10 }}
         image: "{{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
+        env:
+        - name: SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: {{ include "hello-world.fullname" . }}
+              key: secret-key
         ports:
         - name: http
           containerPort: 8080
