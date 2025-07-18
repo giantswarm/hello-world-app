@@ -9,6 +9,11 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [2.9.0] - 2025-07-18
 
+### Added
+
+- Add a secret key as env var.
+
+
 ## [2.8.1] - 2025-03-18
 
 ### Changed
