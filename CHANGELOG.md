@@ -7,12 +7,21 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+## [2.9.1] - 2025-07-22
+
+### Added
+
+- Chart: Add missing newline at EOF.
+
+### Changed
+
+- Chart: Update metadata.
+
 ## [2.9.0] - 2025-07-18
 
 ### Added
 
 - Add a secret key as env var.
-
 
 ## [2.8.1] - 2025-03-18
 
@@ -206,7 +215,8 @@ First release published to the Giant Swarm catalog
 
 Initial release
 
-[Unreleased]: https://github.com/giantswarm/hello-world-app/compare/v2.9.0...HEAD
+[Unreleased]: https://github.com/giantswarm/hello-world-app/compare/v2.9.1...HEAD
+[2.9.1]: https://github.com/giantswarm/hello-world-app/compare/v2.9.0...v2.9.1
 [2.9.0]: https://github.com/giantswarm/hello-world-app/compare/v2.8.1...v2.9.0
 [2.8.1]: https://github.com/giantswarm/hello-world-app/compare/v2.8.0...v2.8.1
 [2.8.0]: https://github.com/giantswarm/hello-world-app/compare/v2.7.0...v2.8.0
