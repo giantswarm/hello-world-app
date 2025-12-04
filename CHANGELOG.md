@@ -7,6 +7,21 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Added
+
+- Chart: add annotations `io.giantswarm.application.audience` and `io.giantswarm.application.managed` to metadata.
+
+### Changed
+
+- Chart: change annotation `application.giantswarm.io/team` to the OCI-compliant form `io.giantswarm.application.team`.
+- Chart: update `sources` list.
+- Chart: update `keywords` list.
+
+### Removed
+
+- Chart: Remvove `maintainers` key.
+- Template helpers: Remove `giantswarm.io/service-type: managed` annotation.
+
 ## [2.9.1] - 2025-07-22
 
 ### Added
