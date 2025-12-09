@@ -6,15 +6,8 @@ A chart that deploys a basic hello world site and lets you test values merging o
 
 **Homepage:** <https://github.com/giantswarm/hello-world-app>
 
-## Maintainers
-
-| Name | Email | Url |
-| ---- | ------ | --- |
-| Giant Swarm - Honeybadger | <team-honeybadger@giantswarm.io> | <https://www.giantswarm.io/about#honeybadger> |
-
 ## Source Code
 
-* <https://github.com/giantswarm/hello-world-app>
 * <https://github.com/giantswarm/helloworld>
 
 ## Values
