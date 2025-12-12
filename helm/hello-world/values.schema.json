@@ -13,7 +13,7 @@
         "autoscaling": {
             "type": "object",
             "title": "Automatic scaling",
-            "description": "This is to setup the liveness and readiness probes more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/\nThis section is for setting up autoscaling more information can be found here: https://kubernetes.io/docs/concepts/workloads/autoscaling/",
+            "description": "This section is for setting up autoscaling more information can be found here: https://kubernetes.io/docs/concepts/workloads/autoscaling/",
             "required": [],
             "properties": {
                 "enabled": {
@@ -256,6 +256,7 @@
         "livenessProbe": {
             "type": "object",
             "title": "Liveness probe",
+            "description": "This is to setup the liveness and readiness probes more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/",
             "required": [],
             "properties": {
                 "httpGet": {
