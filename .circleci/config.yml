@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  architect: giantswarm/architect@4.35.6
+  architect: giantswarm/architect@6.11.0
 
 workflows:
   build:
@@ -15,14 +15,19 @@ workflows:
           app_catalog_test: giantswarm-test-catalog
           persist_chart_archive: true
           filters:
+            branches:
+              ignore:
+                - main
             tags:
               only: /^v.*/
 
       - architect/run-tests-with-ats:
           name: run-tests-with-ats
+          requires:
+            - push-to-giantswarm-catalog
           filters:
             branches:
               ignore:
                 - main
-          requires:
-            - push-to-giantswarm-catalog
+            tags:
+              only: /^v.*/

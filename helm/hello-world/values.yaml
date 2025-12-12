@@ -25,7 +25,7 @@ image:
   # format: hostname
   # @schema
   # Fully qualified registry host name.
-  registry: quay.io
+  registry: gsoci.azurecr.io
 
   # @schema
   # title: Repository
@@ -41,7 +41,6 @@ image:
   # - Always
   # - Never
   # @schema
-  pullPolicy: IfNotPresent
 
   # @schema
   # title: Tag
@@ -330,10 +329,56 @@ ingress:
     - hello.cluster.provider.gigantic.io
 
 # @schema
+# title: Gateway API configuration
+# type: object
+# @schema
+gateway:
+
+  # @schema
+  # title: Enabled
+  # type: boolean
+  # @schema
+  # If set to false, no Gateway resource will be created.
+  enabled: false
+
+  # @schema
+  # title: Name
+  # type: string
+  # @schema
+  name: default
+
+  # @schema
+  # title: Namespace
+  # type: string
+  # @schema
+  namespace: ""
+
+  # @schema
+  # title: Annotations
+  # type: object
+  # patternProperties:
+  #   "^[a-zA-Z0-9/-_\\.]+$":
+  # examples:
+  #   - cert-manager.io/cluster-issuer: letsencrypt-giantswarm
+  # @schema
+  annotations: {}
+  
+  # @schema
+  # title: Hosts
+  # type: array
+  # required: true
+  # items:
+  #   type: string
+  # @schema
+  hosts:
+    - hello.cluster.provider.gigantic.io
+
+# @schema
 # title: Resource requests and limits
 # type: object
 # @schema
 # This is directly injected as the main pods's resource requests and limits.
+# This block is for setting up the gateway more information can be found here: https://kubernetes.io/docs/concepts/services-networking/gateway/
 resources:
 
   # @schema
@@ -379,9 +424,61 @@ resources:
     memory: 100M
 
 # @schema
+# title: Liveness probe
+# type: object
+# @schema
+livenessProbe:
+
+  # @schema
+  # title: HTTP GET
+  # type: object
+  # @schema
+  httpGet:
+
+    # @schema
+    # title: Path
+    # type: string
+    # @schema
+    # Path to probe for liveness.
+    path: /
+
+    # @schema
+    # title: Port
+    # type: string
+    # @schema
+    port: http
+
+# @schema
+# title: Readiness probe
+# type: object
+# @schema
+readinessProbe:
+
+  # @schema
+  # title: HTTP GET
+  # type: object
+  # @schema
+  httpGet:
+
+    # @schema
+    # title: Path
+    # type: string
+    # @schema
+    # Path to probe for readiness.
+    path: /
+
+    # @schema
+    # title: Port
+    # type: string
+    # @schema
+    port: http
+
+# @schema
 # title: Automatic scaling
 # type: object
 # @schema
+# This is to setup the liveness and readiness probes more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
+# This section is for setting up autoscaling more information can be found here: https://kubernetes.io/docs/concepts/workloads/autoscaling/
 autoscaling:
 
   # @schema
@@ -596,21 +693,15 @@ podDisruptionBudget:
   maxUnavailable: 1
 
 # @schema
-# title: Global
+# title: Service monitor
 # type: object
 # @schema
-# Values under this section are available to all sub-charts.
-global:
+# To configure a service monitor for the service.
+serviceMonitor:
 
   # @schema
-  # title: Pod security standards (PSS)
-  # type: object
+  # title: Enabled
+  # type: boolean
   # @schema
-  podSecurityStandards:
-
-    # @schema
-    # title: Enforced
-    # type: boolean
-    # @schema
-    # If set to true, the chart will be deployed with PSS resources.
-    enforced: false
+  # If set to false, no ServiceMonitor resource will be created.
+  enabled: false

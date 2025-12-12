@@ -12,6 +12,111 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 - Add annotation comments to `values.yaml` to allow generating a full-fledges `values.schema.json` file, using helm-schema.
 - Add pre-commit configuration to generate schema from `values.yaml` using helm-schema, and to normalize the schema.
 
+## [2.10.0] - 2025-12-09
+
+### Added
+
+- Chart: add annotations `io.giantswarm.application.audience` and `io.giantswarm.application.managed` to metadata.
+
+### Changed
+
+- Chart: change annotation `application.giantswarm.io/team` to the OCI-compliant form `io.giantswarm.application.team`.
+- Chart: update `sources` list.
+- Chart: update `keywords` list.
+
+### Removed
+
+- Chart: Remvove `maintainers` key.
+- Template helpers: Remove `giantswarm.io/service-type: managed` annotation.
+
+## [2.9.1] - 2025-07-22
+
+### Added
+
+- Chart: Add missing newline at EOF.
+
+### Changed
+
+- Chart: Update metadata.
+
+## [2.9.0] - 2025-07-18
+
+### Added
+
+- Add a secret key as env var.
+
+## [2.8.1] - 2025-03-18
+
+### Changed
+
+- Chart: Update README.md.
+
+## [2.8.0] - 2025-03-14
+
+### Changed
+
+- Add HTTP->HTTPS redirect in the HTTPRoute CR.
+
+## [2.7.0] - 2025-02-27
+
+### Added
+
+- Chart: Add support for cross-namespace Gateway API references. ([#180](https://github.com/giantswarm/hello-world-app/pull/180))
+
+## [2.6.1] - 2024-12-25
+
+### Added
+
+- Chart: Some chores. ([#172](https://github.com/giantswarm/hello-world-app/pull/172))
+  - Chart: Add Gateway API docs.
+
+### Changed
+
+- Chart: Some chores. ([#172](https://github.com/giantswarm/hello-world-app/pull/172))
+  - Chart: Update `README.md`.
+  - Chart: Reorder `parentRefs`.
+  - Values: Uncomment `gateway.annotations`.
+
+## [2.6.0] - 2024-12-20
+
+### Added
+
+- Add support for Gateway API, a new `HTTPRoute` resource, as an optional deployment.
+
+## [2.5.0] - 2024-11-13
+
+### Added
+
+- Repository: Some chores. ([#166](https://github.com/giantswarm/hello-world-app/pull/166))
+  - Deployment: Make probes configurable.
+  - Values: Add docs.
+
+### Changed
+
+- Repository: Some chores. ([#166](https://github.com/giantswarm/hello-world-app/pull/166))
+  - CircleCI: Rework `config.yml`.
+  - PDB: Reorder selector.
+  - ServiceMonitor: Reorder and use correct labels.
+  - Chart: Update `README.md`.
+
+### Removed
+
+- Repository: Some chores. ([#166](https://github.com/giantswarm/hello-world-app/pull/166))
+  - Ingress: Remove compatibility checks.
+  - Values: Remove `global.podSecurityStandards.enforced`.
+
+## [2.4.0] - 2024-09-23
+
+### Added
+
+- Add option to create `ServiceMonitor` object for monitoring
+
+## [2.3.2] - 2024-06-11
+
+### Changed
+
+- Update App version to `0.2.1`.
+
 ## [2.3.1] - 2024-01-29
 
 ### Fixed
@@ -132,7 +237,18 @@ First release published to the Giant Swarm catalog
 
 Initial release
 
-[Unreleased]: https://github.com/giantswarm/hello-world-app/compare/v2.3.1...HEAD
+[Unreleased]: https://github.com/giantswarm/hello-world-app/compare/v2.10.0...HEAD
+[2.10.0]: https://github.com/giantswarm/hello-world-app/compare/v2.9.1...v2.10.0
+[2.9.1]: https://github.com/giantswarm/hello-world-app/compare/v2.9.0...v2.9.1
+[2.9.0]: https://github.com/giantswarm/hello-world-app/compare/v2.8.1...v2.9.0
+[2.8.1]: https://github.com/giantswarm/hello-world-app/compare/v2.8.0...v2.8.1
+[2.8.0]: https://github.com/giantswarm/hello-world-app/compare/v2.7.0...v2.8.0
+[2.7.0]: https://github.com/giantswarm/hello-world-app/compare/v2.6.1...v2.7.0
+[2.6.1]: https://github.com/giantswarm/hello-world-app/compare/v2.6.0...v2.6.1
+[2.6.0]: https://github.com/giantswarm/hello-world-app/compare/v2.5.0...v2.6.0
+[2.5.0]: https://github.com/giantswarm/hello-world-app/compare/v2.4.0...v2.5.0
+[2.4.0]: https://github.com/giantswarm/hello-world-app/compare/v2.3.2...v2.4.0
+[2.3.2]: https://github.com/giantswarm/hello-world-app/compare/v2.3.1...v2.3.2
 [2.3.1]: https://github.com/giantswarm/hello-world-app/compare/v2.3.0...v2.3.1
 [2.3.0]: https://github.com/giantswarm/hello-world-app/compare/v2.2.0...v2.3.0
 [2.2.0]: https://github.com/giantswarm/hello-world-app/compare/v2.1.0...v2.2.0

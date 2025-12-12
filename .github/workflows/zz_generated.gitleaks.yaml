@@ -2,18 +2,13 @@
 #
 #    devctl
 #
-#    https://github.com/giantswarm/devctl/blob/dc49303eb31fa5ef0996aadfda1da4c56a3ad883/pkg/gen/input/workflows/internal/file/gitleaks.yaml.template
+#    https://github.com/giantswarm/devctl/blob/ad0a25fbf301b2513e169ec964a8785d28f75be4/pkg/gen/input/workflows/internal/file/gitleaks.yaml.template
 #
 name: gitleaks
 
-on: [pull_request]
+on:
+  - pull_request
 
 jobs:
-  gitleaks:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@0ad4b8fadaa221de15dcec353f45205ec38ea70b # v4.1.4
-      with:
-        fetch-depth: '0'
-    - name: gitleaks-action
-      uses: giantswarm/gitleaks-action@main
+  publish:
+    uses: giantswarm/github-workflows/.github/workflows/gitleaks.yaml@main
