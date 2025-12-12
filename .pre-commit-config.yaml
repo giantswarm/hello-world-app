@@ -1,0 +1,32 @@
+minimum_pre_commit_version: 1.21.0
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: check-merge-conflict
+        args:
+          - --assume-in-merge
+      - id: trailing-whitespace
+      - id: detect-private-key
+      - id: mixed-line-ending
+
+  - repo: https://github.com/dadav/helm-schema
+    rev: "0.11.2"
+    hooks:
+      - id: helm-schema
+        files: 'helm/hello-world/values\.yaml$'
+        args:
+          - --chart-search-root=helm
+          - --skip-auto-generation=additionalProperties
+
+  - repo: https://github.com/giantswarm/schemalint
+    rev: v2.6.0
+    hooks:
+      - id: schemalint-normalize
+        files: 'helm/hello-world/values\.schema\.json'
+        pass_filenames: false
+        args:
+          - helm/hello-world/values.schema.json
+          - --output-path
+          - helm/hello-world/values.schema.json
+          - --force
