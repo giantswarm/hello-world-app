@@ -358,6 +358,8 @@ gateway:
   # type: object
   # patternProperties:
   #   "^[a-zA-Z0-9/-_\\.]+$":
+  #     type: string
+  #     title: Annotation value
   # examples:
   #   - cert-manager.io/cluster-issuer: letsencrypt-giantswarm
   # @schema
