@@ -86,15 +86,92 @@ ingress:
     hosts:
     - hello.cluster.provider.gigantic.io
 
-# This block is for setting up the gateway more information can be found here: https://kubernetes.io/docs/concepts/services-networking/gateway/
-gateway:
+# This block is for setting up Gateway API routes
+# More information can be found here: https://gateway-api.sigs.k8s.io/
+route:
   enabled: false
-  name: default
-  namespace: ""
+  # -- Set the route kind
+  # Valid options are GRPCRoute, HTTPRoute, TCPRoute, TLSRoute, UDPRoute
+  kind: HTTPRoute
+  # -- Override the route name (defaults to fullname)
+  name: ""
+
   annotations: {}
-  #   cert-manager.io/cluster-issuer: letsencrypt-giantswarm
-  hosts:
-  - hello.cluster.provider.gigantic.io
+  labels: {}
+
+  # -- Hostnames that the route should match
+  # Supports templating with {{ .Values.xxx }}
+  hostnames: []
+  # - hello.cluster.provider.gigantic.io
+
+  # -- Parent gateway references
+  parentRefs: []
+  # - name: giantswarm-default
+  #   namespace: envoy-gateway-system
+
+  # -- Request matching rules
+  matches:
+    - path:
+        type: PathPrefix
+        value: /
+
+  # -- Filters define the filters that are applied to requests that match this rule
+  filters: []
+  # - type: RequestHeaderModifier
+  #   requestHeaderModifier:
+  #     add:
+  #       - name: X-Custom-Header
+  #         value: custom-value
+
+  # -- Additional custom rules that can be added to the route
+  # Supports templating
+  additionalRules: []
+
+  # -- Envoy Gateway SecurityPolicy configuration
+  securityPolicy:
+    enabled: false
+    annotations: {}
+    labels: {}
+    # basicAuth:
+    #   users:
+    #     name: <secret_name>
+    # cors:
+    #   allowOrigins:
+    #     - type: Exact
+    #       value: "https://example.com"
+    #   allowMethods:
+    #     - GET
+    #     - POST
+    #   allowHeaders:
+    #     - Content-Type
+    # jwt:
+    #   providers:
+    #     - name: example
+    #       issuer: https://example.com
+    #       audiences:
+    #         - my-audience
+    #       remoteJWKS:
+    #         uri: https://example.com/.well-known/jwks.json
+    # oidc:
+    #   provider:
+    #     issuer: https://example.com
+    #   clientID: my-client-id
+    #   clientSecret:
+    #     name: oidc-secret
+    # extAuth:
+    #   grpc:
+    #     backendRef:
+    #       name: auth-service
+    #       port: 9091
+    # authorization:
+    #   defaultAction: Deny
+    #   rules:
+    #     - action: Allow
+    #       principal:
+    #         jwt:
+    #           provider: example
+    #           scopes:
+    #             - read
 
 resources:
   requests:

@@ -28,26 +28,100 @@
         "fullnameOverride": {
             "type": "string"
         },
-        "gateway": {
+        "route": {
             "type": "object",
             "properties": {
-                "annotations": {
-                    "type": "object"
-                },
                 "enabled": {
                     "type": "boolean"
                 },
-                "hosts": {
+                "kind": {
+                    "type": "string",
+                    "enum": ["GRPCRoute", "HTTPRoute", "TCPRoute", "TLSRoute", "UDPRoute"]
+                },
+                "name": {
+                    "type": "string"
+                },
+                "annotations": {
+                    "type": "object"
+                },
+                "labels": {
+                    "type": "object"
+                },
+                "hostnames": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     }
                 },
-                "name": {
-                    "type": "string"
+                "parentRefs": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            },
+                            "namespace": {
+                                "type": "string"
+                            },
+                            "sectionName": {
+                                "type": "string"
+                            },
+                            "port": {
+                                "type": "integer"
+                            }
+                        }
+                    }
                 },
-                "namespace": {
-                    "type": "string"
+                "matches": {
+                    "type": "array",
+                    "items": {
+                        "type": "object"
+                    }
+                },
+                "filters": {
+                    "type": "array",
+                    "items": {
+                        "type": "object"
+                    }
+                },
+                "additionalRules": {
+                    "type": "array",
+                    "items": {
+                        "type": "object"
+                    }
+                },
+                "securityPolicy": {
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        },
+                        "annotations": {
+                            "type": "object"
+                        },
+                        "labels": {
+                            "type": "object"
+                        },
+                        "basicAuth": {
+                            "type": "object"
+                        },
+                        "cors": {
+                            "type": "object"
+                        },
+                        "jwt": {
+                            "type": "object"
+                        },
+                        "oidc": {
+                            "type": "object"
+                        },
+                        "extAuth": {
+                            "type": "object"
+                        },
+                        "authorization": {
+                            "type": "object"
+                        }
+                    }
                 }
             }
         },

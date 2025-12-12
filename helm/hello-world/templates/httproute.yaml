@@ -1,59 +1,90 @@
-{{- if .Values.gateway.enabled -}}
+{{- if .Values.route.enabled -}}
+{{- $route := .Values.route }}
+{{- $routeName := $route.name | default (include "hello-world.fullname" .) }}
 ---
 apiVersion: gateway.networking.k8s.io/v1
-kind: HTTPRoute
+kind: {{ $route.kind | default "HTTPRoute" }}
 metadata:
-  name: {{ include "hello-world.fullname" . }}-tls-redirect
+  name: {{ $routeName }}
+  namespace: {{ $.Release.Namespace }}
   labels:
-    {{- include "hello-world.labels" . | nindent 4 }}
-  {{- with .Values.gateway.annotations }}
+    {{- include "hello-world.labels" $ | nindent 4 }}
+    {{- with $route.labels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+  {{- with $route.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
+  {{- with $route.parentRefs }}
   parentRefs:
-  - name: {{ .Values.gateway.name }}
-    {{- if .Values.gateway.namespace }}
-    namespace: {{ .Values.gateway.namespace }}
-    {{- end }}
-    sectionName: http
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  {{- with $route.hostnames }}
   hostnames:
-  {{- range .Values.gateway.hosts }}
-  - {{ . | quote }}
+    {{- tpl (toYaml .) $ | nindent 4 }}
   {{- end }}
   rules:
-  - filters:
-    - type: RequestRedirect
-      requestRedirect:
-        scheme: https
+    {{- if $route.additionalRules }}
+    {{- tpl (toYaml $route.additionalRules) $ | nindent 4 }}
+    {{- end }}
+    - backendRefs:
+        - name: {{ include "hello-world.fullname" $ }}
+          port: {{ $.Values.service.port }}
+      {{- with $route.filters }}
+      filters:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with $route.matches }}
+      matches:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+{{- if and $route.securityPolicy $route.securityPolicy.enabled }}
+{{- $policy := $route.securityPolicy }}
 ---
-apiVersion: gateway.networking.k8s.io/v1
-kind: HTTPRoute
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: SecurityPolicy
 metadata:
-  name: {{ include "hello-world.fullname" . }}
+  name: {{ $routeName }}
+  namespace: {{ $.Release.Namespace }}
   labels:
-    {{- include "hello-world.labels" . | nindent 4 }}
-  {{- with .Values.gateway.annotations }}
+    {{- include "hello-world.labels" $ | nindent 4 }}
+    {{- with $policy.labels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+  {{- with $policy.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
-  parentRefs:
-  - name: {{ .Values.gateway.name }}
-    {{- if .Values.gateway.namespace }}
-    namespace: {{ .Values.gateway.namespace }}
-    {{- end }}
-    sectionName: https
-  hostnames:
-  {{- range .Values.gateway.hosts }}
-  - {{ . | quote }}
+  targetRefs:
+    - group: gateway.networking.k8s.io
+      kind: {{ $route.kind | default "HTTPRoute" }}
+      name: {{ $routeName }}
+  {{- with $policy.basicAuth }}
+  basicAuth:
+    {{- toYaml . | nindent 4 }}
   {{- end }}
-  rules:
-  - matches:
-    - path:
-        type: PathPrefix
-        value: /
-    backendRefs:
-    - name: {{ include "hello-world.fullname" . }}
-      port: {{ .Values.service.port }}
+  {{- with $policy.cors }}
+  cors:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  {{- with $policy.jwt }}
+  jwt:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  {{- with $policy.oidc }}
+  oidc:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  {{- with $policy.extAuth }}
+  extAuth:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  {{- with $policy.authorization }}
+  authorization:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+{{- end }}
 {{- end }}

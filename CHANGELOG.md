@@ -7,6 +7,15 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Changed
+
+- Chart: Replace `gateway.*` values with `route.*` for full Gateway API compliance.
+  - Support multiple route kinds: `HTTPRoute`, `GRPCRoute`, `TCPRoute`, `TLSRoute`, `UDPRoute`.
+  - Add `hostnames`, `parentRefs`, `matches`, `filters`, and `additionalRules` configuration.
+  - Add Envoy Gateway `SecurityPolicy` support with `basicAuth`, `cors`, `jwt`, `oidc`, `extAuth`, and `authorization`.
+  - Support templating in `hostnames` and `additionalRules`.
+  - Update `values.schema.json` with route configuration schema.
+
 ## [2.10.0] - 2025-12-09
 
 ### Added
