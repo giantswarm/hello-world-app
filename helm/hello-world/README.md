@@ -16,8 +16,8 @@ A chart that deploys a basic hello world site and lets you test values merging o
 |-----|------|---------|-------------|
 | affinity | object | `{}` |  |
 | autoscaling.enabled | bool | `true` |  |
-| autoscaling.maxReplicas | int | `100` |  |
-| autoscaling.minReplicas | int | `1` |  |
+| autoscaling.maxReplicas | int | `10` |  |
+| autoscaling.minReplicas | int | `3` |  |
 | autoscaling.targetCPUUtilizationPercentage | int | `80` |  |
 | autoscaling.targetMemoryUtilizationPercentage | int | `80` |  |
 | fullnameOverride | string | `""` |  |
@@ -52,10 +52,10 @@ A chart that deploys a basic hello world site and lets you test values merging o
 | readinessProbe.httpGet.path | string | `"/"` |  |
 | readinessProbe.httpGet.port | string | `"http"` |  |
 | replicaCount | int | `1` |  |
-| resources.limits.cpu | string | `"400m"` |  |
-| resources.limits.memory | string | `"100Mi"` |  |
-| resources.requests.cpu | string | `"200m"` |  |
-| resources.requests.memory | string | `"50Mi"` |  |
+| resources.limits.cpu | string | `"50m"` |  |
+| resources.limits.memory | string | `"100M"` |  |
+| resources.requests.cpu | string | `"10m"` |  |
+| resources.requests.memory | string | `"50M"` |  |
 | securityContext.allowPrivilegeEscalation | bool | `false` |  |
 | securityContext.capabilities.drop[0] | string | `"ALL"` |  |
 | securityContext.readOnlyRootFilesystem | bool | `true` |  |
@@ -75,6 +75,15 @@ A chart that deploys a basic hello world site and lets you test values merging o
 | strategy.rollingUpdate.maxUnavailable | int | `1` |  |
 | strategy.type | string | `"RollingUpdate"` |  |
 | tolerations | list | `[]` |  |
-| topologySpreadConstraints | list | `[]` |  |
+| topologySpreadConstraints[0].labelSelector.matchLabels."app.kubernetes.io/instance" | string | `"{{ .Release.Name }}"` |  |
+| topologySpreadConstraints[0].labelSelector.matchLabels."app.kubernetes.io/name" | string | `"{{ include \"hello-world.name\" . }}"` |  |
+| topologySpreadConstraints[0].maxSkew | int | `1` |  |
+| topologySpreadConstraints[0].topologyKey | string | `"topology.kubernetes.io/zone"` |  |
+| topologySpreadConstraints[0].whenUnsatisfiable | string | `"ScheduleAnyway"` |  |
+| topologySpreadConstraints[1].labelSelector.matchLabels."app.kubernetes.io/instance" | string | `"{{ .Release.Name }}"` |  |
+| topologySpreadConstraints[1].labelSelector.matchLabels."app.kubernetes.io/name" | string | `"{{ include \"hello-world.name\" . }}"` |  |
+| topologySpreadConstraints[1].maxSkew | int | `1` |  |
+| topologySpreadConstraints[1].topologyKey | string | `"kubernetes.io/hostname"` |  |
+| topologySpreadConstraints[1].whenUnsatisfiable | string | `"ScheduleAnyway"` |  |
 | volumeMounts | list | `[]` |  |
 | volumes | list | `[]` |  |

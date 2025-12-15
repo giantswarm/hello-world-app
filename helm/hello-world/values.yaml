@@ -1,152 +1,673 @@
-# Default values for hello-world.
-# This is a YAML-formatted file.
-# Declare default variables to be passed into your templates.
-#
-# To learn more about how to configure your app on your cluster
-# and override the default values in here, visit:
-#
-#   https://docs.giantswarm.io/tutorials/fleet-management/app-platform/app-configuration/#basic-values-merging-example
-#
+# yaml-language-server: $schema=values.schema.json
 
-# This will set the replicaset count more information can be found here: https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/
+# Default values for hello-world.
+# Declare variables to be passed into your templates.
+# Annotations within @schema in comments are used to generate the validation schema.
+# See https://github.com/dadav/helm-schema?tab=readme-ov-file#annotations for more information.
+
+# @schema
+# title: Replica count
+# type: integer
+# minimum: 1
+# @schema
+# Number of replicas to deploy for the main pod. For testing purposes, 1 is recommended.
 replicaCount: 1
 
-# This sets the container image more information can be found here: https://kubernetes.io/docs/concepts/containers/images/
+# @schema
+# title: Container image
+# type: object
+# @schema
+# Container image for the main pod. In this case, it's a little web server serving a single static page. See https://github.com/giantswarm/helloworld for details.
 image:
+  # @schema
+  # title: Registry
+  # type: string
+  # format: hostname
+  # @schema
+  # Fully qualified registry host name. The default should be kept.
   registry: gsoci.azurecr.io
+
+  # @schema
+  # title: Repository
+  # type: string
+  # @schema
+  # Container image repository name in the form of `namespace/repository`. The default value should be kept for all cases.
   repository: giantswarm/helloworld
-  # This sets the pull policy for images.
+
+  # @schema
+  # title: Pull policy
+  # enum:
+  # - IfNotPresent
+  # - Always
+  # - Never
+  # @schema
+  # Pull policy for the container image. 'IfNotPresent' if recommended.
   pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
+
+  # @schema
+  # title: Tag
+  # type: string
+  # @schema
+  # Overrides the image tag whose default is the chart appVersion. Only overwrite this if you know what you are doing.
   tag: ""
 
-# This is for the secretes for pulling an image from a private repository more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+# @schema
+# type: array
+# items:
+#   type: object
+#   properties:
+#     name:
+#       type: string
+#       description: Name of the secret resource
+# @schema
+# Optional, if pulling any container image requires authentication.
 imagePullSecrets: []
-# This is to override the chart name.
+
+# @schema
+# title: Name override
+# type: string
+# @schema
+# If set, this name will be used instead of Chart.Name for resource naming.
 nameOverride: ""
+
+# @schema
+# title: Full name override
+# type: string
+# @schema
+# If set, this name will be used instead of a generated name for resource naming.
 fullnameOverride: ""
 
-# This section builds out the service account more information can be found here: https://kubernetes.io/docs/concepts/security/service-accounts/
+# @schema
+# title: Service account
+# type: object
+# @schema
+# Settings related to the service account.
 serviceAccount:
+
+  # @schema
+  # title: Create
+  # type: boolean
+  # @schema
   # Specifies whether a service account should be created
   create: true
-  # Automatically mount a ServiceAccount's API credentials?
+
+  # @schema
+  # title: Mount automatically
+  # type: boolean
+  # @schema
+  # Automatically mount the service account into the pod.
   automount: false
-  # Annotations to add to the service account
+
+  # @schema
+  # type: object
+  # patternProperties:
+  #   "^[a-zA-Z0-9/-_\\.]+$":
+  #     type: string
+  #     title: Annotation value
+  # @schema
+  # Annotations to add to the service account.
   annotations: {}
+
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
+  # @schema
+  # type: string
+  # title: Name
+  # @schema
   name: ""
 
-# This is for setting Kubernetes Annotations to a Pod.
-# For more information checkout: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
+# @schema
+# type: object
+# title: Pod annotations
+# patternProperties:
+#   "^[a-zA-Z0-9/-_\\.]+$":
+#     type: string
+#     title: Annotation value
+# @schema
+# Optional annotations to be added to the main pod.
 podAnnotations: {}
-# This is for setting Kubernetes Labels to a Pod.
-# For more information checkout: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
+
+# @schema
+# type: object
+# title: Pod labels
+# patternProperties:
+#   "^[a-zA-Z0-9/-_\\.]+$":
+#     $ref: https://schema.giantswarm.io/labelvalue/v0.0.1
+# @schema
+# Optional labels to be added to the main pod.
 podLabels: {}
 
+# @schema
+# type: object
+# title: Pod security context
+# properties:
+#   fsGroup:
+#     type: integer
+# @schema
+# Security context of the main pod.
 podSecurityContext: {}
-  # fsGroup: 2000
 
+# @schema
+# title: Security context
+# type: object
+# @schema
+# This object will be inserted into the deployment as the main pod's SecurityContext.
 securityContext:
+
+  # @schema
+  # type: boolean
+  # @schema
   runAsNonRoot: true
+
+  # @schema
+  # type: integer
+  # @schema
   runAsUser: 1000
+
+  # @schema
+  # type: boolean
+  # @schema
   allowPrivilegeEscalation: false
+
+  # @schema
+  # type: object
+  # @schema
   seccompProfile:
+
+    # @schema
+    # enum:
+    # - RuntimeDefault
+    # - Localhost
+    # @schema
     type: RuntimeDefault
+
+  # @schema
+  # type: object
+  # @schema
   capabilities:
+
+    # @schema
+    # type: array
+    # items:
+    #   type: string
+    # @schema
     drop:
     - ALL
+
+  # @schema
+  # type: boolean
+  # @schema
   readOnlyRootFilesystem: true
 
-# This is for setting up a service more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/
+# @schema
+# title: Service
+# type: object
+# @schema
 service:
-  # This sets the service type more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
+
+  # @schema
+  # title: Type
+  # enum:
+  # - ClusterIP
+  # - NodePort
+  # - LoadBalancer
+  # - ExternalName
+  # @schema
   type: ClusterIP
-  # This sets the ports more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/#field-spec-ports
+
+  # @schema
+  # title: Port
+  # type: integer
+  # @schema
   port: 80
+
+  # @schema
+  # title: Optional service labels
+  # type: object
+  # patternProperties:
+  #   "^[a-zA-Z0-9/-_\\.]+$":
+  #     $ref: https://schema.giantswarm.io/labelvalue/v0.0.1
+  # @schema
   labels: {}
+
+  # @schema
+  # title: Optional service annotations
+  # type: object
+  # patternProperties:
+  #   "^[a-zA-Z0-9/-_\\.]+$":
+  #     type: string
+  #     title: Annotation value
+  # @schema
   annotations: {}
 
-# This block is for setting up the ingress more information can be found here: https://kubernetes.io/docs/concepts/services-networking/ingress/
+# @schema
+# title: Ingress
+# type: object
+# deprecated: true
+# @schema
+# Options for Ingress. This is deprecated in favor of Gateway API.
 ingress:
+
+  # @schema
+  # title: Enabled
+  # type: boolean
+  # @schema
+  # If set to false, no Ingress resource will be created.
   enabled: true
+
+  # @schema
+  # title: Class
+  # type: string
+  # @schema
   className: nginx
+
+  # @schema
+  # title: Optional ingress annotations
+  # type: object
+  # patternProperties:
+  #   "^[a-zA-Z0-9/-_\\.]+$":
+  #     type: string
+  #     title: Annotation value
+  # examples:
+  #   - "kubernetes.io/ingress.class: nginx"
+  #   - "kubernetes.io/tls-acme: 'true'"
+  # @schema
+  # These annotations will be set on the Ingress resource. When in doubt, check the documentation for the ingress controller you are using.
   annotations:
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
+
+    # @schema
+    # required: false
+    # @schema
+    # Cert-manager certificate issuer to use. To issue a TLS certificate via Let's Encrypt, use 'letsencrypt-giantswarm'.
     cert-manager.io/cluster-issuer: letsencrypt-giantswarm
+
+  # @schema
+  # title: Hosts
+  # type: array
+  # required: true
+  # items:
+  #   type: object
+  #   properties:
+  #     host:
+  #       type: string
+  #       format: hostname
+  #       description: Hostname to expose the service for. Make sure to use the base domain matching you cluster.
+  #       examples:
+  #       - hello.myinstallation.gaws.gigantic.io
+  #     paths:
+  #       type: array
+  #       items:
+  #         type: object
+  #         properties:
+  #           path:
+  #             type: string
+  #           pathType:
+  #             type: string
+  #             enum:
+  #             - Prefix
+  #             - Exact
+  # @schema
+  # You will have to overwrite the hosts values to make it match your cluster's ingress subdomain, matching the names used as ingress hosts.
   hosts:
   - host: hello.cluster.provider.gigantic.io
     paths:
     - path: /
       pathType: Prefix
+
+  # @schema
+  # title: Transport layer security (TLS)
+  # type: array
+  # items:
+  #   type: object
+  #   properties:
+  #     secretName:
+  #       type: string
+  #       description: Name of the secret containing the TLS server certificate.
+  #     hosts:
+  #       type: array
+  #       items:
+  #         type: string
+  #         format: hostname
+  #       description: Hostnames to use the TLS server certificate for.
+  # @schema
+  # The host names here have to match the ones configured as .ingress.hosts[].host. Required for TLS certificate issuance.
   tls:
   - secretName: hello-world-tls
     hosts:
     - hello.cluster.provider.gigantic.io
 
-# This block is for setting up the gateway more information can be found here: https://kubernetes.io/docs/concepts/services-networking/gateway/
+# @schema
+# title: Gateway API configuration
+# type: object
+# @schema
+# Options related to Gateway API. This is the recommended way to expose the service in production from Kubernetes 1.30 onwards.
 gateway:
-  enabled: false
-  name: default
-  namespace: ""
-  annotations: {}
-  #   cert-manager.io/cluster-issuer: letsencrypt-giantswarm
-  hosts:
-  - hello.cluster.provider.gigantic.io
 
+  # @schema
+  # title: Enabled
+  # type: boolean
+  # @schema
+  # If set to false, no Gateway resource will be created. When enabling this, make sure to set .ingress.enabled to false.
+  enabled: false
+
+  # @schema
+  # title: Name
+  # type: string
+  # @schema
+  name: default
+
+  # @schema
+  # title: Namespace
+  # type: string
+  # @schema
+  namespace: ""
+
+  # @schema
+  # title: Annotations
+  # type: object
+  # patternProperties:
+  #   "^[a-zA-Z0-9/-_\\.]+$":
+  #     type: string
+  #     title: Annotation value
+  # examples:
+  #   - cert-manager.io/cluster-issuer: letsencrypt-giantswarm
+  # @schema
+  annotations: {}
+  
+  # @schema
+  # title: Hosts
+  # type: array
+  # required: true
+  # items:
+  #   type: string
+  # @schema
+  hosts:
+    - hello.cluster.provider.gigantic.io
+
+# @schema
+# title: Resource requests and limits
+# type: object
+# @schema
+# This is directly injected as the main pods's resource requests and limits. For testing purposes, the defaults will be fine.
 resources:
+
+  # @schema
+  # title: Requests
+  # type: object
+  # @schema
   requests:
-    cpu: 200m
+
+    # @schema
+    # title: CPU
+    # type: string
+    # examples:
+    #   - 100m
+    #   - "1"
+    # @schema
+    cpu: 10m
+
+    # @schema
+    # title: Memory
+    # type: string
+    # examples:
+    #   - 100M
+    #   - "1Gi"
+    # @schema
     memory: 50Mi
+
+  # @schema
+  # title: Limits
+  # type: object
+  # @schema
   limits:
-    cpu: 400m
+
+    # @schema
+    # title: CPU
+    # type: string
+    # @schema
+    cpu: 50m
+
+    # @schema
+    # title: Memory
+    # type: string
+    # @schema
     memory: 100Mi
 
+# @schema
+# title: Liveness probe
+# type: object
+# @schema
 # This is to setup the liveness and readiness probes more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
 livenessProbe:
+
+  # @schema
+  # title: HTTP GET
+  # type: object
+  # @schema
   httpGet:
+
+    # @schema
+    # title: Path
+    # type: string
+    # @schema
+    # Path to probe for liveness. Since the webapp only has one endpoint, the root path is used.
     path: /
-    port: http
-readinessProbe:
-  httpGet:
-    path: /
+
+    # @schema
+    # title: Port
+    # type: string
+    # @schema
+    # The port to probe for liveness. The pod only exposes the HTTP port, so 'http' is used.
     port: http
 
+# @schema
+# title: Readiness probe
+# type: object
+# @schema
+# Similar to the liveness probe, but for the readiness probe.
+readinessProbe:
+
+  # @schema
+  # title: HTTP GET
+  # type: object
+  # @schema
+  httpGet:
+
+    # @schema
+    # title: Path
+    # type: string
+    # @schema
+    # Path to probe for readiness.
+    path: /
+
+    # @schema
+    # title: Port
+    # type: string
+    # @schema
+    # The port to probe for readiness.
+    port: http
+
+# @schema
+# title: Automatic scaling
+# type: object
+# @schema
 # This section is for setting up autoscaling more information can be found here: https://kubernetes.io/docs/concepts/workloads/autoscaling/
 autoscaling:
+
+  # @schema
+  # title: Enabled
+  # type: boolean
+  # @schema
+  # If set to true, a HorizontalPodAutoscaler resource will be created to automatically to automatically scale the number of replicas based on the CPU and memory usage.
   enabled: true
+
+  # @schema
+  # title: Min replicas
+  # type: integer
+  # minimum: 1
+  # @schema
+  # Minimum number of replicas to scale to. For testing purposes, 1 is recommended.
   minReplicas: 1
-  maxReplicas: 100
+
+  # @schema
+  # title: Max replicas
+  # type: integer
+  # minimum: 1
+  # @schema
+  # Maximum number of replicas to scale to. Make sure to set a value that is higher than the minReplicas value.
+  maxReplicas: 10
+
+  # @schema
+  # title: Target CPU utilization percentage
+  # type: integer
+  # minimum: 10
+  # maximum: 100
+  # @schema
+  # Influences the scaling behaviour based on the CPU usage.
   targetCPUUtilizationPercentage: 80
+
+  # @schema
+  # title: Target memory utilization percentage
+  # type: integer
+  # minimum: 10
+  # maximum: 100
+  # @schema
+  # Influences the scaling behaviour based on the memory usage.
   targetMemoryUtilizationPercentage: 80
 
+# @schema
+# title: Update strategy
+# type: object
+# @schema
+# The update strategy to use for the deployment. For testing purposes, the default RollingUpdate is recommended.
 strategy:
+
+  # @schema
+  # title: Type
+  # enum:
+  # - Recreate
+  # - RollingUpdate
+  # @schema
   type: RollingUpdate
+
+  # @schema
+  # title: Rolling update strategy details
+  # type: object
+  # @schema
+  # Details of the rolling update strategy. For testing purposes, the default values will be fine.
   rollingUpdate:
+
+    # @schema
+    # title: Max unavailable
+    # type: integer
+    # @schema
+    # Maximum number of replicas that can be unavailable during the update. For testing purposes, 1 is recommended.
     maxUnavailable: 1
+
+    # @schema
+    # title: Max surge
+    # type: integer
+    # @schema
+    # Maximum number of replicas that can be created during the update. For testing purposes, 1 is recommended.
     maxSurge: 1
 
-# Additional volumes on the output Deployment definition.
+# @schema
+# title: Volumes
+# type: array
+# items:
+#   type: object
+#   properties:
+#     name:
+#       type: string
+#       description: Name of the volume
+#     secret:
+#       type: object
+#       properties:
+#         secretName:
+#           type: string
+#           description: Name of the secret
+#         optional:
+#           type: boolean
+#           description: Whether the secret is optional
+# @schema
+# Additional volumes on the output Deployment definition. For testing purposes, no additional volumes are needed.
 volumes: []
-# - name: foo
-#   secret:
-#     secretName: mysecret
-#     optional: false
 
+# @schema
+# title: Volume mounts
+# type: array
+# items:
+#   type: object
+#   properties:
+#     name:
+#       type: string
+#       description: Name of the volume
+#     mountPath:
+#       type: string
+#       description: Path to mount the volume
+#     readOnly:
+#       type: boolean
+#       description: Whether the volume is read-only
+# @schema
 # Additional volumeMounts on the output Deployment definition.
 volumeMounts: []
-# - name: foo
-#   mountPath: "/etc/foo"
-#   readOnly: true
 
+# @schema
+# title: Node selector
+# type: object
+# patternProperties:
+#   "^[a-zA-Z0-9/-_\\.]+$":
+#     $ref: https://schema.giantswarm.io/labelvalue/v0.0.1
+# @schema
+# If specified, this app will only be deployed to nodes with matching labels. It's fine to leave this empty.
 nodeSelector: {}
 
+# @schema
+# title: Tolerations
+# type: array
+# items:
+#   type: object
+#   properties:
+#     key:
+#       type: string
+#       description: Key of the taint
+#     operator:
+#       type: string
+#       enum:
+#       - Exists
+#       - Equal
+#       description: Operator of the taint
+#       default: Equal
+#     effect:
+#       type: string
+#       enum:
+#       - NoSchedule
+#       - PreferNoSchedule
+#       - NoExecute
+#       description: Effect of the taint
+#     value:
+#       type: string
+#       description: Value of the taint
+# @schema
+# If specified, this will be injected as the main pod's tolerations settings. This allows to run the pod on nodes with specific taints. It's fine to leave this empty.
 tolerations: []
 
+# @schema
+# title: Affinity
+# type: object
+# additionalProperties: true
+# @schema
+# If specified, this will be injected as the main pod's affinity settings. This allows to schedule the pod on nodes with specific labels. It's fine to leave this empty.
 affinity: {}
 
+# @schema
+# title: Topology spread constraints
+# type: array
+# items:
+#   type: object
+#   additionalProperties: true
+# @schema
+# If specified, this will be injected as the main pod's topologySpreadConstraints spec.
 topologySpreadConstraints:
 - labelSelector:
     matchLabels:
@@ -163,11 +684,46 @@ topologySpreadConstraints:
   maxSkew: 1
   whenUnsatisfiable: ScheduleAnyway
 
+# @schema
+# title: Pod disruption budget
+# type: object
+# @schema
+# Configures a PodDisruptionBudget resource to protect the pod from being disrupted.
 podDisruptionBudget:
+
+  # @schema
+  # title: Enabled
+  # type: boolean
+  # @schema
+  # If set to false, no PodDisruptionBudget resource will be created.
   enabled: true
-  # Define either 'minAvailable' or 'maxUnavailable', never both.
-  # minAvailable: 1
+
+  # @schema
+  # title: Min available
+  # type: integer
+  # @schema
+  # Minimum number of replicas to be unavailable during disruptions.
+  # Define either 'minAvailable' or 'maxUnavailable', never both. TODO: Fix this.
+  minAvailable: 1
+
+  # @schema
+  # title: Max unavailable
+  # type: integer
+  # @schema
+  # Maximum number of replicas to be unavailable during disruptions.
+  # Define either 'minAvailable' or 'maxUnavailable', never both. TODO: Fix this.
   maxUnavailable: 1
 
+# @schema
+# title: Service monitor
+# type: object
+# @schema
+# To configure a service monitor for the service.
 serviceMonitor:
+
+  # @schema
+  # title: Enabled
+  # type: boolean
+  # @schema
+  # If set to false, no ServiceMonitor resource will be created.
   enabled: false

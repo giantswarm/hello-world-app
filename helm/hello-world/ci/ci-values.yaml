@@ -1,0 +1,3 @@
+podLabels:
+  labelkey: labelvalue
+  second-key: "another value"
