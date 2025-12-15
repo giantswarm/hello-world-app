@@ -6,7 +6,7 @@
         "affinity": {
             "type": "object",
             "title": "Affinity",
-            "description": "If specified, this will be injected as the main pod's affinity settings.",
+            "description": "If specified, this will be injected as the main pod's affinity settings. This allows to schedule the pod on nodes with specific labels. It's fine to leave this empty.",
             "required": [],
             "additionalProperties": true
         },
@@ -19,25 +19,27 @@
                 "enabled": {
                     "type": "boolean",
                     "title": "Enabled",
-                    "description": "If set to false, no HorizontalPodAutoscaler resource will be created.",
+                    "description": "If set to true, a HorizontalPodAutoscaler resource will be created to automatically to automatically scale the number of replicas based on the CPU and memory usage.",
                     "default": true
                 },
                 "maxReplicas": {
                     "type": "integer",
                     "title": "Max replicas",
-                    "description": "Make sure to set a value that is higher than the minReplicas value.",
+                    "description": "Maximum number of replicas to scale to. Make sure to set a value that is higher than the minReplicas value.",
                     "default": 10,
                     "minimum": 1
                 },
                 "minReplicas": {
                     "type": "integer",
                     "title": "Min replicas",
-                    "default": 3,
+                    "description": "Minimum number of replicas to scale to. For testing purposes, 1 is recommended.",
+                    "default": 1,
                     "minimum": 1
                 },
                 "targetCPUUtilizationPercentage": {
                     "type": "integer",
                     "title": "Target CPU utilization percentage",
+                    "description": "Influences the scaling behaviour based on the CPU usage.",
                     "default": 80,
                     "maximum": 100,
                     "minimum": 10
@@ -45,6 +47,7 @@
                 "targetMemoryUtilizationPercentage": {
                     "type": "integer",
                     "title": "Target memory utilization percentage",
+                    "description": "Influences the scaling behaviour based on the memory usage.",
                     "default": 80,
                     "maximum": 100,
                     "minimum": 10
@@ -60,6 +63,7 @@
         "gateway": {
             "type": "object",
             "title": "Gateway API configuration",
+            "description": "Options related to Gateway API. This is the recommended way to expose the service in production from Kubernetes 1.30 onwards.",
             "required": [
                 "hosts"
             ],
@@ -83,7 +87,7 @@
                 "enabled": {
                     "type": "boolean",
                     "title": "Enabled",
-                    "description": "If set to false, no Gateway resource will be created.",
+                    "description": "If set to false, no Gateway resource will be created. When enabling this, make sure to set .ingress.enabled to false.",
                     "default": false
                 },
                 "hosts": {
@@ -113,27 +117,38 @@
         },
         "image": {
             "type": "object",
-            "title": "Image",
-            "description": "Container image for the main pod.",
+            "title": "Container image",
+            "description": "Container image for the main pod. In this case, it's a little web server serving a single static page. See https://github.com/giantswarm/helloworld for details.",
             "required": [],
             "properties": {
+                "pullPolicy": {
+                    "title": "Pull policy",
+                    "description": "Pull policy for the container image. 'IfNotPresent' if recommended.",
+                    "enum": [
+                        "IfNotPresent",
+                        "Always",
+                        "Never"
+                    ],
+                    "default": "IfNotPresent",
+                    "required": []
+                },
                 "registry": {
                     "type": "string",
                     "title": "Registry",
-                    "description": "Fully qualified registry host name.",
+                    "description": "Fully qualified registry host name. The default should be kept.",
                     "default": "gsoci.azurecr.io",
                     "format": "hostname"
                 },
                 "repository": {
                     "type": "string",
                     "title": "Repository",
-                    "description": "Repository name in the form of `namespace/repository`.",
+                    "description": "Container image repository name in the form of `namespace/repository`. The default value should be kept for all cases.",
                     "default": "giantswarm/helloworld"
                 },
                 "tag": {
                     "type": "string",
                     "title": "Tag",
-                    "description": "Overrides the image tag whose default is the chart appVersion.",
+                    "description": "Overrides the image tag whose default is the chart appVersion. Only overwrite this if you know what you are doing.",
                     "default": ""
                 }
             }
@@ -156,6 +171,8 @@
         "ingress": {
             "type": "object",
             "title": "Ingress",
+            "description": "Options for Ingress. This is deprecated in favor of Gateway API.",
+            "deprecated": true,
             "required": [
                 "hosts"
             ],
@@ -163,6 +180,7 @@
                 "annotations": {
                     "type": "object",
                     "title": "Optional ingress annotations",
+                    "description": "These annotations will be set on the Ingress resource. When in doubt, check the documentation for the ingress controller you are using.",
                     "examples": [
                         "kubernetes.io/ingress.class: nginx",
                         "kubernetes.io/tls-acme: 'true'"
@@ -177,6 +195,7 @@
                     "properties": {
                         "cert-manager.io/cluster-issuer": {
                             "title": "cert-manager.io/cluster-issuer",
+                            "description": "Cert-manager certificate issuer to use. To issue a TLS certificate via Let's Encrypt, use 'letsencrypt-giantswarm'.",
                             "default": "letsencrypt-giantswarm",
                             "required": []
                         }
@@ -196,14 +215,17 @@
                 "hosts": {
                     "type": "array",
                     "title": "Hosts",
-                    "description": "You will have to overwrite the host value to make it match your cluster's ingress subdomain.",
+                    "description": "You will have to overwrite the hosts values to make it match your cluster's ingress subdomain, matching the names used as ingress hosts.",
                     "items": {
                         "type": "object",
                         "required": [],
                         "properties": {
                             "host": {
                                 "type": "string",
-                                "description": "Hostname to expose the service for.",
+                                "description": "Hostname to expose the service for. Make sure to use the base domain matching you cluster.",
+                                "examples": [
+                                    "hello.myinstallation.gaws.gigantic.io"
+                                ],
                                 "format": "hostname"
                             },
                             "paths": {
@@ -231,7 +253,7 @@
                 "tls": {
                     "type": "array",
                     "title": "Transport layer security (TLS)",
-                    "description": "You will have to overwrite the hosts values to make it match your cluster's ingress subdomain, matching the names used as ingress hosts.",
+                    "description": "The host names here have to match the ones configured as .ingress.hosts[].host. Required for TLS certificate issuance.",
                     "items": {
                         "type": "object",
                         "required": [],
@@ -267,12 +289,13 @@
                         "path": {
                             "type": "string",
                             "title": "Path",
-                            "description": "Path to probe for liveness.",
+                            "description": "Path to probe for liveness. Since the webapp only has one endpoint, the root path is used.",
                             "default": "/"
                         },
                         "port": {
                             "type": "string",
                             "title": "Port",
+                            "description": "The port to probe for liveness. The pod only exposes the HTTP port, so 'http' is used.",
                             "default": "http"
                         }
                     }
@@ -288,7 +311,7 @@
         "nodeSelector": {
             "type": "object",
             "title": "Node selector",
-            "description": "If specified, this app will only be deployed to nodes with matching labels.",
+            "description": "If specified, this app will only be deployed to nodes with matching labels. It's fine to leave this empty.",
             "required": [],
             "patternProperties": {
                 "^[a-zA-Z0-9/-_\\.]+$": {
@@ -312,6 +335,7 @@
         "podDisruptionBudget": {
             "type": "object",
             "title": "Pod disruption budget",
+            "description": "Configures a PodDisruptionBudget resource to protect the pod from being disrupted.",
             "required": [],
             "properties": {
                 "enabled": {
@@ -360,6 +384,7 @@
         "readinessProbe": {
             "type": "object",
             "title": "Readiness probe",
+            "description": "Similar to the liveness probe, but for the readiness probe.",
             "required": [],
             "properties": {
                 "httpGet": {
@@ -376,6 +401,7 @@
                         "port": {
                             "type": "string",
                             "title": "Port",
+                            "description": "The port to probe for readiness.",
                             "default": "http"
                         }
                     }
@@ -385,14 +411,14 @@
         "replicaCount": {
             "type": "integer",
             "title": "Replica count",
-            "description": "Number of replicas to deploy for the main pod.",
+            "description": "Number of replicas to deploy for the main pod. For testing purposes, 1 is recommended.",
             "default": 1,
             "minimum": 1
         },
         "resources": {
             "type": "object",
             "title": "Resource requests and limits",
-            "description": "This is directly injected as the main pods's resource requests and limits.\nThis block is for setting up the gateway more information can be found here: https://kubernetes.io/docs/concepts/services-networking/gateway/",
+            "description": "This is directly injected as the main pods's resource requests and limits. For testing purposes, the defaults will be fine.",
             "required": [],
             "properties": {
                 "limits": {
@@ -408,7 +434,7 @@
                         "memory": {
                             "type": "string",
                             "title": "Memory",
-                            "default": "100M"
+                            "default": "100Mi"
                         }
                     }
                 },
@@ -433,7 +459,7 @@
                                 "100M",
                                 "1Gi"
                             ],
-                            "default": "50M"
+                            "default": "50Mi"
                         }
                     }
                 }
@@ -597,6 +623,7 @@
         "strategy": {
             "type": "object",
             "title": "Update strategy",
+            "description": "The update strategy to use for the deployment. For testing purposes, the default RollingUpdate is recommended.",
             "required": [],
             "properties": {
                 "type": {
@@ -611,16 +638,19 @@
                 "rollingUpdate": {
                     "type": "object",
                     "title": "Rolling update strategy details",
+                    "description": "Details of the rolling update strategy. For testing purposes, the default values will be fine.",
                     "required": [],
                     "properties": {
                         "maxSurge": {
                             "type": "integer",
                             "title": "Max surge",
+                            "description": "Maximum number of replicas that can be created during the update. For testing purposes, 1 is recommended.",
                             "default": 1
                         },
                         "maxUnavailable": {
                             "type": "integer",
                             "title": "Max unavailable",
+                            "description": "Maximum number of replicas that can be unavailable during the update. For testing purposes, 1 is recommended.",
                             "default": 1
                         }
                     }
@@ -630,6 +660,7 @@
         "tolerations": {
             "type": "array",
             "title": "Tolerations",
+            "description": "If specified, this will be injected as the main pod's tolerations settings. This allows to run the pod on nodes with specific taints. It's fine to leave this empty.",
             "items": {
                 "type": "object",
                 "required": [],
@@ -699,7 +730,7 @@
         "volumes": {
             "type": "array",
             "title": "Volumes",
-            "description": "Additional volumes on the output Deployment definition.",
+            "description": "Additional volumes on the output Deployment definition. For testing purposes, no additional volumes are needed.",
             "items": {
                 "type": "object",
                 "required": [],
