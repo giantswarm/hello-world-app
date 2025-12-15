@@ -10,28 +10,28 @@
 # type: integer
 # minimum: 1
 # @schema
-# Number of replicas to deploy for the main pod.
+# Number of replicas to deploy for the main pod. For testing purposes, 1 is recommended.
 replicaCount: 1
 
 # @schema
-# title: Image
+# title: Container image
 # type: object
 # @schema
-# Container image for the main pod.
+# Container image for the main pod. In this case, it's a little web server serving a single static page. See https://github.com/giantswarm/helloworld for details.
 image:
   # @schema
   # title: Registry
   # type: string
   # format: hostname
   # @schema
-  # Fully qualified registry host name.
+  # Fully qualified registry host name. The default should be kept.
   registry: gsoci.azurecr.io
 
   # @schema
   # title: Repository
   # type: string
   # @schema
-  # Repository name in the form of `namespace/repository`.
+  # Container image repository name in the form of `namespace/repository`. The default value should be kept for all cases.
   repository: giantswarm/helloworld
 
   # @schema
@@ -41,12 +41,14 @@ image:
   # - Always
   # - Never
   # @schema
+  # Pull policy for the container image. 'IfNotPresent' if recommended.
+  pullPolicy: IfNotPresent
 
   # @schema
   # title: Tag
   # type: string
   # @schema
-  # Overrides the image tag whose default is the chart appVersion.
+  # Overrides the image tag whose default is the chart appVersion. Only overwrite this if you know what you are doing.
   tag: ""
 
 # @schema
@@ -241,7 +243,9 @@ service:
 # @schema
 # title: Ingress
 # type: object
+# deprecated: true
 # @schema
+# Options for Ingress. This is deprecated in favor of Gateway API.
 ingress:
 
   # @schema
@@ -268,11 +272,13 @@ ingress:
   #   - "kubernetes.io/ingress.class: nginx"
   #   - "kubernetes.io/tls-acme: 'true'"
   # @schema
+  # These annotations will be set on the Ingress resource. When in doubt, check the documentation for the ingress controller you are using.
   annotations:
 
     # @schema
     # required: false
     # @schema
+    # Cert-manager certificate issuer to use. To issue a TLS certificate via Let's Encrypt, use 'letsencrypt-giantswarm'.
     cert-manager.io/cluster-issuer: letsencrypt-giantswarm
 
   # @schema
@@ -285,7 +291,9 @@ ingress:
   #     host:
   #       type: string
   #       format: hostname
-  #       description: Hostname to expose the service for.
+  #       description: Hostname to expose the service for. Make sure to use the base domain matching you cluster.
+  #       examples:
+  #       - hello.myinstallation.gaws.gigantic.io
   #     paths:
   #       type: array
   #       items:
@@ -299,7 +307,7 @@ ingress:
   #             - Prefix
   #             - Exact
   # @schema
-  # You will have to overwrite the host value to make it match your cluster's ingress subdomain.
+  # You will have to overwrite the hosts values to make it match your cluster's ingress subdomain, matching the names used as ingress hosts.
   hosts:
   - host: hello.cluster.provider.gigantic.io
     paths:
@@ -322,7 +330,7 @@ ingress:
   #         format: hostname
   #       description: Hostnames to use the TLS server certificate for.
   # @schema
-  # You will have to overwrite the hosts values to make it match your cluster's ingress subdomain, matching the names used as ingress hosts.
+  # The host names here have to match the ones configured as .ingress.hosts[].host. Required for TLS certificate issuance.
   tls:
   - secretName: hello-world-tls
     hosts:
@@ -332,13 +340,14 @@ ingress:
 # title: Gateway API configuration
 # type: object
 # @schema
+# Options related to Gateway API. This is the recommended way to expose the service in production from Kubernetes 1.30 onwards.
 gateway:
 
   # @schema
   # title: Enabled
   # type: boolean
   # @schema
-  # If set to false, no Gateway resource will be created.
+  # If set to false, no Gateway resource will be created. When enabling this, make sure to set .ingress.enabled to false.
   enabled: false
 
   # @schema
@@ -379,8 +388,7 @@ gateway:
 # title: Resource requests and limits
 # type: object
 # @schema
-# This is directly injected as the main pods's resource requests and limits.
-# This block is for setting up the gateway more information can be found here: https://kubernetes.io/docs/concepts/services-networking/gateway/
+# This is directly injected as the main pods's resource requests and limits. For testing purposes, the defaults will be fine.
 resources:
 
   # @schema
@@ -405,7 +413,7 @@ resources:
     #   - 100M
     #   - "1Gi"
     # @schema
-    memory: 50M
+    memory: 50Mi
 
   # @schema
   # title: Limits
@@ -423,7 +431,7 @@ resources:
     # title: Memory
     # type: string
     # @schema
-    memory: 100M
+    memory: 100Mi
 
 # @schema
 # title: Liveness probe
@@ -442,19 +450,21 @@ livenessProbe:
     # title: Path
     # type: string
     # @schema
-    # Path to probe for liveness.
+    # Path to probe for liveness. Since the webapp only has one endpoint, the root path is used.
     path: /
 
     # @schema
     # title: Port
     # type: string
     # @schema
+    # The port to probe for liveness. The pod only exposes the HTTP port, so 'http' is used.
     port: http
 
 # @schema
 # title: Readiness probe
 # type: object
 # @schema
+# Similar to the liveness probe, but for the readiness probe.
 readinessProbe:
 
   # @schema
@@ -474,6 +484,7 @@ readinessProbe:
     # title: Port
     # type: string
     # @schema
+    # The port to probe for readiness.
     port: http
 
 # @schema
@@ -487,7 +498,7 @@ autoscaling:
   # title: Enabled
   # type: boolean
   # @schema
-  # If set to false, no HorizontalPodAutoscaler resource will be created.
+  # If set to true, a HorizontalPodAutoscaler resource will be created to automatically to automatically scale the number of replicas based on the CPU and memory usage.
   enabled: true
 
   # @schema
@@ -495,14 +506,15 @@ autoscaling:
   # type: integer
   # minimum: 1
   # @schema
-  minReplicas: 3
+  # Minimum number of replicas to scale to. For testing purposes, 1 is recommended.
+  minReplicas: 1
 
   # @schema
   # title: Max replicas
   # type: integer
   # minimum: 1
   # @schema
-  # Make sure to set a value that is higher than the minReplicas value.
+  # Maximum number of replicas to scale to. Make sure to set a value that is higher than the minReplicas value.
   maxReplicas: 10
 
   # @schema
@@ -511,6 +523,7 @@ autoscaling:
   # minimum: 10
   # maximum: 100
   # @schema
+  # Influences the scaling behaviour based on the CPU usage.
   targetCPUUtilizationPercentage: 80
 
   # @schema
@@ -519,12 +532,14 @@ autoscaling:
   # minimum: 10
   # maximum: 100
   # @schema
+  # Influences the scaling behaviour based on the memory usage.
   targetMemoryUtilizationPercentage: 80
 
 # @schema
 # title: Update strategy
 # type: object
 # @schema
+# The update strategy to use for the deployment. For testing purposes, the default RollingUpdate is recommended.
 strategy:
 
   # @schema
@@ -539,18 +554,21 @@ strategy:
   # title: Rolling update strategy details
   # type: object
   # @schema
+  # Details of the rolling update strategy. For testing purposes, the default values will be fine.
   rollingUpdate:
 
     # @schema
     # title: Max unavailable
     # type: integer
     # @schema
+    # Maximum number of replicas that can be unavailable during the update. For testing purposes, 1 is recommended.
     maxUnavailable: 1
 
     # @schema
     # title: Max surge
     # type: integer
     # @schema
+    # Maximum number of replicas that can be created during the update. For testing purposes, 1 is recommended.
     maxSurge: 1
 
 # @schema
@@ -572,7 +590,7 @@ strategy:
 #           type: boolean
 #           description: Whether the secret is optional
 # @schema
-# Additional volumes on the output Deployment definition.
+# Additional volumes on the output Deployment definition. For testing purposes, no additional volumes are needed.
 volumes: []
 
 # @schema
@@ -601,7 +619,7 @@ volumeMounts: []
 #   "^[a-zA-Z0-9/-_\\.]+$":
 #     $ref: https://schema.giantswarm.io/labelvalue/v0.0.1
 # @schema
-# If specified, this app will only be deployed to nodes with matching labels.
+# If specified, this app will only be deployed to nodes with matching labels. It's fine to leave this empty.
 nodeSelector: {}
 
 # @schema
@@ -631,6 +649,7 @@ nodeSelector: {}
 #       type: string
 #       description: Value of the taint
 # @schema
+# If specified, this will be injected as the main pod's tolerations settings. This allows to run the pod on nodes with specific taints. It's fine to leave this empty.
 tolerations: []
 
 # @schema
@@ -638,7 +657,7 @@ tolerations: []
 # type: object
 # additionalProperties: true
 # @schema
-# If specified, this will be injected as the main pod's affinity settings.
+# If specified, this will be injected as the main pod's affinity settings. This allows to schedule the pod on nodes with specific labels. It's fine to leave this empty.
 affinity: {}
 
 # @schema
@@ -669,6 +688,7 @@ topologySpreadConstraints:
 # title: Pod disruption budget
 # type: object
 # @schema
+# Configures a PodDisruptionBudget resource to protect the pod from being disrupted.
 podDisruptionBudget:
 
   # @schema
