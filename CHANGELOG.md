@@ -7,6 +7,8 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+## [2.11.0] - 2025-12-17
+
 ### Changed
 
 - Chart: Replace `gateway.*` values with `route.*` for full Gateway API compliance.
@@ -241,7 +243,8 @@ First release published to the Giant Swarm catalog
 
 Initial release
 
-[Unreleased]: https://github.com/giantswarm/hello-world-app/compare/v2.10.0...HEAD
+[Unreleased]: https://github.com/giantswarm/hello-world-app/compare/v2.11.0...HEAD
+[2.11.0]: https://github.com/giantswarm/hello-world-app/compare/v2.10.0...v2.11.0
 [2.10.0]: https://github.com/giantswarm/hello-world-app/compare/v2.9.1...v2.10.0
 [2.9.1]: https://github.com/giantswarm/hello-world-app/compare/v2.9.0...v2.9.1
 [2.9.0]: https://github.com/giantswarm/hello-world-app/compare/v2.8.1...v2.9.0
