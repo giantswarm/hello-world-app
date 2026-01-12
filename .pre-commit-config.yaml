@@ -3,9 +3,17 @@ repos:
     rev: v2.3.1
     hooks:
       - id: helm-schema
-        args: ["--values", "helm/hello-world/values.yaml", "-o", "helm/hello-world/values.schema.json", "--use-helm-docs"]
+        args:
+          [
+            "--values",
+            "helm/hello-world/values.yaml",
+            "-o",
+            "helm/hello-world/values.schema.json",
+            "--use-helm-docs",
+            "--bundle",
+          ]
   - repo: https://github.com/norwoodj/helm-docs
-    rev:  "v1.14.2"
+    rev: "v1.14.2"
     hooks:
       - id: helm-docs
         args:

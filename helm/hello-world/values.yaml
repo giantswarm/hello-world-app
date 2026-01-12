@@ -27,7 +27,7 @@ image:
   # -- Overrides the image tag whose default is the chart appVersion.
   tag: ""
 
-# @schema type:array
+# @schema itemRef:https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.28.0-standalone-strict/_definitions.json#/definitions/io.k8s.api.core.v1.LocalObjectReference
 # -- This is for the secretes for pulling an image from a private repository more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
 imagePullSecrets: []
 # @schema type:string
@@ -59,12 +59,12 @@ podAnnotations: {}
 # -- This is for setting Kubernetes Labels to a Pod. For more information checkout: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
 podLabels: {}
 
-# @schema type:object
+# @schema $ref:https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.28.0-standalone-strict/_definitions.json#/definitions/io.k8s.api.core.v1.PodSecurityContext
 # -- Pod security context configuration
 podSecurityContext: {}
   # fsGroup: 2000
 
-# @schema type:object
+# @schema $ref:https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.28.0-standalone-strict/_definitions.json#/definitions/io.k8s.api.core.v1.SecurityContext
 # -- Container security context configuration
 securityContext:
   # @schema type:boolean
@@ -238,11 +238,10 @@ route:
     #           scopes:
     #             - read
 
-# @schema type:object
+# @schema $ref:https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.28.0-standalone-strict/_definitions.json#/definitions/io.k8s.api.core.v1.ResourceRequirements
 # -- Resource requests and limits for the container
 resources:
-  # @schema type:object
-  # -- Resource requests
+  # Resource requests
   requests:
     # @schema type:string
     # -- CPU request
@@ -250,8 +249,7 @@ resources:
     # @schema type:string
     # -- Memory request
     memory: 50Mi
-  # @schema type:object
-  # -- Resource limits
+  # Resource limits
   limits:
     # @schema type:string
     # -- CPU limit
@@ -260,11 +258,10 @@ resources:
     # -- Memory limit
     memory: 100Mi
 
-# @schema type:object
+# @schema $ref:https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.28.0-standalone-strict/_definitions.json#/definitions/io.k8s.api.core.v1.Probe
 # -- This is to setup the liveness and readiness probes more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
 livenessProbe:
-  # @schema type:object
-  # -- HTTP GET probe configuration
+  # HTTP GET probe configuration
   httpGet:
     # @schema type:string
     # -- Probe path
@@ -272,11 +269,10 @@ livenessProbe:
     # @schema type:[string, integer]
     # -- Probe port
     port: http
-# @schema type:object
+# @schema $ref:https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.28.0-standalone-strict/_definitions.json#/definitions/io.k8s.api.core.v1.Probe
 # -- Readiness probe configuration
 readinessProbe:
-  # @schema type:object
-  # -- HTTP GET probe configuration
+  # HTTP GET probe configuration
   httpGet:
     # @schema type:string
     # -- Probe path
@@ -338,15 +334,15 @@ volumeMounts: []
 # -- Node selector for pod scheduling
 nodeSelector: {}
 
-# @schema type:array
+# @schema itemRef:https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.28.0-standalone-strict/_definitions.json#/definitions/io.k8s.api.core.v1.Toleration
 # -- Tolerations for pod scheduling
 tolerations: []
 
-# @schema type:object
+# @schema $ref:https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.28.0-standalone-strict/_definitions.json#/definitions/io.k8s.api.core.v1.Affinity
 # -- Affinity rules for pod scheduling
 affinity: {}
 
-# @schema type:array
+# @schema itemRef:https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.28.0-standalone-strict/_definitions.json#/definitions/io.k8s.api.core.v1.TopologySpreadConstraint
 # -- Topology spread constraints for pod distribution
 topologySpreadConstraints:
   - labelSelector:
@@ -369,8 +365,8 @@ podDisruptionBudget:
   # @schema type:boolean
   # -- Enable pod disruption budget
   enabled: true
-  # @schema type:[integer, string]
-  # -- Maximum number of unavailable pods. Define either 'minAvailable' or 'maxUnavailable', never both.
+  # @schema $ref:https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.28.0-standalone-strict/_definitions.json#/definitions/io.k8s.api.policy.v1.PodDisruptionBudgetSpec
+  # -- PodDisruptionBudget specification. Define either 'minAvailable' or 'maxUnavailable', never both.
   # minAvailable: 1
   maxUnavailable: 1
 

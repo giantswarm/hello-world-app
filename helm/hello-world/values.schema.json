@@ -4,6 +4,7 @@
     "properties": {
         "affinity": {
             "description": "Affinity rules for pod scheduling",
+            "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.28.0-standalone-strict/_definitions.json#/definitions/io.k8s.api.core.v1.Affinity",
             "type": "object"
         },
         "autoscaling": {
@@ -71,7 +72,10 @@
         },
         "imagePullSecrets": {
             "description": "This is for the secretes for pulling an image from a private repository more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/",
-            "type": "array"
+            "type": "array",
+            "items": {
+                "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.28.0-standalone-strict/_definitions.json#/definitions/io.k8s.api.core.v1.LocalObjectReference"
+            }
         },
         "ingress": {
             "description": "This block is for setting up the ingress more information can be found here: https://kubernetes.io/docs/concepts/services-networking/ingress/",
@@ -142,10 +146,10 @@
         },
         "livenessProbe": {
             "description": "This is to setup the liveness and readiness probes more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/",
+            "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.28.0-standalone-strict/_definitions.json#/definitions/io.k8s.api.core.v1.Probe",
             "type": "object",
             "properties": {
                 "httpGet": {
-                    "description": "HTTP GET probe configuration",
                     "type": "object",
                     "properties": {
                         "path": {
@@ -184,11 +188,9 @@
                     "type": "boolean"
                 },
                 "maxUnavailable": {
-                    "description": "Maximum number of unavailable pods. Define either 'minAvailable' or 'maxUnavailable', never both. minAvailable: 1",
-                    "type": [
-                        "integer",
-                        "string"
-                    ]
+                    "description": "PodDisruptionBudget specification. Define either 'minAvailable' or 'maxUnavailable', never both. minAvailable: 1",
+                    "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.28.0-standalone-strict/_definitions.json#/definitions/io.k8s.api.policy.v1.PodDisruptionBudgetSpec",
+                    "type": "integer"
                 }
             }
         },
@@ -198,14 +200,15 @@
         },
         "podSecurityContext": {
             "description": "Pod security context configuration",
+            "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.28.0-standalone-strict/_definitions.json#/definitions/io.k8s.api.core.v1.PodSecurityContext",
             "type": "object"
         },
         "readinessProbe": {
             "description": "Readiness probe configuration",
+            "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.28.0-standalone-strict/_definitions.json#/definitions/io.k8s.api.core.v1.Probe",
             "type": "object",
             "properties": {
                 "httpGet": {
-                    "description": "HTTP GET probe configuration",
                     "type": "object",
                     "properties": {
                         "path": {
@@ -230,10 +233,10 @@
         },
         "resources": {
             "description": "Resource requests and limits for the container",
+            "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.28.0-standalone-strict/_definitions.json#/definitions/io.k8s.api.core.v1.ResourceRequirements",
             "type": "object",
             "properties": {
                 "limits": {
-                    "description": "Resource limits",
                     "type": "object",
                     "properties": {
                         "cpu": {
@@ -247,7 +250,6 @@
                     }
                 },
                 "requests": {
-                    "description": "Resource requests",
                     "type": "object",
                     "properties": {
                         "cpu": {
@@ -351,6 +353,7 @@
         },
         "securityContext": {
             "description": "Container security context configuration",
+            "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.28.0-standalone-strict/_definitions.json#/definitions/io.k8s.api.core.v1.SecurityContext",
             "type": "object",
             "properties": {
                 "allowPrivilegeEscalation": {
@@ -492,12 +495,16 @@
         },
         "tolerations": {
             "description": "Tolerations for pod scheduling",
-            "type": "array"
+            "type": "array",
+            "items": {
+                "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.28.0-standalone-strict/_definitions.json#/definitions/io.k8s.api.core.v1.Toleration"
+            }
         },
         "topologySpreadConstraints": {
             "description": "Topology spread constraints for pod distribution",
             "type": "array",
             "items": {
+                "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.28.0-standalone-strict/_definitions.json#/definitions/io.k8s.api.core.v1.TopologySpreadConstraint",
                 "type": "object",
                 "properties": {
                     "labelSelector": {
@@ -535,6 +542,11 @@
         "volumes": {
             "description": "Additional volumes on the output Deployment definition.",
             "type": "array"
+        }
+    },
+    "$defs": {
+        "_definitions.json": {
+            "$id": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.28.0-standalone-strict/_definitions.json"
         }
     }
 }

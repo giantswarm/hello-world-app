@@ -35,7 +35,6 @@ A chart that deploys a basic hello world site and lets you test values merging o
 | ingress.hosts | list | `[{"host":"hello.cluster.provider.gigantic.io","paths":[{"path":"/","pathType":"Prefix"}]}]` | Ingress hosts configuration |
 | ingress.tls | list | `[{"hosts":["hello.cluster.provider.gigantic.io"],"secretName":"hello-world-tls"}]` | TLS configuration for ingress |
 | livenessProbe | object | `{"httpGet":{"path":"/","port":"http"}}` | This is to setup the liveness and readiness probes more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/ |
-| livenessProbe.httpGet | object | `{"path":"/","port":"http"}` | HTTP GET probe configuration |
 | livenessProbe.httpGet.path | string | `"/"` | Probe path |
 | livenessProbe.httpGet.port | string | `"http"` | Probe port |
 | nameOverride | string | `""` | This is to override the chart name. |
@@ -43,19 +42,16 @@ A chart that deploys a basic hello world site and lets you test values merging o
 | podAnnotations | object | `{}` | This is for setting Kubernetes Annotations to a Pod. For more information checkout: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/ |
 | podDisruptionBudget | object | `{"enabled":true,"maxUnavailable":1}` | Pod disruption budget configuration |
 | podDisruptionBudget.enabled | bool | `true` | Enable pod disruption budget |
-| podDisruptionBudget.maxUnavailable | int | `1` | Maximum number of unavailable pods. Define either 'minAvailable' or 'maxUnavailable', never both. minAvailable: 1 |
+| podDisruptionBudget.maxUnavailable | int | `1` | PodDisruptionBudget specification. Define either 'minAvailable' or 'maxUnavailable', never both. minAvailable: 1 |
 | podLabels | object | `{}` | This is for setting Kubernetes Labels to a Pod. For more information checkout: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/ |
 | podSecurityContext | object | `{}` | Pod security context configuration |
 | readinessProbe | object | `{"httpGet":{"path":"/","port":"http"}}` | Readiness probe configuration |
-| readinessProbe.httpGet | object | `{"path":"/","port":"http"}` | HTTP GET probe configuration |
 | readinessProbe.httpGet.path | string | `"/"` | Probe path |
 | readinessProbe.httpGet.port | string | `"http"` | Probe port |
 | replicaCount | int | `0` | This will set the replicaset count more information can be found here: https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/ |
 | resources | object | `{"limits":{"cpu":"400m","memory":"100Mi"},"requests":{"cpu":"200m","memory":"50Mi"}}` | Resource requests and limits for the container |
-| resources.limits | object | `{"cpu":"400m","memory":"100Mi"}` | Resource limits |
 | resources.limits.cpu | string | `"400m"` | CPU limit |
 | resources.limits.memory | string | `"100Mi"` | Memory limit |
-| resources.requests | object | `{"cpu":"200m","memory":"50Mi"}` | Resource requests |
 | resources.requests.cpu | string | `"200m"` | CPU request |
 | resources.requests.memory | string | `"50Mi"` | Memory request |
 | route | object | `{"additionalRules":[],"annotations":{},"enabled":false,"filters":[],"hostnames":[],"kind":"HTTPRoute","labels":{},"matches":[{"path":{"type":"PathPrefix","value":"/"}}],"name":"","parentRefs":[],"securityPolicy":{"annotations":{},"enabled":false,"labels":{}}}` | This block is for setting up Gateway API routes. More information can be found here: https://gateway-api.sigs.k8s.io/ |
