@@ -1,5 +1,8 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://giantswarm.com/schema",
+    "title": "Helm Values Schema",
+    "description": "Schema for Helm values",
     "type": "object",
     "properties": {
         "affinity": {
