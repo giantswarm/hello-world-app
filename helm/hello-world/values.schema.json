@@ -5,7 +5,8 @@
         "affinity": {
             "description": "Affinity rules for pod scheduling",
             "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.28.0-standalone-strict/_definitions.json#/definitions/io.k8s.api.core.v1.Affinity",
-            "type": "object"
+            "type": "object",
+            "additionalProperties": false
         },
         "autoscaling": {
             "description": "This section is for setting up autoscaling more information can be found here: https://kubernetes.io/docs/concepts/workloads/autoscaling/",
@@ -37,11 +38,20 @@
                     "maximum": 100,
                     "minimum": 1
                 }
-            }
+            },
+            "additionalProperties": false
         },
         "fullnameOverride": {
             "description": "Override the full name of the chart",
             "type": "string"
+        },
+        "global": {
+            "description": "Global values shared between all subcharts",
+            "$comment": "Added automatically by 'helm schema' to allow this chart to be used as a Helm dependency, as the `additionalProperties` setting would otherwise collide with Helm's special 'global' values key.",
+            "type": [
+                "object",
+                "null"
+            ]
         },
         "image": {
             "description": "This sets the container image more information can be found here: https://kubernetes.io/docs/concepts/containers/images/",
@@ -68,7 +78,8 @@
                     "description": "Overrides the image tag whose default is the chart appVersion.",
                     "type": "string"
                 }
-            }
+            },
+            "additionalProperties": false
         },
         "imagePullSecrets": {
             "description": "This is for the secretes for pulling an image from a private repository more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/",
@@ -88,7 +99,8 @@
                         "cert-manager.io/cluster-issuer": {
                             "type": "string"
                         }
-                    }
+                    },
+                    "additionalProperties": false
                 },
                 "className": {
                     "description": "Ingress class name",
@@ -118,10 +130,12 @@
                                         "pathType": {
                                             "type": "string"
                                         }
-                                    }
+                                    },
+                                    "additionalProperties": false
                                 }
                             }
-                        }
+                        },
+                        "additionalProperties": false
                     }
                 },
                 "tls": {
@@ -139,10 +153,12 @@
                             "secretName": {
                                 "type": "string"
                             }
-                        }
+                        },
+                        "additionalProperties": false
                     }
                 }
-            }
+            },
+            "additionalProperties": false
         },
         "livenessProbe": {
             "description": "This is to setup the liveness and readiness probes more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/",
@@ -163,9 +179,11 @@
                                 "integer"
                             ]
                         }
-                    }
+                    },
+                    "additionalProperties": false
                 }
-            }
+            },
+            "additionalProperties": false
         },
         "nameOverride": {
             "description": "This is to override the chart name.",
@@ -173,11 +191,13 @@
         },
         "nodeSelector": {
             "description": "Node selector for pod scheduling",
-            "type": "object"
+            "type": "object",
+            "additionalProperties": false
         },
         "podAnnotations": {
             "description": "This is for setting Kubernetes Annotations to a Pod. For more information checkout: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/",
-            "type": "object"
+            "type": "object",
+            "additionalProperties": false
         },
         "podDisruptionBudget": {
             "description": "Pod disruption budget configuration",
@@ -192,16 +212,19 @@
                     "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.28.0-standalone-strict/_definitions.json#/definitions/io.k8s.api.policy.v1.PodDisruptionBudgetSpec",
                     "type": "integer"
                 }
-            }
+            },
+            "additionalProperties": false
         },
         "podLabels": {
             "description": "This is for setting Kubernetes Labels to a Pod. For more information checkout: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/",
-            "type": "object"
+            "type": "object",
+            "additionalProperties": false
         },
         "podSecurityContext": {
             "description": "Pod security context configuration",
             "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.28.0-standalone-strict/_definitions.json#/definitions/io.k8s.api.core.v1.PodSecurityContext",
-            "type": "object"
+            "type": "object",
+            "additionalProperties": false
         },
         "readinessProbe": {
             "description": "Readiness probe configuration",
@@ -222,14 +245,16 @@
                                 "integer"
                             ]
                         }
-                    }
+                    },
+                    "additionalProperties": false
                 }
-            }
+            },
+            "additionalProperties": false
         },
         "replicaCount": {
             "description": "This will set the replicaset count more information can be found here: https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/",
             "type": "integer",
-            "minimum": 1
+            "minimum": 0
         },
         "resources": {
             "description": "Resource requests and limits for the container",
@@ -247,7 +272,8 @@
                             "description": "Memory limit",
                             "type": "string"
                         }
-                    }
+                    },
+                    "additionalProperties": false
                 },
                 "requests": {
                     "type": "object",
@@ -260,9 +286,11 @@
                             "description": "Memory request",
                             "type": "string"
                         }
-                    }
+                    },
+                    "additionalProperties": false
                 }
-            }
+            },
+            "additionalProperties": false
         },
         "route": {
             "description": "This block is for setting up Gateway API routes. More information can be found here: https://gateway-api.sigs.k8s.io/",
@@ -274,7 +302,8 @@
                 },
                 "annotations": {
                     "description": "Route annotations",
-                    "type": "object"
+                    "type": "object",
+                    "additionalProperties": false
                 },
                 "enabled": {
                     "description": "Enable Gateway API route",
@@ -301,7 +330,8 @@
                 },
                 "labels": {
                     "description": "Route labels",
-                    "type": "object"
+                    "type": "object",
+                    "additionalProperties": false
                 },
                 "matches": {
                     "description": "Request matching rules",
@@ -318,9 +348,11 @@
                                     "value": {
                                         "type": "string"
                                     }
-                                }
+                                },
+                                "additionalProperties": false
                             }
-                        }
+                        },
+                        "additionalProperties": false
                     }
                 },
                 "name": {
@@ -337,7 +369,8 @@
                     "properties": {
                         "annotations": {
                             "description": "Security policy annotations",
-                            "type": "object"
+                            "type": "object",
+                            "additionalProperties": false
                         },
                         "enabled": {
                             "description": "Enable security policy",
@@ -345,11 +378,14 @@
                         },
                         "labels": {
                             "description": "Security policy labels",
-                            "type": "object"
+                            "type": "object",
+                            "additionalProperties": false
                         }
-                    }
+                    },
+                    "additionalProperties": false
                 }
-            }
+            },
+            "additionalProperties": false
         },
         "securityContext": {
             "description": "Container security context configuration",
@@ -371,7 +407,8 @@
                                 "type": "string"
                             }
                         }
-                    }
+                    },
+                    "additionalProperties": false
                 },
                 "readOnlyRootFilesystem": {
                     "description": "Mount root filesystem as read-only",
@@ -393,9 +430,11 @@
                             "description": "Seccomp profile type",
                             "type": "string"
                         }
-                    }
+                    },
+                    "additionalProperties": false
                 }
-            }
+            },
+            "additionalProperties": false
         },
         "service": {
             "description": "This is for setting up a service more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/",
@@ -403,11 +442,13 @@
             "properties": {
                 "annotations": {
                     "description": "Service annotations",
-                    "type": "object"
+                    "type": "object",
+                    "additionalProperties": false
                 },
                 "labels": {
                     "description": "Service labels",
-                    "type": "object"
+                    "type": "object",
+                    "additionalProperties": false
                 },
                 "port": {
                     "description": "This sets the ports more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/#field-spec-ports",
@@ -425,7 +466,8 @@
                         "ExternalName"
                     ]
                 }
-            }
+            },
+            "additionalProperties": false
         },
         "serviceAccount": {
             "description": "This section builds out the service account more information can be found here: https://kubernetes.io/docs/concepts/security/service-accounts/",
@@ -433,7 +475,8 @@
             "properties": {
                 "annotations": {
                     "description": "Annotations to add to the service account",
-                    "type": "object"
+                    "type": "object",
+                    "additionalProperties": false
                 },
                 "automount": {
                     "description": "Automatically mount a ServiceAccount's API credentials?",
@@ -447,7 +490,8 @@
                     "description": "The name of the service account to use. If not set and create is true, a name is generated using the fullname template",
                     "type": "string"
                 }
-            }
+            },
+            "additionalProperties": false
         },
         "serviceMonitor": {
             "description": "ServiceMonitor configuration for Prometheus",
@@ -457,7 +501,8 @@
                     "description": "Enable ServiceMonitor",
                     "type": "boolean"
                 }
-            }
+            },
+            "additionalProperties": false
         },
         "strategy": {
             "description": "Deployment strategy configuration",
@@ -481,7 +526,8 @@
                                 "string"
                             ]
                         }
-                    }
+                    },
+                    "additionalProperties": false
                 },
                 "type": {
                     "description": "Deployment strategy type",
@@ -491,7 +537,8 @@
                         "Recreate"
                     ]
                 }
-            }
+            },
+            "additionalProperties": false
         },
         "tolerations": {
             "description": "Tolerations for pod scheduling",
@@ -519,9 +566,11 @@
                                     "app.kubernetes.io/name": {
                                         "type": "string"
                                     }
-                                }
+                                },
+                                "additionalProperties": false
                             }
-                        }
+                        },
+                        "additionalProperties": false
                     },
                     "maxSkew": {
                         "type": "integer"
@@ -532,7 +581,8 @@
                     "whenUnsatisfiable": {
                         "type": "string"
                     }
-                }
+                },
+                "additionalProperties": false
             }
         },
         "volumeMounts": {
@@ -544,6 +594,7 @@
             "type": "array"
         }
     },
+    "additionalProperties": false,
     "$defs": {
         "_definitions.json": {
             "$id": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.28.0-standalone-strict/_definitions.json"

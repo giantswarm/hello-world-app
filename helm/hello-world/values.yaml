@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=values.schema.json
 # Default values for hello-world.
 # This is a YAML-formatted file.
 # Declare default variables to be passed into your templates.
@@ -8,7 +9,7 @@
 #   https://docs.giantswarm.io/tutorials/fleet-management/app-platform/app-configuration/#basic-values-merging-example
 #
 
-# @schema type:integer;minimum:1
+# @schema type:integer;minimum:0
 # -- This will set the replicaset count more information can be found here: https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/
 replicaCount: 0
 
@@ -63,7 +64,6 @@ podLabels: {}
 # -- Pod security context configuration
 podSecurityContext: {}
   # fsGroup: 2000
-
 # @schema $ref:https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.28.0-standalone-strict/_definitions.json#/definitions/io.k8s.api.core.v1.SecurityContext
 # -- Container security context configuration
 securityContext:
