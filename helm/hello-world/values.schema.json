@@ -7,7 +7,7 @@
     "properties": {
         "affinity": {
             "description": "Affinity rules for pod scheduling",
-            "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.28.0-standalone-strict/_definitions.json#/definitions/io.k8s.api.core.v1.Affinity",
+            "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/v1.33.1/_definitions.json#/definitions/io.k8s.api.core.v1.Affinity",
             "type": "object",
             "additionalProperties": false
         },
@@ -79,6 +79,10 @@
                 },
                 "tag": {
                     "description": "Overrides the image tag whose default is the chart appVersion.",
+                    "examples": [
+                        "v1.2.3",
+                        "v1.2.3-beta1"
+                    ],
                     "type": "string"
                 }
             },
@@ -88,7 +92,7 @@
             "description": "This is for the secretes for pulling an image from a private repository more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/",
             "type": "array",
             "items": {
-                "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.28.0-standalone-strict/_definitions.json#/definitions/io.k8s.api.core.v1.LocalObjectReference"
+                "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/v1.33.1/_definitions.json#/definitions/io.k8s.api.core.v1.LocalObjectReference"
             }
         },
         "ingress": {
@@ -165,7 +169,7 @@
         },
         "livenessProbe": {
             "description": "This is to setup the liveness and readiness probes more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/",
-            "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.28.0-standalone-strict/_definitions.json#/definitions/io.k8s.api.core.v1.Probe",
+            "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/v1.33.1/_definitions.json#/definitions/io.k8s.api.core.v1.Probe",
             "type": "object",
             "properties": {
                 "httpGet": {
@@ -204,15 +208,14 @@
         },
         "podDisruptionBudget": {
             "description": "Pod disruption budget configuration",
+            "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/v1.33.1/_definitions.json#/definitions/io.k8s.api.policy.v1.PodDisruptionBudgetSpec",
             "type": "object",
             "properties": {
                 "enabled": {
-                    "description": "Enable pod disruption budget",
                     "type": "boolean"
                 },
                 "maxUnavailable": {
                     "description": "PodDisruptionBudget specification. Define either 'minAvailable' or 'maxUnavailable', never both. minAvailable: 1",
-                    "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.28.0-standalone-strict/_definitions.json#/definitions/io.k8s.api.policy.v1.PodDisruptionBudgetSpec",
                     "type": "integer"
                 }
             },
@@ -225,13 +228,13 @@
         },
         "podSecurityContext": {
             "description": "Pod security context configuration",
-            "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.28.0-standalone-strict/_definitions.json#/definitions/io.k8s.api.core.v1.PodSecurityContext",
+            "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/v1.33.1/_definitions.json#/definitions/io.k8s.api.core.v1.PodSecurityContext",
             "type": "object",
             "additionalProperties": false
         },
         "readinessProbe": {
             "description": "Readiness probe configuration",
-            "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.28.0-standalone-strict/_definitions.json#/definitions/io.k8s.api.core.v1.Probe",
+            "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/v1.33.1/_definitions.json#/definitions/io.k8s.api.core.v1.Probe",
             "type": "object",
             "properties": {
                 "httpGet": {
@@ -261,7 +264,7 @@
         },
         "resources": {
             "description": "Resource requests and limits for the container",
-            "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.28.0-standalone-strict/_definitions.json#/definitions/io.k8s.api.core.v1.ResourceRequirements",
+            "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/v1.33.1/_definitions.json#/definitions/io.k8s.api.core.v1.ResourceRequirements",
             "type": "object",
             "properties": {
                 "limits": {
@@ -392,7 +395,7 @@
         },
         "securityContext": {
             "description": "Container security context configuration",
-            "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.28.0-standalone-strict/_definitions.json#/definitions/io.k8s.api.core.v1.SecurityContext",
+            "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/v1.33.1/_definitions.json#/definitions/io.k8s.api.core.v1.SecurityContext",
             "type": "object",
             "properties": {
                 "allowPrivilegeEscalation": {
@@ -479,6 +482,11 @@
                 "annotations": {
                     "description": "Annotations to add to the service account",
                     "type": "object",
+                    "patternProperties": {
+                        "^[a-z]$": {
+                            "type": "string"
+                        }
+                    },
                     "additionalProperties": false
                 },
                 "automount": {
@@ -547,14 +555,14 @@
             "description": "Tolerations for pod scheduling",
             "type": "array",
             "items": {
-                "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.28.0-standalone-strict/_definitions.json#/definitions/io.k8s.api.core.v1.Toleration"
+                "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/v1.33.1/_definitions.json#/definitions/io.k8s.api.core.v1.Toleration"
             }
         },
         "topologySpreadConstraints": {
             "description": "Topology spread constraints for pod distribution",
             "type": "array",
             "items": {
-                "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.28.0-standalone-strict/_definitions.json#/definitions/io.k8s.api.core.v1.TopologySpreadConstraint",
+                "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/v1.33.1/_definitions.json#/definitions/io.k8s.api.core.v1.TopologySpreadConstraint",
                 "type": "object",
                 "properties": {
                     "labelSelector": {
@@ -600,7 +608,7 @@
     "additionalProperties": false,
     "$defs": {
         "_definitions.json": {
-            "$id": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.28.0-standalone-strict/_definitions.json"
+            "$id": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/v1.33.1/_definitions.json"
         }
     }
 }

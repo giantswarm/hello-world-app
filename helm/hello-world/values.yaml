@@ -24,11 +24,11 @@ image:
   # @schema enum:[IfNotPresent, Always, Never]
   # -- This sets the pull policy for images.
   pullPolicy: IfNotPresent
-  # @schema type:string
+  # @schema type:string;examples:[v1.2.3, v1.2.3-beta1]
   # -- Overrides the image tag whose default is the chart appVersion.
   tag: ""
 
-# @schema itemRef:https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.28.0-standalone-strict/_definitions.json#/definitions/io.k8s.api.core.v1.LocalObjectReference
+# @schema itemRef: $k8s/_definitions.json#/definitions/io.k8s.api.core.v1.LocalObjectReference
 # -- This is for the secretes for pulling an image from a private repository more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
 imagePullSecrets: []
 # @schema type:string
@@ -46,7 +46,7 @@ serviceAccount:
   # @schema type:boolean
   # -- Automatically mount a ServiceAccount's API credentials?
   automount: false
-  # @schema type:object
+  # @schema type:object;patternProperties: {"^[a-z]$": {type: string}}
   # -- Annotations to add to the service account
   annotations: {}
   # @schema type:string
@@ -60,11 +60,11 @@ podAnnotations: {}
 # -- This is for setting Kubernetes Labels to a Pod. For more information checkout: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
 podLabels: {}
 
-# @schema $ref:https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.28.0-standalone-strict/_definitions.json#/definitions/io.k8s.api.core.v1.PodSecurityContext
+# @schema $ref: $k8s/_definitions.json#/definitions/io.k8s.api.core.v1.PodSecurityContext
 # -- Pod security context configuration
 podSecurityContext: {}
   # fsGroup: 2000
-# @schema $ref:https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.28.0-standalone-strict/_definitions.json#/definitions/io.k8s.api.core.v1.SecurityContext
+# @schema $ref: $k8s/_definitions.json#/definitions/io.k8s.api.core.v1.SecurityContext
 # -- Container security context configuration
 securityContext:
   # @schema type:boolean
@@ -238,7 +238,7 @@ route:
     #           scopes:
     #             - read
 
-# @schema $ref:https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.28.0-standalone-strict/_definitions.json#/definitions/io.k8s.api.core.v1.ResourceRequirements
+# @schema $ref: $k8s/_definitions.json#/definitions/io.k8s.api.core.v1.ResourceRequirements
 # -- Resource requests and limits for the container
 resources:
   # Resource requests
@@ -258,7 +258,7 @@ resources:
     # -- Memory limit
     memory: 100Mi
 
-# @schema $ref:https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.28.0-standalone-strict/_definitions.json#/definitions/io.k8s.api.core.v1.Probe
+# @schema $ref: $k8s/_definitions.json#/definitions/io.k8s.api.core.v1.Probe
 # -- This is to setup the liveness and readiness probes more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
 livenessProbe:
   # HTTP GET probe configuration
@@ -269,7 +269,7 @@ livenessProbe:
     # @schema type:[string, integer]
     # -- Probe port
     port: http
-# @schema $ref:https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.28.0-standalone-strict/_definitions.json#/definitions/io.k8s.api.core.v1.Probe
+# @schema $ref: $k8s/_definitions.json#/definitions/io.k8s.api.core.v1.Probe
 # -- Readiness probe configuration
 readinessProbe:
   # HTTP GET probe configuration
@@ -334,15 +334,15 @@ volumeMounts: []
 # -- Node selector for pod scheduling
 nodeSelector: {}
 
-# @schema itemRef:https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.28.0-standalone-strict/_definitions.json#/definitions/io.k8s.api.core.v1.Toleration
+# @schema itemRef: $k8s/_definitions.json#/definitions/io.k8s.api.core.v1.Toleration
 # -- Tolerations for pod scheduling
 tolerations: []
 
-# @schema $ref:https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.28.0-standalone-strict/_definitions.json#/definitions/io.k8s.api.core.v1.Affinity
+# @schema $ref: $k8s/_definitions.json#/definitions/io.k8s.api.core.v1.Affinity
 # -- Affinity rules for pod scheduling
 affinity: {}
 
-# @schema itemRef:https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.28.0-standalone-strict/_definitions.json#/definitions/io.k8s.api.core.v1.TopologySpreadConstraint
+# @schema itemRef: $k8s/_definitions.json#/definitions/io.k8s.api.core.v1.TopologySpreadConstraint
 # -- Topology spread constraints for pod distribution
 topologySpreadConstraints:
   - labelSelector:
@@ -360,12 +360,10 @@ topologySpreadConstraints:
     maxSkew: 1
     whenUnsatisfiable: ScheduleAnyway
 
+# @schema $ref: $k8s/_definitions.json#/definitions/io.k8s.api.policy.v1.PodDisruptionBudgetSpec
 # -- Pod disruption budget configuration
 podDisruptionBudget:
-  # @schema type:boolean
-  # -- Enable pod disruption budget
   enabled: true
-  # @schema $ref:https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.28.0-standalone-strict/_definitions.json#/definitions/io.k8s.api.policy.v1.PodDisruptionBudgetSpec
   # -- PodDisruptionBudget specification. Define either 'minAvailable' or 'maxUnavailable', never both.
   # minAvailable: 1
   maxUnavailable: 1
