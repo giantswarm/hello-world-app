@@ -58,7 +58,7 @@
         },
         "image": {
             "description": "This sets the container image more information can be found here: https://kubernetes.io/docs/concepts/containers/images/",
-            "$ref": "https://github.com/giantswarm/schema/raw/refs/heads/main/image/v0.0.1.json",
+            "$ref": "https://schema.giantswarm.io/image/v0.0.1",
             "type": "object",
             "properties": {
                 "name": {
