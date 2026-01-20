@@ -1,8 +1,8 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "https://giantswarm.com/schema",
-    "title": "Helm Values Schema",
-    "description": "Schema for Helm values",
+    "title": "Helm Values Schema for hello-world app",
+    "description": "Schema for Helm values used to configure the hello-world app",
     "type": "object",
     "properties": {
         "affinity": {
@@ -605,10 +605,5 @@
             "type": "array"
         }
     },
-    "additionalProperties": false,
-    "$defs": {
-        "_definitions.json": {
-            "$id": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/v1.33.1/_definitions.json"
-        }
-    }
+    "additionalProperties": false
 }

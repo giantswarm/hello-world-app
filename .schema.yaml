@@ -8,7 +8,7 @@ draft: 2020
 indent: 4
 output: helm/hello-world/values.schema.json
 
-bundle: true
+bundle: false
 bundleRoot: ""
 bundleWithoutID: false
 
@@ -23,6 +23,6 @@ noDefaultGlobal: false
 
 schemaRoot:
   id: https://giantswarm.com/schema
-  title: Helm Values Schema
-  description: Schema for Helm values
+  title: Helm Values Schema for hello-world app
+  description: Schema for Helm values used to configure the hello-world app
   additionalProperties: false
