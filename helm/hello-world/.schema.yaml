@@ -22,7 +22,4 @@ noAdditionalProperties: true
 noDefaultGlobal: false
 
 schemaRoot:
-  id: https://giantswarm.com/schema
-  title: Helm Values Schema for hello-world app
-  description: Schema for Helm values used to configure the hello-world app
   additionalProperties: false
