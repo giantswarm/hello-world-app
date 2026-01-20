@@ -22,10 +22,10 @@ A chart that deploys a basic hello world site and lets you test values merging o
 | autoscaling.targetCPUUtilizationPercentage | int | `80` | Target CPU utilization percentage |
 | autoscaling.targetMemoryUtilizationPercentage | int | `80` | Target memory utilization percentage |
 | fullnameOverride | string | `""` | Override the full name of the chart |
-| image | object | `{"pullPolicy":"IfNotPresent","registry":"gsoci.azurecr.io","repository":"giantswarm/helloworld","tag":""}` | This sets the container image more information can be found here: https://kubernetes.io/docs/concepts/containers/images/ |
+| image | object | `{"name":"giantswarm/helloworld","pullPolicy":"IfNotPresent","registry":"gsoci.azurecr.io","tag":""}` | This sets the container image more information can be found here: https://kubernetes.io/docs/concepts/containers/images/ |
+| image.name | string | `"giantswarm/helloworld"` | Container image repository |
 | image.pullPolicy | string | `"IfNotPresent"` | This sets the pull policy for images. |
 | image.registry | string | `"gsoci.azurecr.io"` | Container image registry |
-| image.repository | string | `"giantswarm/helloworld"` | Container image repository |
 | image.tag | string | `""` | Overrides the image tag whose default is the chart appVersion. |
 | imagePullSecrets | list | `[]` | This is for the secretes for pulling an image from a private repository more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/ |
 | ingress | object | `{"annotations":{"cert-manager.io/cluster-issuer":"letsencrypt-giantswarm"},"className":"nginx","enabled":true,"hosts":[{"host":"hello.cluster.provider.gigantic.io","paths":[{"path":"/","pathType":"Prefix"}]}],"tls":[{"hosts":["hello.cluster.provider.gigantic.io"],"secretName":"hello-world-tls"}]}` | This block is for setting up the ingress more information can be found here: https://kubernetes.io/docs/concepts/services-networking/ingress/ |
@@ -47,7 +47,7 @@ A chart that deploys a basic hello world site and lets you test values merging o
 | readinessProbe | object | `{"httpGet":{"path":"/","port":"http"}}` | Readiness probe configuration |
 | readinessProbe.httpGet.path | string | `"/"` | Probe path |
 | readinessProbe.httpGet.port | string | `"http"` | Probe port |
-| replicaCount | int | `0` | This will set the replicaset count more information can be found here: https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/ |
+| replicaCount | int | `1` | This will set the replicaset count more information can be found here: https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/ |
 | resources | object | `{"limits":{"cpu":"400m","memory":"100Mi"},"requests":{"cpu":"200m","memory":"50Mi"}}` | Resource requests and limits for the container |
 | resources.limits.cpu | string | `"400m"` | CPU limit |
 | resources.limits.memory | string | `"100Mi"` | Memory limit |
