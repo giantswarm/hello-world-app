@@ -3,9 +3,25 @@ repos:
     rev: v2.3.1
     hooks:
       - id: helm-schema
+        args:
+          - --config
+          - helm/hello-world/.schema.yaml
+  - repo: https://github.com/giantswarm/schemalint
+    rev: v2.6.1
+    hooks:
+      - id: schemalint-normalize
+        args:
+          - helm/hello-world/values.schema.json
+          - -o
+          - helm/hello-world/values.schema.json
+          - --force
+      - id: schemalint-verify
+        args:
+          - helm/hello-world/values.schema.json
   - repo: https://github.com/norwoodj/helm-docs
     rev: "v1.14.2"
     hooks:
       - id: helm-docs
         args:
           - --chart-search-root=helm
+          - --sort-values-order=file
