@@ -1,0 +1,23 @@
+# .schema.yaml
+# yaml-language-server: $schema=https://github.com/losisin/helm-values-schema-json/raw/refs/heads/main/config.schema.json
+
+values:
+  - helm/hello-world/values.yaml
+
+draft: 2020
+indent: 4
+output: helm/hello-world/values.schema.json
+
+bundle: false
+
+k8sSchemaURL:
+  https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/{{ .K8sSchemaVersion }}/
+k8sSchemaVersion: "v1.33.1"
+
+useHelmDocs: true
+
+noAdditionalProperties: true
+noDefaultGlobal: false
+
+schemaRoot:
+  additionalProperties: false

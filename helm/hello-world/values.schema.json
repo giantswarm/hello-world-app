@@ -3,161 +3,111 @@
     "type": "object",
     "properties": {
         "affinity": {
-            "type": "object"
+            "description": "Affinity rules for pod scheduling",
+            "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/v1.33.1/_definitions.json#/definitions/io.k8s.api.core.v1.Affinity",
+            "type": "object",
+            "additionalProperties": false
         },
         "autoscaling": {
+            "description": "This section is for setting up autoscaling more information can be found here: https://kubernetes.io/docs/concepts/workloads/autoscaling/",
             "type": "object",
             "properties": {
                 "enabled": {
+                    "description": "Enable autoscaling",
                     "type": "boolean"
                 },
                 "maxReplicas": {
-                    "type": "integer"
+                    "description": "Maximum number of replicas",
+                    "type": "integer",
+                    "minimum": 1
                 },
                 "minReplicas": {
-                    "type": "integer"
+                    "description": "Minimum number of replicas",
+                    "type": "integer",
+                    "minimum": 1
                 },
                 "targetCPUUtilizationPercentage": {
-                    "type": "integer"
+                    "description": "Target CPU utilization percentage",
+                    "type": "integer",
+                    "maximum": 100,
+                    "minimum": 1
                 },
                 "targetMemoryUtilizationPercentage": {
-                    "type": "integer"
+                    "description": "Target memory utilization percentage",
+                    "type": "integer",
+                    "maximum": 100,
+                    "minimum": 1
                 }
-            }
+            },
+            "additionalProperties": false
         },
         "fullnameOverride": {
+            "description": "Override the full name of the chart",
             "type": "string"
         },
-        "route": {
-            "type": "object",
-            "properties": {
-                "enabled": {
-                    "type": "boolean"
-                },
-                "kind": {
-                    "type": "string",
-                    "enum": ["GRPCRoute", "HTTPRoute", "TCPRoute", "TLSRoute", "UDPRoute"]
-                },
-                "name": {
-                    "type": "string"
-                },
-                "annotations": {
-                    "type": "object"
-                },
-                "labels": {
-                    "type": "object"
-                },
-                "hostnames": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "parentRefs": {
-                    "type": "array",
-                    "items": {
-                        "type": "object",
-                        "properties": {
-                            "name": {
-                                "type": "string"
-                            },
-                            "namespace": {
-                                "type": "string"
-                            },
-                            "sectionName": {
-                                "type": "string"
-                            },
-                            "port": {
-                                "type": "integer"
-                            }
-                        }
-                    }
-                },
-                "matches": {
-                    "type": "array",
-                    "items": {
-                        "type": "object"
-                    }
-                },
-                "filters": {
-                    "type": "array",
-                    "items": {
-                        "type": "object"
-                    }
-                },
-                "additionalRules": {
-                    "type": "array",
-                    "items": {
-                        "type": "object"
-                    }
-                },
-                "securityPolicy": {
-                    "type": "object",
-                    "properties": {
-                        "enabled": {
-                            "type": "boolean"
-                        },
-                        "annotations": {
-                            "type": "object"
-                        },
-                        "labels": {
-                            "type": "object"
-                        },
-                        "basicAuth": {
-                            "type": "object"
-                        },
-                        "cors": {
-                            "type": "object"
-                        },
-                        "jwt": {
-                            "type": "object"
-                        },
-                        "oidc": {
-                            "type": "object"
-                        },
-                        "extAuth": {
-                            "type": "object"
-                        },
-                        "authorization": {
-                            "type": "object"
-                        }
-                    }
-                }
-            }
+        "global": {
+            "description": "Global values shared between all subcharts",
+            "$comment": "Added automatically by 'helm schema' to allow this chart to be used as a Helm dependency, as the `additionalProperties` setting would otherwise collide with Helm's special 'global' values key.",
+            "type": [
+                "object",
+                "null"
+            ]
         },
         "image": {
+            "description": "This sets the container image more information can be found here: https://kubernetes.io/docs/concepts/containers/images/",
+            "$ref": "https://schema.giantswarm.io/image/v0.0.1",
             "type": "object",
             "properties": {
+                "name": {
+                    "description": "Container image repository",
+                    "type": "string"
+                },
                 "pullPolicy": {
+                    "description": "This sets the pull policy for images.",
                     "type": "string"
                 },
                 "registry": {
-                    "type": "string"
-                },
-                "repository": {
+                    "description": "Container image registry",
                     "type": "string"
                 },
                 "tag": {
+                    "description": "Overrides the image tag whose default is the chart appVersion.",
                     "type": "string"
                 }
-            }
+            },
+            "additionalProperties": false
         },
         "imagePullSecrets": {
-            "type": "array"
+            "description": "This is for the secretes for pulling an image from a private repository more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/",
+            "type": "array",
+            "items": {
+                "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/v1.33.1/_definitions.json#/definitions/io.k8s.api.core.v1.LocalObjectReference"
+            }
         },
         "ingress": {
+            "description": "This block is for setting up the ingress more information can be found here: https://kubernetes.io/docs/concepts/services-networking/ingress/",
             "type": "object",
             "properties": {
                 "annotations": {
-                    "type": "object"
+                    "description": "Ingress annotations",
+                    "type": "object",
+                    "properties": {
+                        "cert-manager.io/cluster-issuer": {
+                            "type": "string"
+                        }
+                    },
+                    "additionalProperties": false
                 },
                 "className": {
+                    "description": "Ingress class name",
                     "type": "string"
                 },
                 "enabled": {
+                    "description": "Enable ingress",
                     "type": "boolean"
                 },
                 "hosts": {
+                    "description": "Ingress hosts configuration",
                     "type": "array",
                     "items": {
                         "type": "object",
@@ -176,13 +126,16 @@
                                         "pathType": {
                                             "type": "string"
                                         }
-                                    }
+                                    },
+                                    "additionalProperties": false
                                 }
                             }
-                        }
+                        },
+                        "additionalProperties": false
                     }
                 },
                 "tls": {
+                    "description": "TLS configuration for ingress",
                     "type": "array",
                     "items": {
                         "type": "object",
@@ -196,213 +149,450 @@
                             "secretName": {
                                 "type": "string"
                             }
-                        }
+                        },
+                        "additionalProperties": false
                     }
                 }
-            }
+            },
+            "additionalProperties": false
         },
         "livenessProbe": {
+            "description": "This is to setup the liveness and readiness probes more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/",
+            "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/v1.33.1/_definitions.json#/definitions/io.k8s.api.core.v1.Probe",
             "type": "object",
             "properties": {
                 "httpGet": {
                     "type": "object",
                     "properties": {
                         "path": {
+                            "description": "Probe path",
                             "type": "string"
                         },
                         "port": {
-                            "type": "string"
+                            "description": "Probe port",
+                            "type": [
+                                "string",
+                                "integer"
+                            ]
                         }
-                    }
+                    },
+                    "additionalProperties": false
                 }
-            }
+            },
+            "additionalProperties": false
         },
         "nameOverride": {
+            "description": "This is to override the chart name.",
             "type": "string"
         },
         "nodeSelector": {
-            "type": "object"
+            "description": "Node selector for pod scheduling",
+            "type": "object",
+            "additionalProperties": false
         },
         "podAnnotations": {
-            "type": "object"
+            "description": "This is for setting Kubernetes Annotations to a Pod. For more information checkout: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/",
+            "type": "object",
+            "additionalProperties": false
         },
         "podDisruptionBudget": {
+            "description": "Pod disruption budget configuration",
+            "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/v1.33.1/_definitions.json#/definitions/io.k8s.api.policy.v1.PodDisruptionBudgetSpec",
             "type": "object",
             "properties": {
                 "enabled": {
                     "type": "boolean"
                 },
                 "maxUnavailable": {
-                    "type": "integer"
-                },
-                "minAvailable": {
+                    "description": "PodDisruptionBudget specification. Define either 'minAvailable' or 'maxUnavailable', never both. minAvailable: 1",
                     "type": "integer"
                 }
-            }
+            },
+            "additionalProperties": false
         },
         "podLabels": {
-            "type": "object"
+            "description": "This is for setting Kubernetes Labels to a Pod. For more information checkout: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/",
+            "type": "object",
+            "additionalProperties": false
         },
         "podSecurityContext": {
-            "type": "object"
+            "description": "Pod security context configuration",
+            "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/v1.33.1/_definitions.json#/definitions/io.k8s.api.core.v1.PodSecurityContext",
+            "type": "object",
+            "additionalProperties": false
         },
         "readinessProbe": {
+            "description": "Readiness probe configuration",
+            "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/v1.33.1/_definitions.json#/definitions/io.k8s.api.core.v1.Probe",
             "type": "object",
             "properties": {
                 "httpGet": {
                     "type": "object",
                     "properties": {
                         "path": {
+                            "description": "Probe path",
                             "type": "string"
                         },
                         "port": {
-                            "type": "string"
+                            "description": "Probe port",
+                            "type": [
+                                "string",
+                                "integer"
+                            ]
                         }
-                    }
+                    },
+                    "additionalProperties": false
                 }
-            }
+            },
+            "additionalProperties": false
         },
         "replicaCount": {
-            "type": "integer"
+            "description": "This will set the replicaset count more information can be found here: https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/",
+            "type": "integer",
+            "minimum": 0
         },
         "resources": {
+            "description": "Resource requests and limits for the container",
+            "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/v1.33.1/_definitions.json#/definitions/io.k8s.api.core.v1.ResourceRequirements",
             "type": "object",
             "properties": {
                 "limits": {
                     "type": "object",
                     "properties": {
                         "cpu": {
+                            "description": "CPU limit",
                             "type": "string"
                         },
                         "memory": {
+                            "description": "Memory limit",
                             "type": "string"
                         }
-                    }
+                    },
+                    "additionalProperties": false
                 },
                 "requests": {
                     "type": "object",
                     "properties": {
                         "cpu": {
+                            "description": "CPU request",
                             "type": "string"
                         },
                         "memory": {
+                            "description": "Memory request",
                             "type": "string"
                         }
-                    }
+                    },
+                    "additionalProperties": false
                 }
-            }
+            },
+            "additionalProperties": false
+        },
+        "route": {
+            "description": "This block is for setting up Gateway API routes. More information can be found here: https://gateway-api.sigs.k8s.io/",
+            "type": "object",
+            "properties": {
+                "additionalRules": {
+                    "description": "Additional custom rules that can be added to the route. Supports templating",
+                    "type": "array"
+                },
+                "annotations": {
+                    "description": "Route annotations",
+                    "type": "object",
+                    "additionalProperties": false
+                },
+                "enabled": {
+                    "description": "Enable Gateway API route",
+                    "type": "boolean"
+                },
+                "filters": {
+                    "description": "Filters define the filters that are applied to requests that match this rule",
+                    "type": "array"
+                },
+                "hostnames": {
+                    "description": "Hostnames that the route should match. Supports templating with {{ .Values.xxx }}",
+                    "type": "array"
+                },
+                "kind": {
+                    "description": "Set the route kind. Valid options are GRPCRoute, HTTPRoute, TCPRoute, TLSRoute, UDPRoute",
+                    "type": "string",
+                    "enum": [
+                        "GRPCRoute",
+                        "HTTPRoute",
+                        "TCPRoute",
+                        "TLSRoute",
+                        "UDPRoute"
+                    ]
+                },
+                "labels": {
+                    "description": "Route labels",
+                    "type": "object",
+                    "additionalProperties": false
+                },
+                "matches": {
+                    "description": "Request matching rules",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "path": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string"
+                                    },
+                                    "value": {
+                                        "type": "string"
+                                    }
+                                },
+                                "additionalProperties": false
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "name": {
+                    "description": "Override the route name (defaults to fullname)",
+                    "type": "string"
+                },
+                "parentRefs": {
+                    "description": "Parent gateway references",
+                    "type": "array"
+                },
+                "securityPolicy": {
+                    "description": "Envoy Gateway SecurityPolicy configuration",
+                    "type": "object",
+                    "properties": {
+                        "annotations": {
+                            "description": "Security policy annotations",
+                            "type": "object",
+                            "additionalProperties": false
+                        },
+                        "enabled": {
+                            "description": "Enable security policy",
+                            "type": "boolean"
+                        },
+                        "labels": {
+                            "description": "Security policy labels",
+                            "type": "object",
+                            "additionalProperties": false
+                        }
+                    },
+                    "additionalProperties": false
+                }
+            },
+            "additionalProperties": false
         },
         "securityContext": {
+            "description": "Container security context configuration",
+            "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/v1.33.1/_definitions.json#/definitions/io.k8s.api.core.v1.SecurityContext",
             "type": "object",
             "properties": {
                 "allowPrivilegeEscalation": {
+                    "description": "Allow privilege escalation",
                     "type": "boolean"
                 },
                 "capabilities": {
+                    "description": "Capabilities configuration",
                     "type": "object",
                     "properties": {
                         "drop": {
+                            "description": "Capabilities to drop",
                             "type": "array",
                             "items": {
                                 "type": "string"
                             }
                         }
-                    }
+                    },
+                    "additionalProperties": false
                 },
                 "readOnlyRootFilesystem": {
+                    "description": "Mount root filesystem as read-only",
                     "type": "boolean"
                 },
                 "runAsNonRoot": {
+                    "description": "Run container as non-root user",
                     "type": "boolean"
                 },
                 "runAsUser": {
+                    "description": "User ID to run the container",
                     "type": "integer"
                 },
                 "seccompProfile": {
+                    "description": "Seccomp profile configuration",
                     "type": "object",
                     "properties": {
                         "type": {
+                            "description": "Seccomp profile type",
                             "type": "string"
                         }
-                    }
+                    },
+                    "additionalProperties": false
                 }
-            }
+            },
+            "additionalProperties": false
         },
         "service": {
+            "description": "This is for setting up a service more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/",
             "type": "object",
             "properties": {
                 "annotations": {
-                    "type": "object"
+                    "description": "Service annotations",
+                    "type": "object",
+                    "additionalProperties": false
                 },
                 "labels": {
-                    "type": "object"
+                    "description": "Service labels",
+                    "type": "object",
+                    "additionalProperties": false
                 },
                 "port": {
-                    "type": "integer"
+                    "description": "This sets the ports more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/#field-spec-ports",
+                    "type": "integer",
+                    "maximum": 65535,
+                    "minimum": 1
                 },
                 "type": {
-                    "type": "string"
+                    "description": "This sets the service type more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types",
+                    "type": "string",
+                    "enum": [
+                        "ClusterIP",
+                        "NodePort",
+                        "LoadBalancer",
+                        "ExternalName"
+                    ]
                 }
-            }
+            },
+            "additionalProperties": false
         },
         "serviceAccount": {
+            "description": "This section builds out the service account more information can be found here: https://kubernetes.io/docs/concepts/security/service-accounts/",
             "type": "object",
             "properties": {
                 "annotations": {
-                    "type": "object"
+                    "description": "Annotations to add to the service account",
+                    "type": "object",
+                    "patternProperties": {
+                        "^[a-z]$": {
+                            "type": "string"
+                        }
+                    },
+                    "additionalProperties": false
                 },
                 "automount": {
+                    "description": "Automatically mount a ServiceAccount's API credentials?",
                     "type": "boolean"
                 },
                 "create": {
+                    "description": "Specifies whether a service account should be created",
                     "type": "boolean"
                 },
                 "name": {
+                    "description": "The name of the service account to use. If not set and create is true, a name is generated using the fullname template",
                     "type": "string"
                 }
-            }
+            },
+            "additionalProperties": false
         },
         "serviceMonitor": {
+            "description": "ServiceMonitor configuration for Prometheus",
             "type": "object",
             "properties": {
                 "enabled": {
+                    "description": "Enable ServiceMonitor",
                     "type": "boolean"
                 }
-            }
+            },
+            "additionalProperties": false
         },
         "strategy": {
+            "description": "Deployment strategy configuration",
             "type": "object",
             "properties": {
                 "rollingUpdate": {
+                    "description": "Rolling update configuration",
                     "type": "object",
                     "properties": {
                         "maxSurge": {
-                            "type": "integer"
+                            "description": "Maximum number of pods that can be created above the desired replica count",
+                            "type": [
+                                "integer",
+                                "string"
+                            ]
                         },
                         "maxUnavailable": {
-                            "type": "integer"
+                            "description": "Maximum number of unavailable pods during update",
+                            "type": [
+                                "integer",
+                                "string"
+                            ]
                         }
-                    }
+                    },
+                    "additionalProperties": false
                 },
                 "type": {
-                    "type": "string"
+                    "description": "Deployment strategy type",
+                    "type": "string",
+                    "enum": [
+                        "RollingUpdate",
+                        "Recreate"
+                    ]
                 }
-            }
+            },
+            "additionalProperties": false
         },
         "tolerations": {
-            "type": "array"
-        },
-        "topologySpreadConstraints": {
+            "description": "Tolerations for pod scheduling",
             "type": "array",
             "items": {
-                "type": "object"
+                "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/v1.33.1/_definitions.json#/definitions/io.k8s.api.core.v1.Toleration"
+            }
+        },
+        "topologySpreadConstraints": {
+            "description": "Topology spread constraints for pod distribution",
+            "type": "array",
+            "items": {
+                "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/v1.33.1/_definitions.json#/definitions/io.k8s.api.core.v1.TopologySpreadConstraint",
+                "type": "object",
+                "properties": {
+                    "labelSelector": {
+                        "type": "object",
+                        "properties": {
+                            "matchLabels": {
+                                "type": "object",
+                                "properties": {
+                                    "app.kubernetes.io/instance": {
+                                        "type": "string"
+                                    },
+                                    "app.kubernetes.io/name": {
+                                        "type": "string"
+                                    }
+                                },
+                                "additionalProperties": false
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "maxSkew": {
+                        "type": "integer"
+                    },
+                    "topologyKey": {
+                        "type": "string"
+                    },
+                    "whenUnsatisfiable": {
+                        "type": "string"
+                    }
+                },
+                "additionalProperties": false
             }
         },
         "volumeMounts": {
+            "description": "Additional volumeMounts on the output Deployment definition.",
             "type": "array"
         },
         "volumes": {
+            "description": "Additional volumes on the output Deployment definition.",
             "type": "array"
         }
-    }
+    },
+    "additionalProperties": false
 }
