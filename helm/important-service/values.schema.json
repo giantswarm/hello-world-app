@@ -41,6 +41,21 @@
             },
             "additionalProperties": false
         },
+        "ciliumNetworkPolicy": {
+            "description": "CiliumNetworkPolicy for FQDN-based egress filtering. In clusters where egress traffic is denied by default, this must be enabled and egressDomains must be configured to allow outgoing HTTP/HTTPS connections. Without this, the application will not be able to reach any external services.",
+            "type": "object",
+            "properties": {
+                "egressDomains": {
+                    "description": "List of domain names for which outgoing HTTP (port 80) and HTTPS (port 443) traffic is allowed. Supports wildcards (e.g. \"*.example.com\"). DNS egress is included automatically, as it is required for domain resolution.",
+                    "type": "array"
+                },
+                "enabled": {
+                    "description": "Enable CiliumNetworkPolicy to allow egress traffic. Required in default-deny clusters.",
+                    "type": "boolean"
+                }
+            },
+            "additionalProperties": false
+        },
         "fullnameOverride": {
             "description": "Override the full name of the chart",
             "type": "string"

@@ -1,8 +1,8 @@
 # important-service
 
-![Version: 2.11.0](https://img.shields.io/badge/Version-2.11.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.3.0](https://img.shields.io/badge/AppVersion-0.3.0-informational?style=flat-square)
+![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.3.0](https://img.shields.io/badge/AppVersion-0.3.0-informational?style=flat-square)
 
-A chart that deploys a basic hello world site and lets you test values merging of user values configmap and secrets.
+An application to demonstrate workload deployment at Giant Swarm
 
 **Homepage:** <https://github.com/giantswarm/important-service>
 
@@ -96,5 +96,8 @@ A chart that deploys a basic hello world site and lets you test values merging o
 | topologySpreadConstraints | list | `[{"labelSelector":{"matchLabels":{"app.kubernetes.io/instance":"{{ .Release.Name }}","app.kubernetes.io/name":"{{ include \"important-service.name\" . }}"}},"maxSkew":1,"topologyKey":"topology.kubernetes.io/zone","whenUnsatisfiable":"ScheduleAnyway"},{"labelSelector":{"matchLabels":{"app.kubernetes.io/instance":"{{ .Release.Name }}","app.kubernetes.io/name":"{{ include \"important-service.name\" . }}"}},"maxSkew":1,"topologyKey":"kubernetes.io/hostname","whenUnsatisfiable":"ScheduleAnyway"}]` | Topology spread constraints for pod distribution |
 | podDisruptionBudget | object | `{"enabled":true,"maxUnavailable":1}` | Pod disruption budget configuration |
 | podDisruptionBudget.maxUnavailable | int | `1` | PodDisruptionBudget specification. Define either 'minAvailable' or 'maxUnavailable', never both. minAvailable: 1 |
+| ciliumNetworkPolicy | object | `{"egressDomains":[],"enabled":false}` | CiliumNetworkPolicy for FQDN-based egress filtering. In clusters where egress traffic is denied by default, this must be enabled and egressDomains must be configured to allow outgoing HTTP/HTTPS connections. Without this, the application will not be able to reach any external services. |
+| ciliumNetworkPolicy.enabled | bool | `false` | Enable CiliumNetworkPolicy to allow egress traffic. Required in default-deny clusters. |
+| ciliumNetworkPolicy.egressDomains | list | `[]` | List of domain names for which outgoing HTTP (port 80) and HTTPS (port 443) traffic is allowed. Supports wildcards (e.g. "*.example.com"). DNS egress is included automatically, as it is required for domain resolution. |
 | serviceMonitor | object | `{"enabled":false}` | ServiceMonitor configuration for Prometheus |
 | serviceMonitor.enabled | bool | `false` | Enable ServiceMonitor |
