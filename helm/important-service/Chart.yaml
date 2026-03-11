@@ -1,8 +1,8 @@
 apiVersion: v2
-name: hello-world
-description: A chart that deploys a basic hello world site and lets you test values merging of user values configmap and secrets.
+name: important-service
+description: An application to demonstrate workload deployment at Giant Swarm
 type: application
-version: 2.11.0
+version: 0.1.0
 appVersion: "0.3.0"
 home: https://github.com/giantswarm/important-service
 icon: https://s.giantswarm.io/app-icons/giantswarm/1/light.svg
