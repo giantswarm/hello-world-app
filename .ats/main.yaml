@@ -1,4 +1,4 @@
-app-tests-deploy-namespace: hello-world
+app-tests-deploy-namespace: important-service
 
 smoke-tests-cluster-type: kind
 

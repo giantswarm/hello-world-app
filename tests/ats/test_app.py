@@ -10,11 +10,11 @@ from pytest_helm_charts.k8s.deployment import wait_for_deployments_to_run
 def test_hello_world(kube_cluster: Cluster) -> None:
     assert kube_cluster.kube_client is not None
 
-    # Wait for hello-world app to run.
-    wait_for_apps_to_run(kube_cluster.kube_client, [ "hello-world" ], "hello-world", 60)
+    # Wait for important-service app to run.
+    wait_for_apps_to_run(kube_cluster.kube_client, [ "important-service" ], "important-service", 60)
 
-    # Wait for hello-world deployment to run.
-    wait_for_deployments_to_run(kube_cluster.kube_client, [ "hello-world" ], "hello-world", 60)
+    # Wait for important-service deployment to run.
+    wait_for_deployments_to_run(kube_cluster.kube_client, [ "important-service" ], "important-service", 60)
 
 @mark.functional
 @mark.upgrade
@@ -22,7 +22,7 @@ def test_requests(kube_cluster: Cluster) -> None:
     assert kube_cluster.kube_client is not None
 
     # Get service.
-    service = Service.objects(kube_cluster.kube_client).filter(namespace = "hello-world").get(name = "hello-world")
+    service = Service.objects(kube_cluster.kube_client).filter(namespace = "important-service").get(name = "important-service")
 
     # Get response.
     response = service.proxy_http_get("/")

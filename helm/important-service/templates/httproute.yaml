@@ -1,6 +1,6 @@
 {{- if .Values.route.enabled -}}
 {{- $route := .Values.route }}
-{{- $routeName := $route.name | default (include "hello-world.fullname" .) }}
+{{- $routeName := $route.name | default (include "important-service.fullname" .) }}
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: {{ $route.kind | default "HTTPRoute" }}
@@ -8,7 +8,7 @@ metadata:
   name: {{ $routeName }}
   namespace: {{ $.Release.Namespace }}
   labels:
-    {{- include "hello-world.labels" $ | nindent 4 }}
+    {{- include "important-service.labels" $ | nindent 4 }}
     {{- with $route.labels }}
     {{- toYaml . | nindent 4 }}
     {{- end }}
@@ -30,7 +30,7 @@ spec:
     {{- tpl (toYaml $route.additionalRules) $ | nindent 4 }}
     {{- end }}
     - backendRefs:
-        - name: {{ include "hello-world.fullname" $ }}
+        - name: {{ include "important-service.fullname" $ }}
           port: {{ $.Values.service.port }}
       {{- with $route.filters }}
       filters:
@@ -49,7 +49,7 @@ metadata:
   name: {{ $routeName }}
   namespace: {{ $.Release.Namespace }}
   labels:
-    {{- include "hello-world.labels" $ | nindent 4 }}
+    {{- include "important-service.labels" $ | nindent 4 }}
     {{- with $policy.labels }}
     {{- toYaml . | nindent 4 }}
     {{- end }}

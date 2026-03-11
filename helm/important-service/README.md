@@ -1,10 +1,10 @@
-# hello-world
+# important-service
 
 ![Version: 2.11.0](https://img.shields.io/badge/Version-2.11.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.3.0](https://img.shields.io/badge/AppVersion-0.3.0-informational?style=flat-square)
 
 A chart that deploys a basic hello world site and lets you test values merging of user values configmap and secrets.
 
-**Homepage:** <https://github.com/giantswarm/hello-world-app>
+**Homepage:** <https://github.com/giantswarm/important-service>
 
 ## Source Code
 
@@ -45,12 +45,12 @@ A chart that deploys a basic hello world site and lets you test values merging o
 | service.port | int | `80` | This sets the ports more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/#field-spec-ports |
 | service.labels | object | `{}` | Service labels |
 | service.annotations | object | `{}` | Service annotations |
-| ingress | object | `{"annotations":{"cert-manager.io/cluster-issuer":"letsencrypt-giantswarm"},"className":"nginx","enabled":true,"hosts":[{"host":"hello.cluster.provider.gigantic.io","paths":[{"path":"/","pathType":"Prefix"}]}],"tls":[{"hosts":["hello.cluster.provider.gigantic.io"],"secretName":"hello-world-tls"}]}` | This block is for setting up the ingress more information can be found here: https://kubernetes.io/docs/concepts/services-networking/ingress/ |
+| ingress | object | `{"annotations":{"cert-manager.io/cluster-issuer":"letsencrypt-giantswarm"},"className":"nginx","enabled":true,"hosts":[{"host":"hello.cluster.provider.gigantic.io","paths":[{"path":"/","pathType":"Prefix"}]}],"tls":[{"hosts":["hello.cluster.provider.gigantic.io"],"secretName":"important-service-tls"}]}` | This block is for setting up the ingress more information can be found here: https://kubernetes.io/docs/concepts/services-networking/ingress/ |
 | ingress.enabled | bool | `true` | Enable ingress |
 | ingress.className | string | `"nginx"` | Ingress class name |
 | ingress.annotations | object | `{"cert-manager.io/cluster-issuer":"letsencrypt-giantswarm"}` | Ingress annotations |
 | ingress.hosts | list | `[{"host":"hello.cluster.provider.gigantic.io","paths":[{"path":"/","pathType":"Prefix"}]}]` | Ingress hosts configuration |
-| ingress.tls | list | `[{"hosts":["hello.cluster.provider.gigantic.io"],"secretName":"hello-world-tls"}]` | TLS configuration for ingress |
+| ingress.tls | list | `[{"hosts":["hello.cluster.provider.gigantic.io"],"secretName":"important-service-tls"}]` | TLS configuration for ingress |
 | route | object | `{"additionalRules":[],"annotations":{},"enabled":false,"filters":[],"hostnames":[],"kind":"HTTPRoute","labels":{},"matches":[{"path":{"type":"PathPrefix","value":"/"}}],"name":"","parentRefs":[],"securityPolicy":{"annotations":{},"enabled":false,"labels":{}}}` | This block is for setting up Gateway API routes. More information can be found here: https://gateway-api.sigs.k8s.io/ |
 | route.enabled | bool | `false` | Enable Gateway API route |
 | route.kind | string | `"HTTPRoute"` | Set the route kind. Valid options are GRPCRoute, HTTPRoute, TCPRoute, TLSRoute, UDPRoute |
@@ -93,7 +93,7 @@ A chart that deploys a basic hello world site and lets you test values merging o
 | nodeSelector | object | `{}` | Node selector for pod scheduling |
 | tolerations | list | `[]` | Tolerations for pod scheduling |
 | affinity | object | `{}` | Affinity rules for pod scheduling |
-| topologySpreadConstraints | list | `[{"labelSelector":{"matchLabels":{"app.kubernetes.io/instance":"{{ .Release.Name }}","app.kubernetes.io/name":"{{ include \"hello-world.name\" . }}"}},"maxSkew":1,"topologyKey":"topology.kubernetes.io/zone","whenUnsatisfiable":"ScheduleAnyway"},{"labelSelector":{"matchLabels":{"app.kubernetes.io/instance":"{{ .Release.Name }}","app.kubernetes.io/name":"{{ include \"hello-world.name\" . }}"}},"maxSkew":1,"topologyKey":"kubernetes.io/hostname","whenUnsatisfiable":"ScheduleAnyway"}]` | Topology spread constraints for pod distribution |
+| topologySpreadConstraints | list | `[{"labelSelector":{"matchLabels":{"app.kubernetes.io/instance":"{{ .Release.Name }}","app.kubernetes.io/name":"{{ include \"important-service.name\" . }}"}},"maxSkew":1,"topologyKey":"topology.kubernetes.io/zone","whenUnsatisfiable":"ScheduleAnyway"},{"labelSelector":{"matchLabels":{"app.kubernetes.io/instance":"{{ .Release.Name }}","app.kubernetes.io/name":"{{ include \"important-service.name\" . }}"}},"maxSkew":1,"topologyKey":"kubernetes.io/hostname","whenUnsatisfiable":"ScheduleAnyway"}]` | Topology spread constraints for pod distribution |
 | podDisruptionBudget | object | `{"enabled":true,"maxUnavailable":1}` | Pod disruption budget configuration |
 | podDisruptionBudget.maxUnavailable | int | `1` | PodDisruptionBudget specification. Define either 'minAvailable' or 'maxUnavailable', never both. minAvailable: 1 |
 | serviceMonitor | object | `{"enabled":false}` | ServiceMonitor configuration for Prometheus |

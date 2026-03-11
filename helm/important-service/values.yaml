@@ -1,5 +1,5 @@
 # yaml-language-server: $schema=values.schema.json
-# Default values for hello-world.
+# Default values for important-service.
 # This is a YAML-formatted file.
 # Declare default variables to be passed into your templates.
 #
@@ -129,7 +129,7 @@ ingress:
   # @schema type:array
   # -- TLS configuration for ingress
   tls:
-    - secretName: hello-world-tls
+    - secretName: important-service-tls
       hosts:
         - hello.cluster.provider.gigantic.io
 
@@ -344,14 +344,14 @@ affinity: {}
 topologySpreadConstraints:
   - labelSelector:
       matchLabels:
-        app.kubernetes.io/name: '{{ include "hello-world.name" . }}'
+        app.kubernetes.io/name: '{{ include "important-service.name" . }}'
         app.kubernetes.io/instance: "{{ .Release.Name }}"
     topologyKey: topology.kubernetes.io/zone
     maxSkew: 1
     whenUnsatisfiable: ScheduleAnyway
   - labelSelector:
       matchLabels:
-        app.kubernetes.io/name: '{{ include "hello-world.name" . }}'
+        app.kubernetes.io/name: '{{ include "important-service.name" . }}'
         app.kubernetes.io/instance: "{{ .Release.Name }}"
     topologyKey: kubernetes.io/hostname
     maxSkew: 1

@@ -1,9 +1,7 @@
-# hello-world-app
+# important-service
 
-A very barebones app for testing features of the Giant Swarm App Platform.
-
-It contains just enough to deploy your first Hello World website on your cluster.
+A service that wants to connect to the outside world.
 
 ## Configuration
 
-Please refer to the chart's [README.md](https://github.com/giantswarm/hello-world-app/blob/main/helm/hello-world/README.md).
+Please refer to the chart's [README.md](https://github.com/giantswarm/important-service/blob/main/helm/important-service/README.md).

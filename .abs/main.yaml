@@ -1,4 +1,4 @@
-chart-dir: helm/hello-world
+chart-dir: helm/important-service
 replace-chart-version-with-git: true
 generate-metadata: true
 catalog-base-url: https://giantswarm.github.io/giantswarm-catalog/
