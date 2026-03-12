@@ -7,13 +7,14 @@ workflows:
   build:
     jobs:
       - architect/push-to-app-catalog:
-          name: push-to-giantswarm-catalog
+          name: push-to-catalog
           context: architect
           executor: app-build-suite
           chart: important-service
-          app_catalog: giantswarm-catalog
-          app_catalog_test: giantswarm-test-catalog
+          app_catalog: giantswarm-playground-catalog
+          app_catalog_test: giantswarm-playground-test-catalog
           persist_chart_archive: true
+          #push_to_appcatalog: false
           filters:
             branches:
               ignore:
@@ -24,7 +25,7 @@ workflows:
       - architect/run-tests-with-ats:
           name: run-tests-with-ats
           requires:
-            - push-to-giantswarm-catalog
+            - push-to-catalog
           filters:
             branches:
               ignore:
