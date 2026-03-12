@@ -1,5 +1,4 @@
 app-tests-deploy-namespace: important-service
-
 smoke-tests-cluster-type: kind
-
 functional-tests-cluster-type: kind
+skip-steps: upgrade
