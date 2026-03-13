@@ -99,6 +99,8 @@ An application to demonstrate workload deployment at Giant Swarm
 | ciliumNetworkPolicy | object | `{"egressDomains":[],"enabled":false}` | CiliumNetworkPolicy for FQDN-based egress filtering. In clusters where egress traffic is denied by default, this must be enabled and egressDomains must be configured to allow outgoing HTTP/HTTPS connections. Without this, the application will not be able to reach any external services. |
 | ciliumNetworkPolicy.enabled | bool | `false` | Enable CiliumNetworkPolicy to allow egress traffic. Required in default-deny clusters. |
 | ciliumNetworkPolicy.egressDomains | list | `[]` | List of domain names for which outgoing HTTP (port 80) and HTTPS (port 443) traffic is allowed. Supports wildcards (e.g. "*.example.com"). DNS egress is included automatically, as it is required for domain resolution. |
+| secretKey | object | `{"value":""}` | Secret key configuration. Provides SECRET_KEY env var to the container. Set secretKey.value via Flux valuesFrom referencing a Secret. |
+| secretKey.value | string | `""` | Secret key value. If empty, SECRET_KEY is not set. |
 | heartbeat | object | `{"url":""}` | Heartbeat configuration. Provides HEARTBEAT_URL env var to the container. Set heartbeat.url via Flux valuesFrom referencing a Secret. |
 | heartbeat.url | string | `""` | Heartbeat URL. If empty, HEARTBEAT_URL is not set. |
 | serviceMonitor | object | `{"enabled":false}` | ServiceMonitor configuration for Prometheus |

@@ -381,6 +381,13 @@ ciliumNetworkPolicy:
   # - "api.example.com"
   # - "*.githubusercontent.com"
 
+# -- Secret key configuration. Provides SECRET_KEY env var to the container.
+# Set secretKey.value via Flux valuesFrom referencing a Secret.
+secretKey:
+  # @schema type:string;required:true
+  # -- Secret key value. If empty, SECRET_KEY is not set.
+  value: ""
+
 # -- Heartbeat configuration. Provides HEARTBEAT_URL env var to the container.
 # Set heartbeat.url via Flux valuesFrom referencing a Secret.
 heartbeat:
