@@ -7,6 +7,8 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+## [0.1.2] - 2026-03-13
+
 ### Added
 
 - Add `observability.giantswarm.io/tenant` pod label to activate log ingestion into Loki.
@@ -27,6 +29,7 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 - Initial chart
 
-[Unreleased]: https://github.com/giantswarm/important-service/compare/v0.1.1...HEAD
+[Unreleased]: https://github.com/giantswarm/important-service/compare/v0.1.2...HEAD
+[0.1.2]: https://github.com/giantswarm/important-service/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/giantswarm/important-service/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/giantswarm/important-service/compare/v2.11.0...v0.1.0
