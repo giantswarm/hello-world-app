@@ -1,4 +1,6 @@
-![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.3.0](https://img.shields.io/badge/AppVersion-0.3.0-informational?style=flat-square)
+# important-service
+
+![Version: 0.1.1](https://img.shields.io/badge/Version-0.1.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.3.0](https://img.shields.io/badge/AppVersion-0.3.0-informational?style=flat-square)
 
 An application to demonstrate workload deployment at Giant Swarm
 
@@ -13,11 +15,11 @@ An application to demonstrate workload deployment at Giant Swarm
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | replicaCount | int | `1` | This will set the replicaset count more information can be found here: https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/ |
-| image | object | `{"name":"giantswarm/helloworld","pullPolicy":"IfNotPresent","registry":"gsoci.azurecr.io","tag":""}` | This sets the container image more information can be found here: https://kubernetes.io/docs/concepts/containers/images/ |
+| image | object | `{"name":"giantswarm/helloworld","pullPolicy":"IfNotPresent","registry":"gsoci.azurecr.io","tag":"0.4.0-89e64a39bdd85bd038b9e6b9631b3fb7c089cd3b"}` | This sets the container image more information can be found here: https://kubernetes.io/docs/concepts/containers/images/ |
 | image.registry | string | `"gsoci.azurecr.io"` | Container image registry |
 | image.name | string | `"giantswarm/helloworld"` | Container image repository |
 | image.pullPolicy | string | `"IfNotPresent"` | This sets the pull policy for images. |
-| image.tag | string | `""` | Overrides the image tag whose default is the chart appVersion. |
+| image.tag | string | `"0.4.0-89e64a39bdd85bd038b9e6b9631b3fb7c089cd3b"` | Overrides the image tag whose default is the chart appVersion. |
 | imagePullSecrets | list | `[]` | This is for the secretes for pulling an image from a private repository more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/ |
 | nameOverride | string | `""` | This is to override the chart name. |
 | fullnameOverride | string | `""` | Override the full name of the chart |
@@ -97,5 +99,7 @@ An application to demonstrate workload deployment at Giant Swarm
 | ciliumNetworkPolicy | object | `{"egressDomains":[],"enabled":false}` | CiliumNetworkPolicy for FQDN-based egress filtering. In clusters where egress traffic is denied by default, this must be enabled and egressDomains must be configured to allow outgoing HTTP/HTTPS connections. Without this, the application will not be able to reach any external services. |
 | ciliumNetworkPolicy.enabled | bool | `false` | Enable CiliumNetworkPolicy to allow egress traffic. Required in default-deny clusters. |
 | ciliumNetworkPolicy.egressDomains | list | `[]` | List of domain names for which outgoing HTTP (port 80) and HTTPS (port 443) traffic is allowed. Supports wildcards (e.g. "*.example.com"). DNS egress is included automatically, as it is required for domain resolution. |
+| heartbeat | object | `{"url":""}` | Heartbeat configuration. Provides HEARTBEAT_URL env var to the container. Set heartbeat.url via Flux valuesFrom referencing a Secret. |
+| heartbeat.url | string | `""` | Heartbeat URL. If empty, HEARTBEAT_URL is not set. |
 | serviceMonitor | object | `{"enabled":false}` | ServiceMonitor configuration for Prometheus |
 | serviceMonitor.enabled | bool | `false` | Enable ServiceMonitor |

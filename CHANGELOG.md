@@ -13,6 +13,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 - Use dev version `0.4.0-89e64a39bdd85bd038b9e6b9631b3fb7c089cd3b` of helloworld image with heartbeat ping and readiness probe (see https://github.com/giantswarm/helloworld/pull/151 )
 
+### Added
+
+- Add config value `hartbeat.url` to values schema, to configure the heartbeat URL.
+
 ## [0.1.0] - 2026-03-12
 
 ### Added

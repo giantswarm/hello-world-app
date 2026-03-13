@@ -381,6 +381,13 @@ ciliumNetworkPolicy:
   # - "api.example.com"
   # - "*.githubusercontent.com"
 
+# -- Heartbeat configuration. Provides HEARTBEAT_URL env var to the container.
+# Set heartbeat.url via Flux valuesFrom referencing a Secret.
+heartbeat:
+  # @schema type:string
+  # -- Heartbeat URL. If empty, HEARTBEAT_URL is not set.
+  url: ""
+
 # -- ServiceMonitor configuration for Prometheus
 serviceMonitor:
   # @schema type:boolean
