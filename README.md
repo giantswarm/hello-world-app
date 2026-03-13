@@ -1,9 +1,12 @@
-[![CircleCI](https://dl.circleci.com/status-badge/img/gh/giantswarm/important-service/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/giantswarm/important-service/tree/main)
+An application to demonstrate some features of the Giant Swarm platform.
 
-# important-service
+## Features
 
-A service that wants to connect to the outside world.
+- Runs the [helloworld](https://github.com/giantswarm/helloworld) container image.
+- Exports metrics to Prometheus/Mimir
+- Exports logs to Loki
+- Pings external heartbeat
 
 ## Configuration
 
-Please refer to the chart's [README.md](https://github.com/giantswarm/important-service/blob/main/helm/important-service/README.md).
+Please refer to the Helm chart's [configuration reference](helm/important-service/README.md) for full information on all configuration options.
