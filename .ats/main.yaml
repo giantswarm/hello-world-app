@@ -1,4 +1,5 @@
 app-tests-deploy-namespace: important-service
+app-tests-app-config-file: helm/important-service/ci/ci-values.yaml
 smoke-tests-cluster-type: kind
 functional-tests-cluster-type: kind
 skip-steps: upgrade

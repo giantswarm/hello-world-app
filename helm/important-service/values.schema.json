@@ -68,6 +68,20 @@
                 "null"
             ]
         },
+        "heartbeat": {
+            "description": "Heartbeat configuration. Provides HEARTBEAT_URL env var to the container. Set heartbeat.url via Flux valuesFrom referencing a Secret.",
+            "type": "object",
+            "required": [
+                "url"
+            ],
+            "properties": {
+                "url": {
+                    "description": "Heartbeat URL. If empty, HEARTBEAT_URL is not set.",
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
         "image": {
             "description": "This sets the container image more information can be found here: https://kubernetes.io/docs/concepts/containers/images/",
             "$ref": "https://schema.giantswarm.io/image/v0.0.1",
@@ -393,6 +407,20 @@
                         }
                     },
                     "additionalProperties": false
+                }
+            },
+            "additionalProperties": false
+        },
+        "secretKey": {
+            "description": "Secret key configuration. Provides SECRET_KEY env var to the container. Set secretKey.value via Flux valuesFrom referencing a Secret.",
+            "type": "object",
+            "required": [
+                "value"
+            ],
+            "properties": {
+                "value": {
+                    "description": "Secret key value. If empty, SECRET_KEY is not set.",
+                    "type": "string"
                 }
             },
             "additionalProperties": false

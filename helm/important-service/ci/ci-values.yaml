@@ -1,0 +1,4 @@
+secretKey:
+  value: dummy-secret-key-for-testing
+heartbeat:
+  url: https://www.example.com/

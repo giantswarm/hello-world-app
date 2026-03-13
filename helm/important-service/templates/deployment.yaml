@@ -41,11 +41,14 @@ spec:
         image: "{{ .Values.image.registry }}/{{ .Values.image.name }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         env:
+        {{- if .Values.secretKey.value }}
         - name: SECRET_KEY
-          valueFrom:
-            secretKeyRef:
-              name: {{ include "important-service.fullname" . }}
-              key: secret-key
+          value: {{ .Values.secretKey.value | quote }}
+        {{- end }}
+        {{- if .Values.heartbeat.url }}
+        - name: HEARTBEAT_URL
+          value: {{ .Values.heartbeat.url | quote }}
+        {{- end }}
         ports:
         - name: http
           containerPort: 8080
