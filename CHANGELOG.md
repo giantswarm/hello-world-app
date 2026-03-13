@@ -7,11 +7,14 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-03-13
+
 ## [0.1.0] - 2026-03-12
 
 ### Added
 
 - Initial chart
 
-[Unreleased]: https://github.com/giantswarm/important-service/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/giantswarm/important-service/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/giantswarm/important-service/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/giantswarm/important-service/compare/v2.11.0...v0.1.0
