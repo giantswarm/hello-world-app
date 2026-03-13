@@ -384,7 +384,7 @@ ciliumNetworkPolicy:
 # -- Heartbeat configuration. Provides HEARTBEAT_URL env var to the container.
 # Set heartbeat.url via Flux valuesFrom referencing a Secret.
 heartbeat:
-  # @schema type:string
+  # @schema type:string;required:true
   # -- Heartbeat URL. If empty, HEARTBEAT_URL is not set.
   url: ""
 

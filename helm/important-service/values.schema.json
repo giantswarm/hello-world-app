@@ -71,6 +71,9 @@
         "heartbeat": {
             "description": "Heartbeat configuration. Provides HEARTBEAT_URL env var to the container. Set heartbeat.url via Flux valuesFrom referencing a Secret.",
             "type": "object",
+            "required": [
+                "url"
+            ],
             "properties": {
                 "url": {
                     "description": "Heartbeat URL. If empty, HEARTBEAT_URL is not set.",
