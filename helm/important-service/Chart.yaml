@@ -2,7 +2,7 @@ apiVersion: v2
 name: important-service
 description: An application to demonstrate workload deployment at Giant Swarm
 type: application
-version: 0.1.2
+version: 0.1.3
 appVersion: "0.3.0"
 home: https://github.com/giantswarm/important-service
 icon: https://s.giantswarm.io/app-icons/giantswarm/1/light.svg

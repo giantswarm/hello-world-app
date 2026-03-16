@@ -7,6 +7,8 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+## [0.1.3] - 2026-03-16
+
 ### Changed
 
 - Set Readiness probe default path to /readyz
@@ -34,7 +36,8 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 - Initial chart
 
-[Unreleased]: https://github.com/giantswarm/important-service/compare/v0.1.2...HEAD
+[Unreleased]: https://github.com/giantswarm/important-service/compare/v0.1.3...HEAD
+[0.1.3]: https://github.com/giantswarm/important-service/compare/v0.1.2...v0.1.3
 [0.1.2]: https://github.com/giantswarm/important-service/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/giantswarm/important-service/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/giantswarm/important-service/compare/v2.11.0...v0.1.0
