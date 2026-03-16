@@ -7,6 +7,11 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Changed
+
+- Set Readiness probe default path to /readyz
+- Set Liveness probe default path to /healthz
+
 ## [0.1.2] - 2026-03-13
 
 ### Added

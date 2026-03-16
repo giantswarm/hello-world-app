@@ -262,7 +262,7 @@ livenessProbe:
   httpGet:
     # @schema type:string
     # -- Probe path
-    path: /
+    path: /healthz
     # @schema type:[string, integer]
     # -- Probe port
     port: http
@@ -273,7 +273,7 @@ readinessProbe:
   httpGet:
     # @schema type:string
     # -- Probe path
-    path: /
+    path: /readyz
     # @schema type:[string, integer]
     # -- Probe port
     port: http
