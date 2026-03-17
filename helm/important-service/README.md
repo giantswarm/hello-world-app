@@ -1,6 +1,6 @@
 # important-service
 
-![Version: 0.2.0](https://img.shields.io/badge/Version-0.2.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.3.0](https://img.shields.io/badge/AppVersion-0.3.0-informational?style=flat-square)
+![Version: 0.2.1](https://img.shields.io/badge/Version-0.2.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.3.0](https://img.shields.io/badge/AppVersion-0.3.0-informational?style=flat-square)
 
 An application to demonstrate workload deployment at Giant Swarm
 
@@ -15,11 +15,11 @@ An application to demonstrate workload deployment at Giant Swarm
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | replicaCount | int | `1` | This will set the replicaset count more information can be found here: https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/ |
-| image | object | `{"name":"giantswarm/helloworld","pullPolicy":"IfNotPresent","registry":"gsoci.azurecr.io","tag":"0.4.0-7c987a021d52fac6bc44109fbc738e93b3865c40"}` | This sets the container image more information can be found here: https://kubernetes.io/docs/concepts/containers/images/ |
+| image | object | `{"name":"giantswarm/helloworld","pullPolicy":"IfNotPresent","registry":"gsoci.azurecr.io","tag":"0.4.0-29797f4b96d795a4126f6dc8f826861a4a5a789e"}` | This sets the container image more information can be found here: https://kubernetes.io/docs/concepts/containers/images/ |
 | image.registry | string | `"gsoci.azurecr.io"` | Container image registry |
 | image.name | string | `"giantswarm/helloworld"` | Container image repository |
 | image.pullPolicy | string | `"IfNotPresent"` | This sets the pull policy for images. |
-| image.tag | string | `"0.4.0-7c987a021d52fac6bc44109fbc738e93b3865c40"` | Overrides the image tag whose default is the chart appVersion. |
+| image.tag | string | `"0.4.0-29797f4b96d795a4126f6dc8f826861a4a5a789e"` | Overrides the image tag whose default is the chart appVersion. |
 | imagePullSecrets | list | `[]` | This is for the secretes for pulling an image from a private repository more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/ |
 | nameOverride | string | `""` | This is to override the chart name. |
 | fullnameOverride | string | `""` | Override the full name of the chart |

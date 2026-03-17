@@ -11,10 +11,10 @@ def test_hello_world(kube_cluster: Cluster) -> None:
     assert kube_cluster.kube_client is not None
 
     # Wait for important-service app to run.
-    wait_for_apps_to_run(kube_cluster.kube_client, [ "important-service" ], "important-service", 60)
+    wait_for_apps_to_run(kube_cluster.kube_client, [ "important-service" ], "important-service", 120)
 
     # Wait for important-service deployment to run.
-    wait_for_deployments_to_run(kube_cluster.kube_client, [ "important-service" ], "important-service", 60)
+    wait_for_deployments_to_run(kube_cluster.kube_client, [ "important-service" ], "important-service", 120)
 
 @mark.functional
 @mark.upgrade

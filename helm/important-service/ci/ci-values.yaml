@@ -1,5 +1,4 @@
 # yaml-language-server: $schema=../values.schema.json
 
 heartbeat:
-  url: https://www.example.com/
-
+  url: http://www.example.com/
