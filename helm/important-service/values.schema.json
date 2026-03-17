@@ -411,20 +411,6 @@
             },
             "additionalProperties": false
         },
-        "secretKey": {
-            "description": "Secret key configuration. Provides SECRET_KEY env var to the container. Set secretKey.value via Flux valuesFrom referencing a Secret.",
-            "type": "object",
-            "required": [
-                "value"
-            ],
-            "properties": {
-                "value": {
-                    "description": "Secret key value. If empty, SECRET_KEY is not set.",
-                    "type": "string"
-                }
-            },
-            "additionalProperties": false
-        },
         "securityContext": {
             "description": "Container security context configuration",
             "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/v1.33.1/_definitions.json#/definitions/io.k8s.api.core.v1.SecurityContext",

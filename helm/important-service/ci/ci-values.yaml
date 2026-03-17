@@ -1,7 +1,5 @@
 # yaml-language-server: $schema=../values.schema.json
 
-secretKey:
-  value: dummy-secret-key-for-testing
 heartbeat:
   url: https://www.example.com/
 livenessProbe:
