@@ -255,29 +255,6 @@ resources:
     # -- Memory limit
     memory: 100Mi
 
-# @schema $ref: $k8s/_definitions.json#/definitions/io.k8s.api.core.v1.Probe
-# -- This is to setup the liveness and readiness probes more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
-livenessProbe:
-  # HTTP GET probe configuration
-  httpGet:
-    # @schema type:string
-    # -- Probe path
-    path: /healthz
-    # @schema type:[string, integer]
-    # -- Probe port
-    port: http
-# @schema $ref: $k8s/_definitions.json#/definitions/io.k8s.api.core.v1.Probe
-# -- Readiness probe configuration
-readinessProbe:
-  # HTTP GET probe configuration
-  httpGet:
-    # @schema type:string
-    # -- Probe path
-    path: /readyz
-    # @schema type:[string, integer]
-    # -- Probe port
-    port: http
-
 # -- This section is for setting up autoscaling more information can be found here: https://kubernetes.io/docs/concepts/workloads/autoscaling/
 autoscaling:
   # @schema type:boolean

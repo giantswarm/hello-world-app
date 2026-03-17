@@ -2,11 +2,4 @@
 
 heartbeat:
   url: https://www.example.com/
-livenessProbe:
-  httpGet:
-    path: /
-    port: http
-readinessProbe:
-  httpGet:
-    path: /
-    port: http
+

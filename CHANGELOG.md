@@ -7,6 +7,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Removed
+
+- Remove `livenessProve` and `readinessProbe` config options
+
 ## [0.2.0] - 2026-03-17
 
 ### Removed

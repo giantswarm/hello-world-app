@@ -1,6 +1,6 @@
 # important-service
 
-![Version: 0.1.3](https://img.shields.io/badge/Version-0.1.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.3.0](https://img.shields.io/badge/AppVersion-0.3.0-informational?style=flat-square)
+![Version: 0.2.0](https://img.shields.io/badge/Version-0.2.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.3.0](https://img.shields.io/badge/AppVersion-0.3.0-informational?style=flat-square)
 
 An application to demonstrate workload deployment at Giant Swarm
 
@@ -71,12 +71,6 @@ An application to demonstrate workload deployment at Giant Swarm
 | resources.requests.memory | string | `"50Mi"` | Memory request |
 | resources.limits.cpu | string | `"400m"` | CPU limit |
 | resources.limits.memory | string | `"100Mi"` | Memory limit |
-| livenessProbe | object | `{"httpGet":{"path":"/healthz","port":"http"}}` | This is to setup the liveness and readiness probes more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/ |
-| livenessProbe.httpGet.path | string | `"/healthz"` | Probe path |
-| livenessProbe.httpGet.port | string | `"http"` | Probe port |
-| readinessProbe | object | `{"httpGet":{"path":"/readyz","port":"http"}}` | Readiness probe configuration |
-| readinessProbe.httpGet.path | string | `"/readyz"` | Probe path |
-| readinessProbe.httpGet.port | string | `"http"` | Probe port |
 | autoscaling | object | `{"enabled":true,"maxReplicas":100,"minReplicas":1,"targetCPUUtilizationPercentage":80,"targetMemoryUtilizationPercentage":80}` | This section is for setting up autoscaling more information can be found here: https://kubernetes.io/docs/concepts/workloads/autoscaling/ |
 | autoscaling.enabled | bool | `true` | Enable autoscaling |
 | autoscaling.minReplicas | int | `1` | Minimum number of replicas |

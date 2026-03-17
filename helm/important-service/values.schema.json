@@ -185,31 +185,6 @@
             },
             "additionalProperties": false
         },
-        "livenessProbe": {
-            "description": "This is to setup the liveness and readiness probes more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/",
-            "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/v1.33.1/_definitions.json#/definitions/io.k8s.api.core.v1.Probe",
-            "type": "object",
-            "properties": {
-                "httpGet": {
-                    "type": "object",
-                    "properties": {
-                        "path": {
-                            "description": "Probe path",
-                            "type": "string"
-                        },
-                        "port": {
-                            "description": "Probe port",
-                            "type": [
-                                "string",
-                                "integer"
-                            ]
-                        }
-                    },
-                    "additionalProperties": false
-                }
-            },
-            "additionalProperties": false
-        },
         "nameOverride": {
             "description": "This is to override the chart name.",
             "type": "string"
@@ -248,31 +223,6 @@
             "description": "Pod security context configuration",
             "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/v1.33.1/_definitions.json#/definitions/io.k8s.api.core.v1.PodSecurityContext",
             "type": "object",
-            "additionalProperties": false
-        },
-        "readinessProbe": {
-            "description": "Readiness probe configuration",
-            "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/v1.33.1/_definitions.json#/definitions/io.k8s.api.core.v1.Probe",
-            "type": "object",
-            "properties": {
-                "httpGet": {
-                    "type": "object",
-                    "properties": {
-                        "path": {
-                            "description": "Probe path",
-                            "type": "string"
-                        },
-                        "port": {
-                            "description": "Probe port",
-                            "type": [
-                                "string",
-                                "integer"
-                            ]
-                        }
-                    },
-                    "additionalProperties": false
-                }
-            },
             "additionalProperties": false
         },
         "replicaCount": {
