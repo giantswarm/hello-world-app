@@ -15,25 +15,15 @@ spec:
             - port: "8080"
               protocol: TCP
   egress:
+    - toPorts:
+        - ports:
+            - port: "53"
+              protocol: UDP
+            - port: "53"
+              protocol: TCP
+    {{- if .Values.ciliumNetworkPolicy.egressDomains }}
     - toEntities:
-        - kube-dns
-      toPorts:
-        - ports:
-            - port: "53"
-              protocol: UDP
-            - port: "53"
-              protocol: TCP
-      toPorts:
-        - ports:
-            - port: "53"
-              protocol: UDP
-            - port: "53"
-              protocol: TCP
-    {{- with .Values.ciliumNetworkPolicy.egressDomains }}
-    - toFQDNs:
-        {{- range . }}
-        - matchPattern: {{ . | quote }}
-        {{- end }}
+        - world
       toPorts:
         - ports:
             - port: "80"

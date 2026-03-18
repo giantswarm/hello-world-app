@@ -342,7 +342,7 @@ podDisruptionBudget:
   # minAvailable: 1
   maxUnavailable: 1
 
-# -- CiliumNetworkPolicy for FQDN-based egress filtering.
+# -- CiliumNetworkPolicy for egress filtering.
 # In clusters where egress traffic is denied by default, this must be enabled
 # and egressDomains must be configured to allow outgoing HTTP/HTTPS connections.
 # Without this, the application will not be able to reach any external services.
@@ -351,9 +351,12 @@ ciliumNetworkPolicy:
   # -- Enable CiliumNetworkPolicy to allow egress traffic. Required in default-deny clusters.
   enabled: false
   # @schema type:array
-  # -- List of domain names for which outgoing HTTP (port 80) and HTTPS (port 443)
-  # traffic is allowed. Supports wildcards (e.g. "*.example.com").
-  # DNS egress is included automatically, as it is required for domain resolution.
+  # -- List of external domain names the application needs to reach.
+  # When set (non-empty), egress to external IPs (entity "world") on ports 80/443
+  # is allowed. DNS egress (port 53) is always included when the policy is enabled.
+  # Note: toFQDNs is not used due to incompatibility with non-standard CoreDNS
+  # ports (1053) in Giant Swarm clusters. The domains listed here serve as
+  # documentation of intended egress targets.
   egressDomains: []
   # - "api.example.com"
   # - "*.githubusercontent.com"
