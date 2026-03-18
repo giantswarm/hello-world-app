@@ -7,6 +7,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Fixed
+
+- Change egress policy to allow DNS
+
 ## [0.2.2] - 2026-03-18
 
 ### Fixed

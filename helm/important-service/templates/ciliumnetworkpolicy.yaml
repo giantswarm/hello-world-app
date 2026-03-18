@@ -15,10 +15,14 @@ spec:
             - port: "8080"
               protocol: TCP
   egress:
-    - toEndpoints:
-        - matchLabels:
-            io.kubernetes.pod.namespace: kube-system
-            k8s-app: coredns
+    - toEntities:
+        - kube-dns
+      toPorts:
+        - ports:
+            - port: "53"
+              protocol: UDP
+            - port: "53"
+              protocol: TCP
       toPorts:
         - ports:
             - port: "53"
