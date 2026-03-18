@@ -7,6 +7,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Fixed
+
+- Change kube-dns to coredns in egress policy
+
 ## [0.2.1] - 2026-03-17
 
 ### Removed
