@@ -1,4 +1,5 @@
 # yaml-language-server: $schema=../values.schema.json
 
 heartbeat:
-  url: http://www.example.com/
+  # HTTPS is expected to fail in CI, as the alpine CA certificates don't include what example.com is using.
+  url: https://www.example.com/
