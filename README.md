@@ -5,7 +5,7 @@
 ![Docker Pulls](https://img.shields.io/docker/pulls/giantswarm/helloworld)
 [![License: MIT](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://github.com/giantswarm/hello-world-app/blob/main/LICENSE)
 
-# Hello World App
+# hello-world-app
 
 </div>
 
