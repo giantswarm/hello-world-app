@@ -1,4 +1,4 @@
-<p align="center">
+<div align="center">
 
 [![GitHub release](https://img.shields.io/github/release/giantswarm/hello-world-app.svg?color)](https://github.com/giantswarm/hello-world-app/releases)
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/giantswarm/hello-world-app/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/giantswarm/hello-world-app/tree/main)
@@ -7,7 +7,7 @@
 
 # Hello World App
 
-</p>
+</div>
 
 A pre-packaged Helm chart for deploying [giantswarm/helloworld](https://github.com/giantswarm/helloworld) on Giant Swarm managed clusters. It serves a static "Hello World" page and is designed to be a quick smoke test after cluster setup.
 
