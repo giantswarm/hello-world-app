@@ -3,7 +3,7 @@
 [![GitHub release](https://img.shields.io/github/release/giantswarm/hello-world-app.svg?color)](https://github.com/giantswarm/hello-world-app/releases)
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/giantswarm/hello-world-app/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/giantswarm/hello-world-app/tree/main)
 ![Docker Pulls](https://img.shields.io/docker/pulls/giantswarm/helloworld)
-[![License: MIT](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://github.com/giantswarm/hello-world-app/blob/main/LICENSE)
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://github.com/giantswarm/hello-world-app/blob/main/LICENSE)
 
 # hello-world-app
 
