@@ -9,6 +9,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [3.0.0] - 2026-03-25
 
+### Changed
+
+- Update Helm chart values schema with `additionalProperties: false` on the root level.
+
 ## [2.11.0] - 2025-12-17
 
 ### Changed
