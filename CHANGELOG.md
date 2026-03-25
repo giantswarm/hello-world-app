@@ -7,6 +7,12 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+## [3.0.0] - 2026-03-25
+
+### Changed
+
+- Update Helm chart values schema with `additionalProperties: false` on the root level.
+
 ## [2.11.0] - 2025-12-17
 
 ### Changed
@@ -243,7 +249,8 @@ First release published to the Giant Swarm catalog
 
 Initial release
 
-[Unreleased]: https://github.com/giantswarm/hello-world-app/compare/v2.11.0...HEAD
+[Unreleased]: https://github.com/giantswarm/hello-world-app/compare/v3.0.0...HEAD
+[3.0.0]: https://github.com/giantswarm/hello-world-app/compare/v2.11.0...v3.0.0
 [2.11.0]: https://github.com/giantswarm/hello-world-app/compare/v2.10.0...v2.11.0
 [2.10.0]: https://github.com/giantswarm/hello-world-app/compare/v2.9.1...v2.10.0
 [2.9.1]: https://github.com/giantswarm/hello-world-app/compare/v2.9.0...v2.9.1
