@@ -8,6 +8,7 @@ draft: 2020
 indent: 4
 output: helm/hello-world/values.schema.json
 
+bundle: false
 
 useHelmDocs: true
 
