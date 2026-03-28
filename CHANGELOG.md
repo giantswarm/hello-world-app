@@ -7,6 +7,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Fixed
+
+- Remove external `$ref` URLs from values schema to prevent deployment failures when chart-operator cannot reach external schema endpoints from inside clusters.
+
 ## [3.0.0] - 2026-03-25
 
 ### Changed
