@@ -360,7 +360,6 @@ topologySpreadConstraints:
 # @schema $ref: $k8s/_definitions.json#/definitions/io.k8s.api.policy.v1.PodDisruptionBudgetSpec
 # -- Pod disruption budget configuration
 podDisruptionBudget:
-  enabled: true
   # -- PodDisruptionBudget specification. Define either 'minAvailable' or 'maxUnavailable', never both.
   # minAvailable: 1
   maxUnavailable: 1
