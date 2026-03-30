@@ -13,7 +13,7 @@ output: helm/hello-world/values.schema.json
 # https://github.com/giantswarm/giantswarm/issues/36234
 bundle: true
 bundleRoot: ""
-bundleWithoutID: false
+bundleWithoutID: true
 
 k8sSchemaURL:
   https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/
