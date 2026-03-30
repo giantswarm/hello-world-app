@@ -94,7 +94,7 @@ A chart that deploys a basic hello world site and lets you test values merging o
 | tolerations | list | `[]` | Tolerations for pod scheduling |
 | affinity | object | `{}` | Affinity rules for pod scheduling |
 | topologySpreadConstraints | list | `[{"labelSelector":{"matchLabels":{"app.kubernetes.io/instance":"{{ .Release.Name }}","app.kubernetes.io/name":"{{ include \"hello-world.name\" . }}"}},"maxSkew":1,"topologyKey":"topology.kubernetes.io/zone","whenUnsatisfiable":"ScheduleAnyway"},{"labelSelector":{"matchLabels":{"app.kubernetes.io/instance":"{{ .Release.Name }}","app.kubernetes.io/name":"{{ include \"hello-world.name\" . }}"}},"maxSkew":1,"topologyKey":"kubernetes.io/hostname","whenUnsatisfiable":"ScheduleAnyway"}]` | Topology spread constraints for pod distribution |
-| podDisruptionBudget | object | `{"enabled":true,"maxUnavailable":1}` | Pod disruption budget configuration |
+| podDisruptionBudget | object | `{"maxUnavailable":1}` | Pod disruption budget configuration |
 | podDisruptionBudget.maxUnavailable | int | `1` | PodDisruptionBudget specification. Define either 'minAvailable' or 'maxUnavailable', never both. minAvailable: 1 |
 | serviceMonitor | object | `{"enabled":false}` | ServiceMonitor configuration for Prometheus |
 | serviceMonitor.enabled | bool | `false` | Enable ServiceMonitor |
