@@ -7,6 +7,14 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Changed
+
+- Include all JSON schema for validating values in chart, by setting `bundle: true` in `.schema.yaml`
+
+### Removed
+
+- Remove config value `.podDisruptionBudget.enabled` as it's not compliant with K8s PodDisruption spec schema.
+
 ## [3.0.0] - 2026-03-25
 
 ### Changed
