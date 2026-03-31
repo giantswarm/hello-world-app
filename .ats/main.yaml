@@ -1,3 +1,4 @@
+app_tests_app_config_file: ci/ci-values.yaml
 app-tests-deploy-namespace: hello-world
 
 smoke-tests-cluster-type: kind
