@@ -1,4 +1,4 @@
-app-tests-app-config-file: ci/ci-values.yaml
+app-tests-app-config-file: helm/hello-world/ci/ci-values.yaml
 app-tests-deploy-namespace: hello-world
 
 smoke-tests-cluster-type: kind
