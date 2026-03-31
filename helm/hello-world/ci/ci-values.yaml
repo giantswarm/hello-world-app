@@ -1,3 +1,12 @@
 ingress:
   annotations:
     kubernetes.io/tls-acme: 'true'
+  hosts:
+    - host: my.host.name
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls:
+    - secretName: hello-world-tls
+      hosts:
+        - my.host.name
