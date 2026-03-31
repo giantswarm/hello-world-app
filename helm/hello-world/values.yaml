@@ -43,14 +43,14 @@ serviceAccount:
   # @schema type:boolean
   # -- Automatically mount a ServiceAccount's API credentials?
   automount: false
-  # @schema type:object;patternProperties: {"^[a-z]$": {type: string}}
+  # @schema type:object;patternProperties:{"^[a-z]$": {type: string}}
   # -- Annotations to add to the service account
   annotations: {}
   # @schema type:string
   # -- The name of the service account to use. If not set and create is true, a name is generated using the fullname template
   name: ""
 
-# @schema type:object
+# @schema type:object;additionalProperties:{"type":"string"}
 # -- This is for setting Kubernetes Annotations to a Pod. For more information checkout: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
 podAnnotations: {}
 # @schema type:object
@@ -101,7 +101,7 @@ service:
   # @schema type:object
   # -- Service labels
   labels: {}
-  # @schema type:object
+  # @schema type:object;additionalProperties:{"type":"string"}
   # -- Service annotations
   annotations: {}
 
@@ -113,7 +113,7 @@ ingress:
   # @schema type:string
   # -- Ingress class name
   className: nginx
-  # @schema type:object
+  # @schema type:object;additionalProperties:{"type":"string"}
   # -- Ingress annotations
   annotations:
     # kubernetes.io/ingress.class: nginx
@@ -145,7 +145,7 @@ route:
   # -- Override the route name (defaults to fullname)
   name: ""
 
-  # @schema type:object
+  # @schema type:object;additionalProperties:{"type":"string"}
   # -- Route annotations
   annotations: {}
   # @schema type:object
@@ -188,7 +188,7 @@ route:
     # @schema type:boolean
     # -- Enable security policy
     enabled: false
-    # @schema type:object
+    # @schema type:object;additionalProperties:{"type":"string"}
     # -- Security policy annotations
     annotations: {}
     # @schema type:object
