@@ -7,6 +7,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Fixed
+
+- Specify `additionalProperties` for all annotation configuration options
+
 ## [3.0.1] - 2026-03-30
 
 ### Changed

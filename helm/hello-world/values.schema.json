@@ -96,7 +96,9 @@
                             "type": "string"
                         }
                     },
-                    "additionalProperties": false
+                    "additionalProperties": {
+                        "type": "string"
+                    }
                 },
                 "className": {
                     "description": "Ingress class name",
@@ -193,7 +195,9 @@
         "podAnnotations": {
             "description": "This is for setting Kubernetes Annotations to a Pod. For more information checkout: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/",
             "type": "object",
-            "additionalProperties": false
+            "additionalProperties": {
+                "type": "string"
+            }
         },
         "podDisruptionBudget": {
             "description": "Pod disruption budget configuration",
@@ -295,7 +299,9 @@
                 "annotations": {
                     "description": "Route annotations",
                     "type": "object",
-                    "additionalProperties": false
+                    "additionalProperties": {
+                        "type": "string"
+                    }
                 },
                 "enabled": {
                     "description": "Enable Gateway API route",
@@ -362,7 +368,9 @@
                         "annotations": {
                             "description": "Security policy annotations",
                             "type": "object",
-                            "additionalProperties": false
+                            "additionalProperties": {
+                                "type": "string"
+                            }
                         },
                         "enabled": {
                             "description": "Enable security policy",
@@ -435,7 +443,9 @@
                 "annotations": {
                     "description": "Service annotations",
                     "type": "object",
-                    "additionalProperties": false
+                    "additionalProperties": {
+                        "type": "string"
+                    }
                 },
                 "labels": {
                     "description": "Service labels",
