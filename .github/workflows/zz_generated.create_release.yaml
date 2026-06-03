@@ -20,7 +20,7 @@ permissions: {}
 
 jobs:
   create-release:
-    uses: giantswarm/github-workflows/.github/workflows/create-release.yaml@use-semver
+    uses: giantswarm/github-workflows/.github/workflows/create-release.yaml@use-gitsemver
     with:
       build-release-artifacts: false
       fetch-deep-gitlog-for-build: true
