@@ -7,6 +7,8 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-06-03
+
 ### Fixed
 
 - promote RC to stable
@@ -47,7 +49,8 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 - testing
 
-[Unreleased]: https://github.com/giantswarm/release-test-app/compare/v0.1.1-rc.2...HEAD
+[Unreleased]: https://github.com/giantswarm/release-test-app/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/giantswarm/release-test-app/compare/v0.1.1-rc.2...v0.1.1
 [0.1.1-rc.2]: https://github.com/giantswarm/release-test-app/compare/v0.1.1-rc.1...v0.1.1-rc.2
 [0.1.1-rc.1]: https://github.com/giantswarm/release-test-app/compare/v0.1.0...v0.1.1-rc.1
 [0.1.0]: https://github.com/giantswarm/release-test-app/compare/v0.0.3...v0.1.0
