@@ -7,6 +7,8 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+## [0.2.0-rc.1] - 2026-06-03
+
 ### Added
 
 - new minor feature for rc test
@@ -53,7 +55,8 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 - testing
 
-[Unreleased]: https://github.com/giantswarm/release-test-app/compare/v0.1.1...HEAD
+[Unreleased]: https://github.com/giantswarm/release-test-app/compare/v0.2.0-rc.1...HEAD
+[0.2.0-rc.1]: https://github.com/giantswarm/release-test-app/compare/v0.1.1...v0.2.0-rc.1
 [0.1.1]: https://github.com/giantswarm/release-test-app/compare/v0.1.1-rc.2...v0.1.1
 [0.1.1-rc.2]: https://github.com/giantswarm/release-test-app/compare/v0.1.1-rc.1...v0.1.1-rc.2
 [0.1.1-rc.1]: https://github.com/giantswarm/release-test-app/compare/v0.1.0...v0.1.1-rc.1
