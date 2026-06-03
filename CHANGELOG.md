@@ -7,6 +7,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Fixed
+
+- test patch RC entry
+
 ## [0.1.0] - 2026-06-03
 
 ### Changed
