@@ -7,6 +7,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Added
+
+- End-to-end test entry for RC release validation.
+
 ## [2.1.0-rc.1] - 2026-06-03
 
 - direct major v2 bump
