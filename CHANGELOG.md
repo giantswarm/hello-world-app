@@ -7,6 +7,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Fixed
+
+- additional fix in rc.2
+
 ## [0.1.1-rc.1] - 2026-06-03
 
 ### Fixed
