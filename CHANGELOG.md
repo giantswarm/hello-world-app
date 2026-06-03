@@ -7,6 +7,8 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+## [0.0.3] - 2026-06-03
+
 ### Added
 
 - test entry for release workflow testing
@@ -23,5 +25,6 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 - testing
 
-[Unreleased]: https://github.com/giantswarm/release-test-app/compare/v0.0.2...HEAD
+[Unreleased]: https://github.com/giantswarm/release-test-app/compare/v0.0.3...HEAD
+[0.0.3]: https://github.com/giantswarm/release-test-app/compare/v0.0.2...v0.0.3
 [0.0.2]: https://github.com/giantswarm/release-test-app/compare/v0.0.1...v0.0.2
