@@ -13,4 +13,5 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 - testing
 
-[Unreleased]: https://github.com/giantswarm/release-test-app/compare/v0.0.1...HEAD
+[Unreleased]: https://github.com/giantswarm/hello-world-app/compare/v0.0.1...HEAD
+[0.0.1]: https://github.com/giantswarm/hello-world-app/compare/v3.0.1...v3.0.2
