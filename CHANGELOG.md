@@ -7,6 +7,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Added
+
+- test entry for release workflow testing
+
 ## [0.0.2] - 2026-06-03
 
 ### Added
