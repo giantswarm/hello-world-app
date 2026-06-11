@@ -7,6 +7,8 @@ adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [2.1.0] - 2026-06-11
+
 ### Changed
 
 - yes
@@ -99,7 +101,8 @@ adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 - testing
 
-[Unreleased]: https://github.com/giantswarm/release-test-app/compare/v2.1.0-rc.3...HEAD
+[Unreleased]: https://github.com/giantswarm/release-test-app/compare/v2.1.0...HEAD
+[2.1.0]: https://github.com/giantswarm/release-test-app/compare/v2.1.0-rc.3...v2.1.0
 [2.1.0-rc.3]: https://github.com/giantswarm/release-test-app/compare/v2.1.0-rc.2...v2.1.0-rc.3
 [2.1.0-rc.2]: https://github.com/giantswarm/release-test-app/compare/v2.1.0-rc.1...v2.1.0-rc.2
 [2.1.0-rc.1]: https://github.com/giantswarm/release-test-app/compare/v2.0.0...v2.1.0-rc.1
