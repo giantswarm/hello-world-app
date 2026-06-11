@@ -2,10 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
-and this project's packages adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
+The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project's packages
+adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [2.1.0-rc.3] - 2026-06-11
+
+### Added
+
+- End-to-end test entry for RC release validation.
 
 ## [2.1.0-rc.2] - 2026-06-03
 
@@ -89,7 +95,8 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 - testing
 
-[Unreleased]: https://github.com/giantswarm/release-test-app/compare/v2.1.0-rc.2...HEAD
+[Unreleased]: https://github.com/giantswarm/release-test-app/compare/v2.1.0-rc.3...HEAD
+[2.1.0-rc.3]: https://github.com/giantswarm/release-test-app/compare/v2.1.0-rc.2...v2.1.0-rc.3
 [2.1.0-rc.2]: https://github.com/giantswarm/release-test-app/compare/v2.1.0-rc.1...v2.1.0-rc.2
 [2.1.0-rc.1]: https://github.com/giantswarm/release-test-app/compare/v2.0.0...v2.1.0-rc.1
 [2.0.0]: https://github.com/giantswarm/release-test-app/compare/v1.0.0...v2.0.0
