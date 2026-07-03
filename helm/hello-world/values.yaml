@@ -22,8 +22,8 @@ image:
   name: giantswarm/helloworld
   # -- This sets the pull policy for images.
   pullPolicy: IfNotPresent
-  # -- Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  # -- Container image tag.
+  tag: "0.6.0"
 
 # @schema itemRef: $k8s/_definitions.json#/definitions/io.k8s.api.core.v1.LocalObjectReference
 # -- This is for the secretes for pulling an image from a private repository more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
