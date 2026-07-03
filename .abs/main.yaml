@@ -1,4 +1,4 @@
 chart-dir: helm/hello-world
-replace-chart-version-with-git: true
+replace-chart-version-with-git: false
 generate-metadata: true
 catalog-base-url: https://giantswarm.github.io/giantswarm-catalog/
