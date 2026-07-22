@@ -57,7 +57,7 @@ podAnnotations: {}
 # -- This is for setting Kubernetes Labels to a Pod. For more information checkout: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
 podLabels: {}
 
-# @schema $ref: $k8s/_definitions.json#/definitions/io.k8s.api.core.v1.PodSecurityContext
+# @schema $ref: $k8s/_definitions.json#/definitions/io.k8s.api.core.v1.PodSecurityContext; additionalProperties: true
 # -- Pod security context configuration
 podSecurityContext: {}
   # fsGroup: 2000
@@ -335,7 +335,7 @@ nodeSelector: {}
 # -- Tolerations for pod scheduling
 tolerations: []
 
-# @schema $ref: $k8s/_definitions.json#/definitions/io.k8s.api.core.v1.Affinity
+# @schema $ref: $k8s/_definitions.json#/definitions/io.k8s.api.core.v1.Affinity; additionalProperties: true
 # -- Affinity rules for pod scheduling
 affinity: {}
 

@@ -6,7 +6,7 @@
             "description": "Affinity rules for pod scheduling",
             "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.Affinity",
             "type": "object",
-            "additionalProperties": false
+            "additionalProperties": true
         },
         "autoscaling": {
             "description": "This section is for setting up autoscaling more information can be found here: https://kubernetes.io/docs/concepts/workloads/autoscaling/",
@@ -71,7 +71,7 @@
                     "type": "string"
                 },
                 "tag": {
-                    "description": "Overrides the image tag whose default is the chart appVersion.",
+                    "description": "Container image tag.",
                     "type": "string"
                 }
             },
@@ -220,7 +220,7 @@
             "description": "Pod security context configuration",
             "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.PodSecurityContext",
             "type": "object",
-            "additionalProperties": false
+            "additionalProperties": true
         },
         "readinessProbe": {
             "description": "Readiness probe configuration",
