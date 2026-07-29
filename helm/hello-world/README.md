@@ -90,6 +90,11 @@ A chart that deploys a basic hello world site and lets you test values merging o
 | strategy.rollingUpdate.maxSurge | int | `1` | Maximum number of pods that can be created above the desired replica count |
 | volumes | list | `[]` | Additional volumes on the output Deployment definition. |
 | volumeMounts | list | `[]` | Additional volumeMounts on the output Deployment definition. |
+| extraEnv | list | `[]` | Additional environment variables to inject into the container. |
+| crash | object | `{"enabled":false,"gracePeriod":"30s","rateBytesPerSec":1048576}` | Staged, deliberate failure injection for demos and testing. When enabled the container leaks memory until the kubelet OOMKills it, on a loop. This is off by default and must not be enabled in production. |
+| crash.enabled | bool | `false` | Enable crash mode: a deliberate memory leak that drives a repeating OOMKill. Off by default. |
+| crash.rateBytesPerSec | int | `1048576` | Memory leak rate in bytes per second (default 1 MiB/s). |
+| crash.gracePeriod | string | `"30s"` | Grace period before leaking starts, so the pod reaches Ready first. Any Go duration. |
 | nodeSelector | object | `{}` | Node selector for pod scheduling |
 | tolerations | list | `[]` | Tolerations for pod scheduling |
 | affinity | object | `{}` | Affinity rules for pod scheduling |
