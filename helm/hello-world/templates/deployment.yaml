@@ -46,6 +46,17 @@ spec:
             secretKeyRef:
               name: {{ include "hello-world.fullname" . }}
               key: secret-key
+        {{- if .Values.crash.enabled }}
+        - name: MEMORY_LEAK_ENABLED
+          value: "true"
+        - name: MEMORY_LEAK_RATE_BYTES_PER_SEC
+          value: {{ .Values.crash.rateBytesPerSec | int64 | quote }}
+        - name: MEMORY_LEAK_GRACE_PERIOD
+          value: {{ .Values.crash.gracePeriod | quote }}
+        {{- end }}
+        {{- with .Values.extraEnv }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
         ports:
         - name: http
           containerPort: 8080

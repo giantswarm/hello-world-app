@@ -327,6 +327,31 @@ volumeMounts: []
 #   mountPath: "/etc/foo"
 #   readOnly: true
 
+# @schema itemRef: $k8s/_definitions.json#/definitions/io.k8s.api.core.v1.EnvVar
+# -- Additional environment variables to inject into the container.
+extraEnv: []
+# - name: LOG_LEVEL
+#   value: "debug"
+# - name: MY_SECRET
+#   valueFrom:
+#     secretKeyRef:
+#       name: my-secret
+#       key: token
+
+# -- Staged, deliberate failure injection for demos and testing. When enabled the
+# container leaks memory until the kubelet OOMKills it, on a loop. This is off by
+# default and must not be enabled in production.
+crash:
+  # @schema type:boolean
+  # -- Enable crash mode: a deliberate memory leak that drives a repeating OOMKill. Off by default.
+  enabled: false
+  # @schema type:integer;minimum:1
+  # -- Memory leak rate in bytes per second (default 1 MiB/s).
+  rateBytesPerSec: 1048576
+  # @schema type:string
+  # -- Grace period before leaking starts, so the pod reaches Ready first. Any Go duration.
+  gracePeriod: "30s"
+
 # @schema type:object
 # -- Node selector for pod scheduling
 nodeSelector: {}
