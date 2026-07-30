@@ -12,6 +12,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 - Add `crash` values to opt into staged failure injection for demos and testing: `crash.enabled` turns on a deliberate memory leak that drives a repeating OOMKill, with `crash.rateBytesPerSec` and `crash.gracePeriod` for tuning. Disabled by default.
 - Add `extraEnv` value to inject additional environment variables into the container. Defaults to `[]`, so rendered output is unchanged for existing users.
 
+### Changed
+
+- Update the `helloworld` image to `0.7.0` (and align `appVersion`), which ships the memory-leak support that `crash.enabled` drives.
+
 ## [3.0.4] - 2026-07-22
 
 ### Fixed
