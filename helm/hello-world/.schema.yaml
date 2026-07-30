@@ -1,6 +1,13 @@
 # .schema.yaml
 # yaml-language-server: $schema=https://github.com/losisin/helm-values-schema-json/raw/refs/heads/main/config.schema.json
 
+# DO NOT EDIT. Generated with:
+#
+#    devctl
+#
+#    https://github.com/giantswarm/devctl/blob/f3a2cc57c7df97421d3f0b1772a3aa44143cdb43/pkg/gen/input/precommit/internal/file/schema.yaml.template
+#
+
 values:
   - helm/hello-world/values.yaml
 
@@ -16,7 +23,7 @@ bundleRoot: ""
 bundleWithoutID: true
 
 k8sSchemaURL:
-  https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/{{ .K8sSchemaVersion }}/
+  https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/v1.33.1/
 k8sSchemaVersion: "v1.33.1"
 
 useHelmDocs: true
