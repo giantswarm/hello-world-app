@@ -7,6 +7,8 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+## [3.1.0] - 2026-07-30
+
 ### Added
 
 - Add `crash` values to opt into staged failure injection for demos and testing: `crash.enabled` turns on a deliberate memory leak that drives a repeating OOMKill, with `crash.rateBytesPerSec` and `crash.gracePeriod` for tuning. Disabled by default.
@@ -286,7 +288,8 @@ First release published to the Giant Swarm catalog
 
 Initial release
 
-[Unreleased]: https://github.com/giantswarm/hello-world-app/compare/v3.0.4...HEAD
+[Unreleased]: https://github.com/giantswarm/hello-world-app/compare/v3.1.0...HEAD
+[3.1.0]: https://github.com/giantswarm/hello-world-app/compare/v3.0.4...v3.1.0
 [3.0.4]: https://github.com/giantswarm/hello-world-app/compare/v3.0.3...v3.0.4
 [3.0.3]: https://github.com/giantswarm/hello-world-app/compare/v3.0.2...v3.0.3
 [3.0.2]: https://github.com/giantswarm/hello-world-app/compare/v3.0.1...v3.0.2
