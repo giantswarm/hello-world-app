@@ -365,9 +365,10 @@ crash:
 architecture: ""
 
 # @schema type:object;additionalProperties:{"type":"string"}
-# -- Node selector for pod scheduling. Merged with `architecture`. Setting
-# `kubernetes.io/arch` here to something other than `architecture` is a
-# contradiction and fails the render, so set only one of the two.
+# -- Node selector for pod scheduling. Merged with `architecture`. Pinning to
+# arm64 here rather than through `architecture` also adds the arm64 taint
+# toleration, so either route is safe. A value that contradicts `architecture`
+# fails the render.
 nodeSelector: {}
 
 # @schema itemRef: $k8s/_definitions.json#/definitions/io.k8s.api.core.v1.Toleration

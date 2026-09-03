@@ -7,6 +7,11 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Fixed
+
+- Derive the arm64 taint toleration from the effective `kubernetes.io/arch` node selector rather than from `architecture` alone. Pinning to arm64 with `nodeSelector: {kubernetes.io/arch: arm64}` and an empty `architecture` passed schema validation and rendered the selector with no toleration, so the pod stayed Pending forever against a tainted arm64 node pool with no render error. Either route is now safe.
+- Skip the generated toleration only when an existing one actually covers the arm64 taint. The previous `uniq` collapsed just a field-for-field identical entry, so an equivalent toleration written with `operator: Exists`, or with `operator` omitted since `Equal` is the API default, produced a duplicate. Coverage is now decided by `key`, `effect`, `operator` and `value`, so a `kubernetes.io/arch=amd64` toleration no longer counts as covering arm64.
+
 ## [3.2.0] - 2026-09-03
 
 ### Added
