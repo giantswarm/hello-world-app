@@ -7,6 +7,8 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+## [3.2.0] - 2026-09-03
+
 ### Added
 
 - Add `architecture` value (`""` | `amd64` | `arm64`) to pin the workload to a CPU architecture. Setting `arm64` renders both the `kubernetes.io/arch` node selector and the toleration for the `kubernetes.io/arch=arm64:NoSchedule` taint that Giant Swarm arm64 node pools carry -- both are required, and setting only one fails in a different, non-obvious way, so a single value drives both. Defaults to `""`, which renders nothing, so output is unchanged for existing users. The scheduling logic lives in the `hello-world.podScheduling` helper and merges with the explicit `nodeSelector`/`tolerations` values.
@@ -296,7 +298,8 @@ First release published to the Giant Swarm catalog
 
 Initial release
 
-[Unreleased]: https://github.com/giantswarm/hello-world-app/compare/v3.1.0...HEAD
+[Unreleased]: https://github.com/giantswarm/hello-world-app/compare/v3.2.0...HEAD
+[3.2.0]: https://github.com/giantswarm/hello-world-app/compare/v3.1.0...v3.2.0
 [3.1.0]: https://github.com/giantswarm/hello-world-app/compare/v3.0.4...v3.1.0
 [3.0.4]: https://github.com/giantswarm/hello-world-app/compare/v3.0.3...v3.0.4
 [3.0.3]: https://github.com/giantswarm/hello-world-app/compare/v3.0.2...v3.0.3
