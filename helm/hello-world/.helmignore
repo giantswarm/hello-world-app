@@ -21,3 +21,5 @@
 .idea/
 *.tmproj
 .vscode/
+# Chart unit tests: source-only, not part of the packaged chart
+tests/
