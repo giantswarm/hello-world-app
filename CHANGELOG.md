@@ -7,6 +7,14 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Added
+
+- Add `architecture` value (`""` | `amd64` | `arm64`) to pin the workload to a CPU architecture. Setting `arm64` renders both the `kubernetes.io/arch` node selector and the toleration for the `kubernetes.io/arch=arm64:NoSchedule` taint that Giant Swarm arm64 node pools carry -- both are required, and setting only one fails in a different, non-obvious way, so a single value drives both. Defaults to `""`, which renders nothing, so output is unchanged for existing users. The scheduling logic lives in the `hello-world.podScheduling` helper and merges with the explicit `nodeSelector`/`tolerations` values.
+
+### Fixed
+
+- Allow keys in `nodeSelector`, which the generated schema rejected via `additionalProperties: false` -- any entry failed with "additional properties '<key>' not allowed". Same class of bug as the `affinity`/`podSecurityContext` fix in 3.0.4.
+
 ## [3.1.0] - 2026-07-30
 
 ### Added
