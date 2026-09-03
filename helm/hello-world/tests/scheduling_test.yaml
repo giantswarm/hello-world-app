@@ -90,3 +90,16 @@ tests:
           path: spec.template.spec.nodeSelector["kubernetes.io/arch"]
       - notExists:
           path: spec.template.spec.tolerations
+
+  - it: does not emit the arm64 toleration twice when it is already set
+    set:
+      architecture: arm64
+      tolerations:
+        - key: kubernetes.io/arch
+          operator: Equal
+          value: arm64
+          effect: NoSchedule
+    asserts:
+      - lengthEqual:
+          path: spec.template.spec.tolerations
+          count: 1

@@ -82,7 +82,7 @@ Emits nothing when unset, so rendered output is unchanged for existing users.
 {{- with .Values.architecture -}}
 {{- $nodeSelector = merge (dict "kubernetes.io/arch" .) $nodeSelector -}}
 {{- if eq . "arm64" -}}
-{{- $tolerations = concat $tolerations (list (dict "key" "kubernetes.io/arch" "operator" "Equal" "value" "arm64" "effect" "NoSchedule")) -}}
+{{- $tolerations = concat $tolerations (list (dict "key" "kubernetes.io/arch" "operator" "Equal" "value" "arm64" "effect" "NoSchedule")) | uniq -}}
 {{- end -}}
 {{- end -}}
 {{- $scheduling := dict -}}
