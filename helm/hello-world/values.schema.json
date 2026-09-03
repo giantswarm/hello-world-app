@@ -6,6 +6,7 @@
                 "io.k8s.api.core.v1.Affinity": {
                     "type": "object",
                     "description": "Affinity is a group of affinity scheduling rules.",
+                    "additionalProperties": false,
                     "properties": {
                         "nodeAffinity": {
                             "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.NodeAffinity",
@@ -27,6 +28,7 @@
                     "required": [
                         "type"
                     ],
+                    "additionalProperties": false,
                     "properties": {
                         "type": {
                             "type": "string",
@@ -41,6 +43,7 @@
                 "io.k8s.api.core.v1.Capabilities": {
                     "type": "object",
                     "description": "Adds and removes POSIX capabilities from running containers.",
+                    "additionalProperties": false,
                     "properties": {
                         "add": {
                             "type": "array",
@@ -64,6 +67,7 @@
                     "required": [
                         "key"
                     ],
+                    "additionalProperties": false,
                     "properties": {
                         "key": {
                             "type": "string",
@@ -85,6 +89,7 @@
                     "required": [
                         "name"
                     ],
+                    "additionalProperties": false,
                     "properties": {
                         "name": {
                             "type": "string",
@@ -103,6 +108,7 @@
                 "io.k8s.api.core.v1.EnvVarSource": {
                     "type": "object",
                     "description": "EnvVarSource represents a source for the value of an EnvVar.",
+                    "additionalProperties": false,
                     "properties": {
                         "configMapKeyRef": {
                             "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.ConfigMapKeySelector",
@@ -125,6 +131,7 @@
                 "io.k8s.api.core.v1.ExecAction": {
                     "type": "object",
                     "description": "ExecAction describes a \"run in container\" action.",
+                    "additionalProperties": false,
                     "properties": {
                         "command": {
                             "type": "array",
@@ -141,6 +148,7 @@
                     "required": [
                         "port"
                     ],
+                    "additionalProperties": false,
                     "properties": {
                         "port": {
                             "type": "integer",
@@ -159,6 +167,7 @@
                     "required": [
                         "port"
                     ],
+                    "additionalProperties": false,
                     "properties": {
                         "host": {
                             "type": "string",
@@ -192,6 +201,7 @@
                         "name",
                         "value"
                     ],
+                    "additionalProperties": false,
                     "properties": {
                         "name": {
                             "type": "string",
@@ -206,6 +216,7 @@
                 "io.k8s.api.core.v1.LocalObjectReference": {
                     "type": "object",
                     "description": "LocalObjectReference contains enough information to let you locate the referenced object inside the same namespace.",
+                    "additionalProperties": false,
                     "properties": {
                         "name": {
                             "type": "string",
@@ -216,6 +227,7 @@
                 "io.k8s.api.core.v1.NodeAffinity": {
                     "type": "object",
                     "description": "Node affinity is a group of node affinity scheduling rules.",
+                    "additionalProperties": false,
                     "properties": {
                         "preferredDuringSchedulingIgnoredDuringExecution": {
                             "type": "array",
@@ -236,6 +248,7 @@
                     "required": [
                         "nodeSelectorTerms"
                     ],
+                    "additionalProperties": false,
                     "properties": {
                         "nodeSelectorTerms": {
                             "type": "array",
@@ -253,6 +266,7 @@
                         "key",
                         "operator"
                     ],
+                    "additionalProperties": false,
                     "properties": {
                         "key": {
                             "type": "string",
@@ -274,6 +288,7 @@
                 "io.k8s.api.core.v1.NodeSelectorTerm": {
                     "type": "object",
                     "description": "A null or empty node selector term matches no objects. The requirements of them are ANDed. The TopologySelectorTerm type implements a subset of the NodeSelectorTerm.",
+                    "additionalProperties": false,
                     "properties": {
                         "matchExpressions": {
                             "type": "array",
@@ -297,6 +312,7 @@
                     "required": [
                         "fieldPath"
                     ],
+                    "additionalProperties": false,
                     "properties": {
                         "apiVersion": {
                             "type": "string",
@@ -311,6 +327,7 @@
                 "io.k8s.api.core.v1.PodAffinity": {
                     "type": "object",
                     "description": "Pod affinity is a group of inter pod affinity scheduling rules.",
+                    "additionalProperties": false,
                     "properties": {
                         "preferredDuringSchedulingIgnoredDuringExecution": {
                             "type": "array",
@@ -334,6 +351,7 @@
                     "required": [
                         "topologyKey"
                     ],
+                    "additionalProperties": false,
                     "properties": {
                         "labelSelector": {
                             "$ref": "#/$defs/_definitions.json/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.LabelSelector",
@@ -373,6 +391,7 @@
                 "io.k8s.api.core.v1.PodAntiAffinity": {
                     "type": "object",
                     "description": "Pod anti affinity is a group of inter pod anti affinity scheduling rules.",
+                    "additionalProperties": false,
                     "properties": {
                         "preferredDuringSchedulingIgnoredDuringExecution": {
                             "type": "array",
@@ -393,6 +412,7 @@
                 "io.k8s.api.core.v1.PodSecurityContext": {
                     "type": "object",
                     "description": "PodSecurityContext holds pod-level security attributes and common container settings. Some fields are also present in container.securityContext.  Field values of container.securityContext take precedence over field values of PodSecurityContext.",
+                    "additionalProperties": false,
                     "properties": {
                         "appArmorProfile": {
                             "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.AppArmorProfile",
@@ -465,6 +485,7 @@
                         "weight",
                         "preference"
                     ],
+                    "additionalProperties": false,
                     "properties": {
                         "preference": {
                             "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.NodeSelectorTerm",
@@ -480,6 +501,7 @@
                 "io.k8s.api.core.v1.Probe": {
                     "type": "object",
                     "description": "Probe describes a health check to be performed against a container to determine whether it is alive or ready to receive traffic.",
+                    "additionalProperties": false,
                     "properties": {
                         "exec": {
                             "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.ExecAction",
@@ -535,6 +557,7 @@
                     "required": [
                         "name"
                     ],
+                    "additionalProperties": false,
                     "properties": {
                         "name": {
                             "type": "string",
@@ -552,6 +575,7 @@
                     "required": [
                         "resource"
                     ],
+                    "additionalProperties": false,
                     "properties": {
                         "containerName": {
                             "type": "string",
@@ -570,6 +594,7 @@
                 "io.k8s.api.core.v1.ResourceRequirements": {
                     "type": "object",
                     "description": "ResourceRequirements describes the compute resource requirements.",
+                    "additionalProperties": false,
                     "properties": {
                         "claims": {
                             "type": "array",
@@ -597,6 +622,7 @@
                 "io.k8s.api.core.v1.SELinuxOptions": {
                     "type": "object",
                     "description": "SELinuxOptions are the labels to be applied to the container",
+                    "additionalProperties": false,
                     "properties": {
                         "type": {
                             "type": "string",
@@ -622,6 +648,7 @@
                     "required": [
                         "type"
                     ],
+                    "additionalProperties": false,
                     "properties": {
                         "type": {
                             "type": "string",
@@ -639,6 +666,7 @@
                     "required": [
                         "key"
                     ],
+                    "additionalProperties": false,
                     "properties": {
                         "key": {
                             "type": "string",
@@ -657,6 +685,7 @@
                 "io.k8s.api.core.v1.SecurityContext": {
                     "type": "object",
                     "description": "SecurityContext holds security configuration that will be applied to a container. Some fields are present in both SecurityContext and PodSecurityContext.  When both are set, the values in SecurityContext take precedence.",
+                    "additionalProperties": false,
                     "properties": {
                         "allowPrivilegeEscalation": {
                             "type": "boolean",
@@ -717,6 +746,7 @@
                         "name",
                         "value"
                     ],
+                    "additionalProperties": false,
                     "properties": {
                         "name": {
                             "type": "string",
@@ -734,6 +764,7 @@
                     "required": [
                         "port"
                     ],
+                    "additionalProperties": false,
                     "properties": {
                         "host": {
                             "type": "string",
@@ -748,6 +779,7 @@
                 "io.k8s.api.core.v1.Toleration": {
                     "type": "object",
                     "description": "The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>.",
+                    "additionalProperties": false,
                     "properties": {
                         "effect": {
                             "type": "string",
@@ -780,6 +812,7 @@
                         "topologyKey",
                         "whenUnsatisfiable"
                     ],
+                    "additionalProperties": false,
                     "properties": {
                         "labelSelector": {
                             "$ref": "#/$defs/_definitions.json/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.LabelSelector",
@@ -827,6 +860,7 @@
                         "weight",
                         "podAffinityTerm"
                     ],
+                    "additionalProperties": false,
                     "properties": {
                         "podAffinityTerm": {
                             "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.PodAffinityTerm",
@@ -842,6 +876,7 @@
                 "io.k8s.api.core.v1.WindowsSecurityContextOptions": {
                     "type": "object",
                     "description": "WindowsSecurityContextOptions contain Windows-specific options and credentials.",
+                    "additionalProperties": false,
                     "properties": {
                         "gmsaCredentialSpec": {
                             "type": "string",
@@ -864,6 +899,7 @@
                 "io.k8s.api.policy.v1.PodDisruptionBudgetSpec": {
                     "type": "object",
                     "description": "PodDisruptionBudgetSpec is a description of a PodDisruptionBudget.",
+                    "additionalProperties": false,
                     "properties": {
                         "maxUnavailable": {
                             "$ref": "#/$defs/_definitions.json/definitions/io.k8s.apimachinery.pkg.util.intstr.IntOrString",
@@ -896,6 +932,7 @@
                 "io.k8s.apimachinery.pkg.apis.meta.v1.LabelSelector": {
                     "type": "object",
                     "description": "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
+                    "additionalProperties": false,
                     "properties": {
                         "matchExpressions": {
                             "type": "array",
@@ -920,6 +957,7 @@
                         "key",
                         "operator"
                     ],
+                    "additionalProperties": false,
                     "properties": {
                         "key": {
                             "type": "string",
@@ -958,6 +996,7 @@
             "required": [
                 "name"
             ],
+            "additionalProperties": false,
             "properties": {
                 "name": {
                     "type": "string",
@@ -1085,7 +1124,7 @@
                 "null"
             ],
             "description": "Global values shared between all subcharts",
-            "$comment": "Added automatically by 'helm schema' to allow this chart to be used as a Helm dependency, as this schema would otherwise not allow Helm's special 'global' values key."
+            "$comment": "Added automatically by 'helm schema' to allow this chart to be used as a Helm dependency, as the `additionalProperties` setting would otherwise collide with Helm's special 'global' values key."
         },
         "image": {
             "$ref": "#/$defs/v0.0.1",
