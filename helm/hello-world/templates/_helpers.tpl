@@ -72,14 +72,19 @@ non-obvious ways. Giant Swarm arm64 node pools carry a
 *and* the matching toleration: with only the selector it stays Pending, with
 only the toleration it may be scheduled onto any pool. One value sets both.
 
-`architecture` wins for the `kubernetes.io/arch` key, since it also decides the
-toleration and the two must agree; any other `nodeSelector` entry is kept.
+A `nodeSelector` that sets `kubernetes.io/arch` to something other than
+`architecture` is a contradiction rather than a preference to arbitrate, so it
+fails the render instead of silently discarding one of the two. Any other
+`nodeSelector` entry is kept.
 Emits nothing when unset, so rendered output is unchanged for existing users.
 */}}
 {{- define "hello-world.podScheduling" -}}
 {{- $nodeSelector := deepCopy (.Values.nodeSelector | default dict) -}}
 {{- $tolerations := .Values.tolerations | default list -}}
 {{- with .Values.architecture -}}
+{{- if and (hasKey $nodeSelector "kubernetes.io/arch") (ne (index $nodeSelector "kubernetes.io/arch") .) -}}
+{{- fail (printf "architecture=%s conflicts with nodeSelector.%q=%s; set only one" . "kubernetes.io/arch" (index $nodeSelector "kubernetes.io/arch")) -}}
+{{- end -}}
 {{- $nodeSelector = merge (dict "kubernetes.io/arch" .) $nodeSelector -}}
 {{- if eq . "arm64" -}}
 {{- $tolerations = concat $tolerations (list (dict "key" "kubernetes.io/arch" "operator" "Equal" "value" "arm64" "effect" "NoSchedule")) | uniq -}}

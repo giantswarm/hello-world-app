@@ -67,16 +67,30 @@ tests:
             operator: Exists
             effect: NoSchedule
 
-  - it: lets architecture win over a conflicting kubernetes.io/arch selector
-    # The two must agree, since architecture also decides the toleration.
+  - it: fails when nodeSelector contradicts architecture
+    # A contradiction is a mistake, not a preference to arbitrate: architecture
+    # also decides the toleration, so silently picking a winner would render
+    # something neither setting asked for.
     set:
       architecture: arm64
       nodeSelector:
         kubernetes.io/arch: amd64
     asserts:
+      - failedTemplate:
+          errorPattern: 'architecture=arm64 conflicts with nodeSelector\."kubernetes\.io/arch"=amd64; set only one'
+
+  - it: accepts a nodeSelector that agrees with architecture
+    set:
+      architecture: arm64
+      nodeSelector:
+        kubernetes.io/arch: arm64
+    asserts:
       - equal:
           path: spec.template.spec.nodeSelector["kubernetes.io/arch"]
           value: arm64
+      - lengthEqual:
+          path: spec.template.spec.tolerations
+          count: 1
 
   - it: renders nodeSelector without architecture
     set:

@@ -1262,7 +1262,7 @@
         },
         "nodeSelector": {
             "type": "object",
-            "description": "Node selector for pod scheduling. Merged with `architecture`, which wins for the `kubernetes.io/arch` key.",
+            "description": "Node selector for pod scheduling. Merged with `architecture`. Setting `kubernetes.io/arch` here to something other than `architecture` is a contradiction and fails the render, so set only one of the two.",
             "additionalProperties": {
                 "type": "string"
             }

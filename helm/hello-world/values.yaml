@@ -365,8 +365,9 @@ crash:
 architecture: ""
 
 # @schema type:object;additionalProperties:{"type":"string"}
-# -- Node selector for pod scheduling. Merged with `architecture`, which wins for
-# the `kubernetes.io/arch` key.
+# -- Node selector for pod scheduling. Merged with `architecture`. Setting
+# `kubernetes.io/arch` here to something other than `architecture` is a
+# contradiction and fails the render, so set only one of the two.
 nodeSelector: {}
 
 # @schema itemRef: $k8s/_definitions.json#/definitions/io.k8s.api.core.v1.Toleration
