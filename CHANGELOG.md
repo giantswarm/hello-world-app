@@ -9,6 +9,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [3.2.2] - 2026-09-04
 
+### Fixed
+
+- Update values schema to allow for injection of platform values
+
 ## [3.2.1] - 2026-09-04
 
 ### Fixed
