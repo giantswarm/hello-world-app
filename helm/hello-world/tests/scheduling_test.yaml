@@ -117,3 +117,79 @@ tests:
       - lengthEqual:
           path: spec.template.spec.tolerations
           count: 1
+
+  - it: adds the toleration when arm64 is pinned through nodeSelector alone
+    # The coupling must hold whichever value sets the architecture. Without
+    # this the pod gets the selector, no toleration, and stays Pending against
+    # the tainted arm64 pool with no render error.
+    set:
+      nodeSelector:
+        kubernetes.io/arch: arm64
+    asserts:
+      - equal:
+          path: spec.template.spec.nodeSelector["kubernetes.io/arch"]
+          value: arm64
+      - contains:
+          path: spec.template.spec.tolerations
+          content:
+            key: kubernetes.io/arch
+            operator: Equal
+            value: arm64
+            effect: NoSchedule
+
+  - it: adds no toleration when amd64 is pinned through nodeSelector alone
+    set:
+      nodeSelector:
+        kubernetes.io/arch: amd64
+    asserts:
+      - equal:
+          path: spec.template.spec.nodeSelector["kubernetes.io/arch"]
+          value: amd64
+      - notExists:
+          path: spec.template.spec.tolerations
+
+  - it: treats an Exists toleration as already covering the taint
+    set:
+      architecture: arm64
+      tolerations:
+        - key: kubernetes.io/arch
+          operator: Exists
+          effect: NoSchedule
+    asserts:
+      - lengthEqual:
+          path: spec.template.spec.tolerations
+          count: 1
+
+  - it: treats an omitted operator as Equal, per the API default
+    set:
+      architecture: arm64
+      tolerations:
+        - key: kubernetes.io/arch
+          value: arm64
+          effect: NoSchedule
+    asserts:
+      - lengthEqual:
+          path: spec.template.spec.tolerations
+          count: 1
+
+  - it: still adds the toleration when an existing one tolerates amd64 instead
+    # Shares key and effect but does not tolerate the arm64 taint, so matching
+    # on key+effect alone would wrongly drop a toleration the pod needs.
+    set:
+      architecture: arm64
+      tolerations:
+        - key: kubernetes.io/arch
+          operator: Equal
+          value: amd64
+          effect: NoSchedule
+    asserts:
+      - lengthEqual:
+          path: spec.template.spec.tolerations
+          count: 2
+      - contains:
+          path: spec.template.spec.tolerations
+          content:
+            key: kubernetes.io/arch
+            operator: Equal
+            value: arm64
+            effect: NoSchedule
