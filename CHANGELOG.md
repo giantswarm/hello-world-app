@@ -7,6 +7,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Added
+
+- Add a `make helm-unittest` target for the chart unit test suite added in 3.2.0, which until now had no runner. Local only: chart unit tests belong in the generated workflow set so every app repo gets them consistently, rather than a hand-written workflow per repo. ATS remains the CI-side suite.
+
 ## [3.2.2] - 2026-09-04
 
 ### Fixed
