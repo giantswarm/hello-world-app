@@ -7,6 +7,8 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+## [3.2.1] - 2026-09-04
+
 ### Fixed
 
 - Derive the arm64 taint toleration from the effective `kubernetes.io/arch` node selector rather than from `architecture` alone. Pinning to arm64 with `nodeSelector: {kubernetes.io/arch: arm64}` and an empty `architecture` passed schema validation and rendered the selector with no toleration, so the pod stayed Pending forever against a tainted arm64 node pool with no render error. Either route is now safe.
@@ -303,7 +305,8 @@ First release published to the Giant Swarm catalog
 
 Initial release
 
-[Unreleased]: https://github.com/giantswarm/hello-world-app/compare/v3.2.0...HEAD
+[Unreleased]: https://github.com/giantswarm/hello-world-app/compare/v3.2.1...HEAD
+[3.2.1]: https://github.com/giantswarm/hello-world-app/compare/v3.2.0...v3.2.1
 [3.2.0]: https://github.com/giantswarm/hello-world-app/compare/v3.1.0...v3.2.0
 [3.1.0]: https://github.com/giantswarm/hello-world-app/compare/v3.0.4...v3.1.0
 [3.0.4]: https://github.com/giantswarm/hello-world-app/compare/v3.0.3...v3.0.4
