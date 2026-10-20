@@ -7,6 +7,8 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+## [3.2.4] - 2026-10-20
+
 ### Changed
 
 - The release workflows authenticate as the `giantswarm-release` GitHub App instead of the taylorbot user, regenerated with devctl v8.148.1 ([giantswarm/giantswarm#2280](https://github.com/giantswarm/giantswarm/issues/2280)).
@@ -322,7 +324,8 @@ First release published to the Giant Swarm catalog
 
 Initial release
 
-[Unreleased]: https://github.com/giantswarm/hello-world-app/compare/v3.2.3...HEAD
+[Unreleased]: https://github.com/giantswarm/hello-world-app/compare/v3.2.4...HEAD
+[3.2.4]: https://github.com/giantswarm/hello-world-app/compare/v3.2.3...v3.2.4
 [3.2.3]: https://github.com/giantswarm/hello-world-app/compare/v3.2.2...v3.2.3
 [3.2.2]: https://github.com/giantswarm/hello-world-app/compare/v3.2.1...v3.2.2
 [3.2.1]: https://github.com/giantswarm/hello-world-app/compare/v3.2.0...v3.2.1
