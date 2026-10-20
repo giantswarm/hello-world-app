@@ -7,6 +7,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Changed
+
+- The release workflows authenticate as the `giantswarm-release` GitHub App instead of the taylorbot user, regenerated with devctl v8.148.1 ([giantswarm/giantswarm#2280](https://github.com/giantswarm/giantswarm/issues/2280)).
+
 ## [3.2.3] - 2026-09-29
 
 ### Fixed
