@@ -1099,6 +1099,9 @@
                 }
             }
         },
+        "externalDNSIP": {
+            "type": "string"
+        },
         "extraEnv": {
             "type": "array",
             "description": "Additional environment variables to inject into the container.",
@@ -1118,8 +1121,18 @@
                 "object",
                 "null"
             ],
-            "description": "Global values shared between all subcharts",
-            "$comment": "Added automatically by 'helm schema' to allow this chart to be used as a Helm dependency, as this schema would otherwise not allow Helm's special 'global' values key."
+            "description": "Global values shared between all subcharts and the platform.",
+            "additionalProperties": true,
+            "properties": {
+                "podSecurityStandards": {
+                    "type": "object",
+                    "additionalProperties": true
+                }
+            }
+        },
+        "helm": {
+            "type": "object",
+            "additionalProperties": true
         },
         "image": {
             "$ref": "#/$defs/v0.0.1",
@@ -1250,6 +1263,9 @@
                 }
             },
             "unevaluatedProperties": false
+        },
+        "managementCluster": {
+            "type": "string"
         },
         "nameOverride": {
             "type": "string",
